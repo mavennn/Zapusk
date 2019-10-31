@@ -1,0 +1,1 @@
+global.nodemailer = require('nodemailer');

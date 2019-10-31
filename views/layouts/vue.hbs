@@ -1,0 +1,31 @@
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- 		<meta name="viewport" content="width=1200px, initial-scale=1"> -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+		<title>{{title}}</title>
+		
+		<!-- main css -->
+		<link href="/src/build/css/main.css?date={{cacheDate}}" rel="stylesheet">
+		<link href="/src/vendors/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<script>
+			var modulesUrl = {{{modules_url_json}}};
+			var moduleMode = '{{mode}}';
+			var dateCache = '{{{cacheDate}}}';
+			var dateLS = localStorage.getItem('dateCache');
+			if (dateCache != dateLS) {
+				localStorage.setItem('dateCache', (dateCache));
+			}
+		</script>
+	</head>
+	
+	<body class="">
+	  	{{{body}}}
+	</body>
+	
+	<script src="/src/build/js/main.js?date={{cacheDate}}" ></script>
+</html>

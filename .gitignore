@@ -1,0 +1,12 @@
+/node_modules/
+config/default.json
+config/modules.json
+*.DS_Store
+/public/node_modules/
+backup/*
+logs/*
+!logs/.empty
+public/build/*
+public/admin/*
+public/admin/*/*
+/.vscode

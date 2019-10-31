@@ -1,0 +1,77 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 07/04/2017 09:23
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-price-tag:before { content: "\f100"; }
+.flaticon-close:before { content: "\f101"; }
+.flaticon-dog:before { content: "\f102"; }
+.flaticon-dishes:before { content: "\f103"; }
+.flaticon-cosmetics:before { content: "\f104"; }
+.flaticon-edit-1:before { content: "\f105"; }
+.flaticon-teddy-bear:before { content: "\f106"; }
+.flaticon-paperclip:before { content: "\f107"; }
+.flaticon-groceries:before { content: "\f108"; }
+.flaticon-avatar:before { content: "\f109"; }
+.flaticon-valentines-heart:before { content: "\f10a"; }
+.flaticon-heart:before { content: "\f10b"; }
+.flaticon-clock:before { content: "\f10c"; }
+.flaticon-shopping-cart:before { content: "\f10d"; }
+.flaticon-tool:before { content: "\f10e"; }
+.flaticon-delivery-truck:before { content: "\f10f"; }
+.flaticon-construction:before { content: "\f110"; }
+.flaticon-cogwheel:before { content: "\f111"; }
+.flaticon-edit:before { content: "\f112"; }
+    
+    $font-Flaticon-price-tag: "\f100";
+    $font-Flaticon-close: "\f101";
+    $font-Flaticon-dog: "\f102";
+    $font-Flaticon-dishes: "\f103";
+    $font-Flaticon-cosmetics: "\f104";
+    $font-Flaticon-edit-1: "\f105";
+    $font-Flaticon-teddy-bear: "\f106";
+    $font-Flaticon-paperclip: "\f107";
+    $font-Flaticon-groceries: "\f108";
+    $font-Flaticon-avatar: "\f109";
+    $font-Flaticon-valentines-heart: "\f10a";
+    $font-Flaticon-heart: "\f10b";
+    $font-Flaticon-clock: "\f10c";
+    $font-Flaticon-shopping-cart: "\f10d";
+    $font-Flaticon-tool: "\f10e";
+    $font-Flaticon-delivery-truck: "\f10f";
+    $font-Flaticon-construction: "\f110";
+    $font-Flaticon-cogwheel: "\f111";
+    $font-Flaticon-edit: "\f112";

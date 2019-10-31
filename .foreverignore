@@ -1,0 +1,9 @@
+node_modules/*
+cache/*
+public/*
+file/*
+src/*
+backup/*
+logs/*
+photo_folder/*
+photo_magnit/*

@@ -1,0 +1,2 @@
+require('./TagsModel')
+require('./TagsManager')

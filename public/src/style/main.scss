@@ -1,0 +1,162 @@
+@import "_bootstrap.scss";
+@import "crm/xedit.scss";
+@import "crm/label.scss";
+@import "crm/switch.scss";
+@import "loader.scss";
+@import "crm/checkbox.scss";
+
+@font-face {
+	font-family: "Montserrat";
+	src: url("../fonts/montserrat.woff2") format("woff2");
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: "Montserrat";
+	src: url("../fonts/montserrat_semibold.woff2") format("woff2");
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: "Akrobat";
+	src: url("../fonts/akrobat_regular.otf") format("opentype");
+	font-weight: normal
+}
+
+@font-face {
+	font-family: "Akrobat";
+	src: url("../fonts/akrobat_thin.otf") format("opentype");
+	font-weight: 100
+}
+
+@font-face {
+	font-family: "Akrobat";
+	src: url("../fonts/akrobat_extralight.otf") format("opentype");
+	font-weight: 200
+}
+
+@font-face {
+	font-family: "Akrobat";
+	src: url("../fonts/akrobat_light.otf") format("opentype");
+	font-weight: 300
+}
+
+@font-face {
+	font-family: "Akrobat";
+	src: url("../fonts/akrobat_semibold.otf") format("opentype");
+	font-weight: 500
+}
+
+@font-face {
+	font-family: "Akrobat";
+	src: url("../fonts/akrobat_bold.otf") format("opentype");
+	font-weight: 600
+}
+
+@font-face {
+	font-family: "Akrobat";
+	src: url("../fonts/akrobat_extrabold.otf") format("opentype");
+	font-weight: 700
+}
+
+@font-face {
+	font-family: "Akrobat";
+	src: url("../fonts/akrobat_black.otf") format("opentype");
+	font-weight: 800
+}
+
+@font-face {
+	font-family: "Heathergreen";
+	src: url("../fonts/heathergreen_2.otf") format("opentype");
+}
+
+body{
+	font-family: "Akrobat";
+	box-sizing: border-box;
+}
+
+body *{
+	box-sizing: border-box;
+}
+
+
+.menu_icon {
+	margin-right: 15px;
+    font-size: 20px;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.cpointer{
+	cursor: pointer;
+}
+.no_wrap{
+	white-space: nowrap;
+}
+
+.hover {
+	cursor: pointer;
+}
+.lb_ball-clip-rotate > div{
+    border-radius: 100%;
+    margin: 2px;
+    border: 4px solid #00cd54;
+    border-bottom-color: transparent;
+    height: 45px;
+    width: 45px;
+    background: 0 0!important;
+    display: inline-block;
+    -webkit-animation: rotate .75s 0s linear infinite;
+    animation: rotate .75s 0s linear infinite;
+}
+
+
+#loader {
+	display: block;
+	height: 100px;
+    width: 100px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    border-radius: 10px;
+    background-color: rgba(0,0, 0, 0.05);
+    text-align: center;
+    box-sizing: padding-box;
+    font-size: 57px;
+    z-index: 4000;
+    padding: 20px 24px 0;
+	color: #484e5f;
+	&.hidden {
+		display: none;
+	}
+	i {
+		-webkit-animation: spin 2s infinite linear;
+		animation: spin 2s infinite linear;
+	}
+}
+
+.rotate_it {
+	-webkit-animation: spin 2s infinite linear;
+	animation: spin 2s infinite linear;
+}
+
+#loader_back {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 4000;
+	background-color: rgba(255, 255, 255, 0);
+	padding: 0 calc(50% - 24.5px);
+	&.hidden {
+		display: none;
+	}
+}
+
+

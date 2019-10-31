@@ -1,0 +1,24 @@
+{
+  "name": "src",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Gregory <greeega95@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "sweetalert2": "^6.6.0",
+    "rvc": "^0.4.0",
+    "socket.io-client": "^1.7.2",
+    "ractive": "^0.9.2"
+  }
+}

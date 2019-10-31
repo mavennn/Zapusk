@@ -1,0 +1,55 @@
+.label{
+	line-height: normal !important;
+	display: inline-block;
+}
+.label.label-outline, .badge.badge-outline{
+	background-color: rgba(0,0,0,0);
+    
+    &.label-success, &.badge-success{
+		box-shadow: 0px 0px 0px 1px #00c292 inset;
+		color: #00c292;
+	}
+	
+	&.label-info, &.badge-info{
+		box-shadow: 0px 0px 0px 1px #03a9f3 inset;
+		color: #03a9f3;
+	}
+	
+	&.label-default, &.badge-default{
+		box-shadow: 0px 0px 0px 1px #e5e7ea inset;
+		color: #e5e7ea;
+	}
+	
+	&.label-danger, &.badge-danger{
+		box-shadow: 0px 0px 0px 1px #fb9577 inset;
+		color: #fb9577;
+	}
+	
+	&.label-warning, &.badge-warning{
+		box-shadow: 0px 0px 0px 1px #fec108 inset;
+		color: #fec108;
+	}
+	
+	&.label-primary, &.badge-primary{
+		box-shadow: 0px 0px 0px 1px #ab8ce4 inset;
+		color: #ab8ce4;
+	}
+	   
+}
+
+.badge{
+	padding: 4px 7px;
+	display: inline-block;
+    margin: 0;
+	letter-spacing: 0.05em;
+	text-transform: none !important;
+	border-radius: 2px !important;
+	font-weight: 500 !important;
+}
+.badge-default {
+    background-color: #e5e7ea;
+}
+
+.badge-primary {
+    background-color: #ab8ce4;
+}

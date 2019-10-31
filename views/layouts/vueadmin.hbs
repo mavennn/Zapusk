@@ -1,0 +1,97 @@
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+		<title>{{title}}</title>
+		<!-- Bootstrap Core CSS -->
+		<link href="/src/template/eliteadmin-crm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="/src/template/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="/src/template/eliteadmin-crm/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- Menu CSS -->
+		<link href="/src/template/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+		<link href="/src/template/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+		<!-- Custom CSS -->
+		<link href="/src/template/eliteadmin-crm/css/style.css" rel="stylesheet">
+		<!-- morris CSS -->
+		<link href="/src/template/plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
+		<link href="/src/template/plugins/bower_components/css-chart/css-chart.css" rel="stylesheet">
+		<!-- color CSS -->
+		<!-- Bootstrap Core CSS -->
+	    <link href="/src/template/plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+	    <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+		<link href="/src/template/eliteadmin-crm/css/colors/gray-dark.css" id="theme" rel="stylesheet">
+		<!-- select 2 -->
+		<script src="/src/vendors/select2/select2.min.js"></script>
+		<link href="/src/vendors/select2/select2.min.css" rel="stylesheet">
+		<!-- masketinput -->
+		<script src="/src/vendors/masketinput.min.js"></script>
+		<!-- main css -->
+		<link href="/src/admin/build/css/main.css?date={{cacheDate}}" rel="stylesheet">
+		
+		<script>
+			var modulesUrl = {{{modules_url_json}}};
+			var moduleMode = '{{mode}}';
+			var dateCache = '{{{cacheDate}}}';
+			var dateLS = localStorage.getItem('dateCache');
+			if (dateCache != dateLS) {
+				localStorage.setItem('dateCache', (dateCache));
+			}
+		</script>
+	
+	</head>
+	
+	<body class="">
+	
+	  	{{{body}}}
+	
+		<div id='loader' class='hidden'>
+			<div class="lb_ball-clip-rotate">
+				<div></div>
+			</div>
+		</div><!--Лоадер-->
+		<div id='loader_back' class='hidden'></div>
+		<div id="lost-connection" ></div>
+	
+	</body>
+	
+	<script src="/src/admin/build/js/main.js?date={{cacheDate}}" ></script>
+	<script src="/src/template/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+	<!--slimscroll JavaScript -->
+	<script src="/src/template/eliteadmin/js/jquery.slimscroll.js"></script>
+	<!--Wave Effects -->
+	<script src="/src/template/eliteadmin-crm/js/waves.js"></script>
+	<!-- Custom Theme JavaScript -->
+	<script src="/src/template/eliteadmin/js/custom.min.js"></script>
+	<script src="/src/template/eliteadmin/js/cbpFWTabs.js"></script>
+	<script type="text/javascript">
+	    (function () {
+	            [].slice.call(document.querySelectorAll('.sttabs')).forEach(function (el) {
+	            new CBPFWTabs(el);
+	        });
+	    })();
+	</script>
+	<!-- Date Picker Plugin JavaScript -->
+	<script src="/src/template/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+	<script type="text/javascript">
+		$('.mydatepicker').datepicker();
+	</script>
+	<script src="/src/template/eliteadmin-crm/js/jasny-bootstrap.js"></script>
+	<script src="/src/template/eliteadmin-crm/js/mask.js"></script>
+	<script src="/src/template/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+	<link rel="stylesheet" href="/src/vendors/webui-popover/jquery.webui-popover.min.css">
+	<script src="/src/vendors/webui-popover/jquery.webui-popover.min.js"></script>
+    <script src="/src/template/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <script src="/src/template/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+</html>
