@@ -1,5 +1,5 @@
 console.time('appstart')
-
+const path = require('../app');
 global.fs = require('fs');
 require('./helpers.js');
 

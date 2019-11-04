@@ -1,24 +1,20 @@
 global._ = require('lodash');
-
 global.srequire = path => require(`${rootPath}/${path}`);
 
-global.ctrl = new Proxy( {}, {
-	get(t, name){
-		
+global.ctrl = new Proxy ( {}, {
+	get (t, name) {
 		let Path = [name];
-		
 		let Sproxy = new Proxy((() => {}), {
-			get(t, name){
+			get (t, name) {
 				Path.push(name);
 				return Sproxy;
 			},
-			apply(t, fn, ags){
-				
-				let en = Path.splice( 0, Path.length - 1 ).reduce((cur, val) => cur[val], global.controllers)
+			apply (t, fn, ags) {
+				let en = Path.splice( 0, Path.length - 1 ).reduce((cur, val) => cur[val], global.controllers);
 				return (...reqs) => ( new en(...reqs)[Path[0]](...ags) );
 				
 			}
-		})
+		});
 		return Sproxy;
 	}
 });
@@ -30,10 +26,10 @@ global.buildHeader = function(params = false) {
 		'app-token' : '',
 		'content-type' : 'application/json'
 	};
-	if (params != false)
+	if (params !== false)
 		return Object.assign(headers, params);
 	return headers;
-}
+};
 
 var request = require('request');
 global.post = function(url,arPost,params = false) {

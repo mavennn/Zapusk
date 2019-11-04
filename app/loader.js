@@ -20,7 +20,7 @@ module.exports = new class {
 		
 		arCtrl.forEach(name => {
 			let cname = name.substr(0, name.length - 3);
-			if(fs.lstatSync(`app/ctrl/${name}`).isDirectory()){
+			if(fs.lstatSync(`./ctrl/${name}`).isDirectory()){
 				global.controllers[name] = {};
 				fs.readdirSync(`${rootPath}/app/ctrl/${name}`).forEach(sname => {
 					global.controllers[name][( sname.substr(0, sname.length - 3) )] = srequire(`app/ctrl/${name}/${sname}`);
