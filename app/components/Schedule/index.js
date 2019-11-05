@@ -1,2 +1,2 @@
-require('./ScheduleModel')
-require('./ScheduleManager')
+require("./ScheduleModel");
+require("./ScheduleManager");

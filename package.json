@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack-prod.config.js && webpack --config webpack-prodes6.config.js",
-    "watch": "webpack --config webpack-watch.config.js --watch"
+    "watch": "webpack --config webpack-watch.config.js --watch",
+    "dev": "cd app && node App.js"
   },
   "author": "",
   "license": "ISC",

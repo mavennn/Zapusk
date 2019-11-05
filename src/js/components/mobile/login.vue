@@ -15,12 +15,11 @@
         </div>
         <div class="sl-forgot" @click="forgot">{{lang == 'en'?"i don't remember!":"не помню"}}</div>
 	</div>
-
-
-
 </template>
 
 <script>
+	import router from '../../core/Router';
+
 	export default {
 		data () {
 			return {
@@ -44,7 +43,7 @@
                 if(this.id.length == 4 && this.pin.length == 4){
                     App.User.login(this.id, this.pin).then((d) => {
                         if (isJson(d))
-                            location.href = '/'
+                            router.push({ path: "/" })
                     })
                 }
             },
@@ -64,7 +63,6 @@
 		components:{
 		}
 	}
-	
 </script>
 
 

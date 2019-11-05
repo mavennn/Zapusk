@@ -1,2 +1,2 @@
-require('./MeetingModel')
-require('./MeetingManager')
+require("./MeetingModel");
+require("./MeetingManager");

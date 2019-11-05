@@ -1,2 +1,2 @@
-require('./TagsModel')
-require('./TagsManager')
+require("./TagsModel");
+require("./TagsManager");

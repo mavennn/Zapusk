@@ -1,2 +1,2 @@
-require('./UserModel');
-require('./UserManager');
+require("./UserModel");
+require("./UserManager");

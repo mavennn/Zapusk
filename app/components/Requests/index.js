@@ -1,2 +1,2 @@
-require('./RequestModel')
-require('./RequestManager')
+require("./RequestModel");
+require("./RequestManager");
