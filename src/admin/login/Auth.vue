@@ -4,7 +4,7 @@
       <div class="login-box">
         <div class="white-box">
           <form class="form-horizontal form-material" id="loginform">
-            <h3 class="box-title m-b-20">Войти</h3>
+            <h3 class="box-title m-b-20">ЗАЙТИ</h3>
             <div class="form-group ">
               <div class="col-xs-12">
                 <input
