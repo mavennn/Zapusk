@@ -4,7 +4,8 @@
 backup/*
 logs/*
 !logs/.empty
-public/build/*
-public/admin/*
-public/admin/*/*
+public/build/js/*
+public/build/es6js/*
+public/admin/build/js/*
+public/admin/build/es6js/*
 /.vscode
