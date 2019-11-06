@@ -1,3 +1,5 @@
+require('../../../app');
+
 var Tag = new Schema({
   name: String,
   type: String, //country,

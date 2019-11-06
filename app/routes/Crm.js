@@ -1,3 +1,5 @@
+require('../../app');
+
 app.post("/api/admin/meetings/register/open", ctrl.Meeting.OpenRegister.run());
 app.post(
   "/api/admin/meetings/register/close",

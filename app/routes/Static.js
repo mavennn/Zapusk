@@ -1,3 +1,5 @@
+require('../../app');
+
 if (config.dev()) {
   let webpack = require("webpack");
   let webpackDevMiddleware = require("webpack-dev-middleware");

@@ -1,3 +1,5 @@
+require('../../app');
+
 module.exports = class extends AbstractCtrl {
   extConstructor() {
     this.user = this.req.User;

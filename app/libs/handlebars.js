@@ -1,10 +1,17 @@
-const handlebars = require('express-handlebars');
-const path = require('path');
+require('../../app');
 
-global.default_views_dir = path.join(rootPath, 'views/pages');
+const handlebars = require("express-handlebars");
+const path = require("path");
 
-global.hbs = handlebars.create({extname: 'hbs', defaultLayout: 'vue', layoutsDir: rootPath + '/views/layouts/', partialsDir: rootPath + '/views/partials/'});
+global.default_views_dir = path.join(rootPath, "views/pages");
 
-app.engine('hbs',hbs.engine);
-app.set('views', default_views_dir);
-app.set('view engine', 'hbs');
+global.hbs = handlebars.create({
+  extname: "hbs",
+  defaultLayout: "vue",
+  layoutsDir: rootPath + "/views/layouts/",
+  partialsDir: rootPath + "/views/partials/"
+});
+
+app.engine("hbs", hbs.engine);
+app.set("views", default_views_dir);
+app.set("view engine", "hbs");

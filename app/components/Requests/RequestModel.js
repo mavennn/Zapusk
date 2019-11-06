@@ -1,3 +1,5 @@
+require('../../../app');
+
 var Request = new Schema({
   speaker: String,
   user: String,

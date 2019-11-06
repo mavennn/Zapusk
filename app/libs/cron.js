@@ -1,4 +1,6 @@
-global.CronJob = require('cron').CronJob;
+require('../../app');
+
+global.CronJob = require("cron").CronJob;
 
 /*		Задаются в регионах			*/
 
@@ -8,8 +10,6 @@ new CronJob('0 1 0 * * *', ()=>{
 	backup.create();
 }, null, true);
 */
-
-
 
 /*		Выгрузка остатков		*/
 /*

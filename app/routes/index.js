@@ -1,3 +1,5 @@
+require('../../app');
+
 Load.Route("Static");
 
 app.use(function(req, res, next) {

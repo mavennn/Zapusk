@@ -1,3 +1,5 @@
+require('../../app');
+
 app.post("/api/user/user-list", ctrl.Users.List.run());
 app.post("/api/user/getbyid", ctrl.Users.GetById.run());
 app.post("/api/user/getSpeakerList", ctrl.Users.GetSpeakers.run());

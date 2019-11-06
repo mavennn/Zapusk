@@ -1,4 +1,4 @@
-const auth = Load.Middleware("Auth");
+require('../../app');
 
 app.get("/recovery/:token", (req, res) => {
   res.template("login").render("index", {
@@ -35,7 +35,7 @@ app.all("/*", async (req, res, next) => {
   if (req.url == "/api/auth-admin") return next();
 
   let token = req.cookies.token || req.get("App-Token");
-  console.log(`token is ${token}`);
+
   if (empty(token)) return res.redirect("/sign");
 
   let User = await UserManager.checkToken(token);

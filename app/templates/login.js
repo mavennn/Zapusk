@@ -1,3 +1,5 @@
+require('../../app');
+
 global.templates.login = class {
   constructor(req, res) {
     this.req = req;

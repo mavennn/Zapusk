@@ -1,3 +1,5 @@
+require('../../../app');
+
 var Meeting = new Schema({
   day: String,
   time: String,

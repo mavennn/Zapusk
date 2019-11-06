@@ -1,3 +1,5 @@
+require('../app');
+
 let empty = function(data) {
   if (data === null) return true;
   if (data === undefined) return true;

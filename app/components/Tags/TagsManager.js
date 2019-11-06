@@ -1,3 +1,5 @@
+require('../../../app');
+
 var xlsx = require("node-xlsx");
 global.tagsManager = new (class {
   constructor() {

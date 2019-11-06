@@ -1,61 +1,143 @@
 <template>
-	<div  >
-		
-		<h3>Редактирование пользователя</h3>
-		<div class="skittles-profile">
-			<div class="sp-block">
-				<div class="spb-title">{{lang == 'en'?'Personal Info':'Персональная информация'}}</div>
-				<div class="spb-content" v-if="opts.country">
-					<div class="spbc-row">
-						<div class="spbcr-img" :style="getImg(user.photo)">
-							<div class="spbcri-icon" :class="{'spbcrii-none':user.photo && user.photo != ''}"></div>
-							<input @change="loadFile($event)" class="spbcri-input" id="img_input" type="file" accept="image/*" />
-						</div>
-					</div>
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">{{lang == 'en'?'Prefix':'Форма обращения'}}*:</div>
-						<div class="spbcig-select">
-							{{user.prefix || (lang == 'en'?'Select prefix':'Выберите форму обращения')}}
-							<i class="fa fa-angle-down" aria-hidden="true"></i>
-							<div class="spbcigs-click" @click="togglePrefix()"></div>
-							<div class="spbcigs-dropdown" v-if="prefix_opt">
-								<div class="spbcigsd-option" @click="setPrefix(lang == 'en'?'Mr.':'г-н')">{{lang == 'en'?'Mr.':'г-н'}}</div>
-								<div class="spbcigsd-option" @click="setPrefix(lang == 'en'?'Mrs.':'г-жа')">{{lang == 'en'?'Mrs.':'г-жа'}}</div>
-								<div class="spbcigsd-option" @click="setPrefix(lang == 'en'?'Dr.':'доктор')">{{lang == 'en'?'Mrs.':'доктор'}}</div>
-							</div>
-						</div>
-					</div>
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">{{lang == 'en'?'First name':'Имя'}}*:</div>
-						<input v-model="user.name" class="spbcig-val" type="text" :placeholder="lang == 'en'?'Input first name':'Введите имя'" />
-					</div>
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">{{lang == 'en'?'Preffered name':'Предпочтительное имя'}}*:</div>
-						<input v-model="user.prefname" class="spbcig-val" type="text" :placeholder="lang == 'en'?'Input preferred name':'Введите предпочтительное имя'" />
-					</div>
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">{{lang == 'en'?'Second name':'Фамилия'}}*:</div>
-						<input v-model="user.sname" class="spbcig-val" type="text" :placeholder="lang == 'en'?'Input your second name':'Введите фамилию'" />
-					</div>
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">{{lang == 'en'?'Country':'Страна'}}*:</div>
-						<div class="spbcig-select">
-							{{getName(user.country,'country') || (lang == 'en'?'Select your country':'Выберите страну')}}
-							<i class="fa fa-angle-down" aria-hidden="true"></i>
-							<div class="spbcigs-click" @click="toggleCountry1()"></div>
-							<div class="spbcigs-dropdown" v-if="country1_opt">
-								<div class="spbcigsd-option" @click="setCountry1(c._id)" v-for="(c,key) in opts.country" v-bind:key="'c'+key">{{c.name}}</div>
-							</div>
-						</div>
-					</div>
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">E-mail*:</div>
-						<input v-model="user.email" class="spbcig-val" type="text" placeholder="Input your e-mail" />
-						<div class="spbcig-desc">{{lang == 'en'?'Not visible in public profile':'Не виден остальным'}}</div>
-					</div>
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">{{lang == 'en'?'Phone number':'Телефон'}}:</div>
-						<!-- <div class="spbcig-comb">
+  <div>
+    <h3>Редактирование пользователя</h3>
+    <div class="skittles-profile">
+      <div class="sp-block">
+        <div class="spb-title">
+          {{ lang == "en" ? "Personal Info" : "Персональная информация" }}
+        </div>
+        <div class="spb-content" v-if="opts.country">
+          <div class="spbc-row">
+            <div class="spbcr-img" :style="getImg(user.photo)">
+              <div
+                class="spbcri-icon"
+                :class="{ 'spbcrii-none': user.photo && user.photo != '' }"
+              ></div>
+              <input
+                @change="loadFile($event)"
+                class="spbcri-input"
+                id="img_input"
+                type="file"
+                accept="image/*"
+              />
+            </div>
+          </div>
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{ lang == "en" ? "Prefix" : "Форма обращения" }}*:
+            </div>
+            <div class="spbcig-select">
+              {{
+                user.prefix ||
+                  (lang == "en" ? "Select prefix" : "Выберите форму обращения")
+              }}
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+              <div class="spbcigs-click" @click="togglePrefix()"></div>
+              <div class="spbcigs-dropdown" v-if="prefix_opt">
+                <div
+                  class="spbcigsd-option"
+                  @click="setPrefix(lang == 'en' ? 'Mr.' : 'г-н')"
+                >
+                  {{ lang == "en" ? "Mr." : "г-н" }}
+                </div>
+                <div
+                  class="spbcigsd-option"
+                  @click="setPrefix(lang == 'en' ? 'Mrs.' : 'г-жа')"
+                >
+                  {{ lang == "en" ? "Mrs." : "г-жа" }}
+                </div>
+                <div
+                  class="spbcigsd-option"
+                  @click="setPrefix(lang == 'en' ? 'Dr.' : 'доктор')"
+                >
+                  {{ lang == "en" ? "Mrs." : "доктор" }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{ lang == "en" ? "First name" : "Имя" }}*:
+            </div>
+            <input
+              v-model="user.name"
+              class="spbcig-val"
+              type="text"
+              :placeholder="lang == 'en' ? 'Input first name' : 'Введите имя'"
+            />
+          </div>
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{ lang == "en" ? "Preffered name" : "Предпочтительное имя" }}*:
+            </div>
+            <input
+              v-model="user.prefname"
+              class="spbcig-val"
+              type="text"
+              :placeholder="
+                lang == 'en'
+                  ? 'Input preferred name'
+                  : 'Введите предпочтительное имя'
+              "
+            />
+          </div>
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{ lang == "en" ? "Second name" : "Фамилия" }}*:
+            </div>
+            <input
+              v-model="user.sname"
+              class="spbcig-val"
+              type="text"
+              :placeholder="
+                lang == 'en' ? 'Input your second name' : 'Введите фамилию'
+              "
+            />
+          </div>
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{ lang == "en" ? "Country" : "Страна" }}*:
+            </div>
+            <div class="spbcig-select">
+              {{
+                getName(user.country, "country") ||
+                  (lang == "en" ? "Select your country" : "Выберите страну")
+              }}
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+              <div class="spbcigs-click" @click="toggleCountry1()"></div>
+              <div class="spbcigs-dropdown" v-if="country1_opt">
+                <div
+                  class="spbcigsd-option"
+                  @click="setCountry1(c._id)"
+                  v-for="(c, key) in opts.country"
+                  v-bind:key="'c' + key"
+                >
+                  {{ c.name }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">E-mail*:</div>
+            <input
+              v-model="user.email"
+              class="spbcig-val"
+              type="text"
+              placeholder="Input your e-mail"
+            />
+            <div class="spbcig-desc">
+              {{
+                lang == "en"
+                  ? "Not visible in public profile"
+                  : "Не виден остальным"
+              }}
+            </div>
+          </div>
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{ lang == "en" ? "Phone number" : "Телефон" }}:
+            </div>
+            <!-- <div class="spbcig-comb">
 							<div class="spbcig-select">
 								+9 11
 								<i class="fa fa-angle-down" aria-hidden="true"></i>
@@ -65,672 +147,850 @@
 							</div>
 							<input class="spbcig-val" type="text" placeholder="Input your phone number" />
 						</div> -->
-						<input v-model="user.phone" class="spbcig-val" type="text" :placeholder="lang == 'en'?'Input your phone number':'Введите телефон'" />
-						<div class="spbcig-desc">{{lang == 'en'?'Not visible in public profile':'Не виден остальным'}}</div>
-					</div>
-				</div>
-			</div>
-			<div class="sp-block">
-				<div class="spb-title">{{lang == 'en'?'Organization':'Организация'}}*</div>
-				<div class="spb-content">
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">{{lang == 'en'?'Organisation name':'Название организация'}}*:</div>
-						<input v-model="user.organization.name" class="spbcig-val" type="text" :placeholder="lang == 'en'?'Input name of your organisation':'Введите название организации'" />
-					</div>
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">{{lang == 'en'?'Position':'Должность'}}*:</div>
-						<input v-model="user.organization.position" class="spbcig-val" type="text" :placeholder="lang == 'en'?'Input your position':'Введите должность'" />
-					</div>
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">{{lang == 'en'?'Role':'Роль'}}*:</div>
-						<div class="spbcig-select">
-							{{getNameRole(user.organization.role) || (lang == 'en'?'Role':'Роль')}}
-							<i class="fa fa-angle-down" aria-hidden="true"></i>
-							<div class="spbcigs-click" @click="toggleRole1()"></div>
-							<div class="spbcigs-dropdown" v-if="role1_opt">
-								<div class="spbcigsd-option" @click="setRole1(c._id)" v-for="(c,key) in opts.role" v-bind:key="'r'+key">{{c.name}}</div>
-							</div>
-						</div>
-					</div>
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">
-							{{lang == 'en'?'What main issues/problems do you have in your country/organization in skills development?':
-							'Какие главные проблемы в Вашей организации/стране в развитии навыков?'}}</div>
-						<input v-model="user.organization.problems" class="spbcig-val" type="text" />
-					</div>
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">{{lang == 'en'?'What perspectives/vision/goals/possibilities do you see for your country/organization?':
-							'Какие перспективы/цели/возможности Вы видите для Вашей организации/страны?'}}</div>
-						<input v-model="user.organization.perspectives" class="spbcig-val" type="text" />
-					</div>
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">{{lang == 'en'?'What main obstacles/barriers do you see on your way to your vision/goals?':
-							'Какие преграды Вы видите на пути к Вашим целям?'}}</div>
-						<input v-model="user.organization.barriers" class="spbcig-val" type="text" />
-					</div>
-				</div>
-			</div>
-			<div class="sp-block">
-				<div class="spb-title">{{lang == 'en'?'WSR Products':'Продукты WSR'}}*</div>
-				<div class="spb-content">
-					<div class="spbc-advice">{{lang == 'en'?'Tap products you interesting in':'Нажмите на продукты, интересующие Вас '}}</div>
-					<div class="spbc-taggroup" v-for="(w,key) in opts.wsrProducts" v-bind:key="'w'+key">
-						<div @click="toggleWsr(w._id)" class="spbc-onetag" :class="{'spbct-active': user.wsrProducts && user.wsrProducts.includes(w._id)}">{{w.name}}</div>
-						<div v-if="![0,8,9].includes(key)" class="spbc-taginfo" @click="getTagInfo(key,user.wsrProducts && user.wsrProducts.includes(w._id))"></div>
-					</div>
-				</div>
-			</div>
-			<div class="sp-block">
-				<div class="spb-title">{{lang == 'en'?'Partnership I am interested in':'Сотрудничества, в которых Вы заинтересованы'}}</div>
-				<div class="spb-content">
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">{{lang == 'en'?'Country':'Страны'}}:</div>
-						<div class="spbcig-select">
-							{{ getName(user.partnership.country, 'country') || (lang == 'en'?'Select country':'Выберите страны')}}
-							<i class="fa fa-angle-down" aria-hidden="true"></i>
-							<div class="spbcigs-click" @click="toggleCountry2()"></div>
-							<div class="spbcigs-dropdown" v-if="country2_opt">
-								<div class="spbcigsd-option" @click="setCountry2(c._id)" v-for="(c,key) in opts.country" v-bind:key="'c2'+key">{{c.name}}</div>
-							</div>
-						</div>
-					</div>
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">{{lang == 'en'?'Partnership mode':'Вид сотрудничества'}}:</div>
-						<div class="spbcig-select">
-							{{ getName(user.partnership.partnershipMode, 'partnershipMode') || (lang == 'en'?'Select partnership mode':'Выберите вид сотрудничества')}}
-							<i class="fa fa-angle-down" aria-hidden="true"></i>
-							<div class="spbcigs-click" @click="toggleMode()"></div>
-							<div class="spbcigs-dropdown" v-if="mode_opt">
-								<div class="spbcigsd-option" @click="setMode(c._id)" v-for="(c,key) in opts.partnershipMode" v-bind:key="'m'+key">{{c.name}}</div>
-							</div>
-						</div>
-					</div>
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">{{lang == 'en'?'Industry':'Отрасль'}}:</div>
-						<div class="spbcig-select">
-							{{ getName(user.partnership.industry,'industry') || (lang == 'en'?'Select industry/field':'Выберите отрасль/сферу')}}
-							<i class="fa fa-angle-down" aria-hidden="true"></i>
-							<div class="spbcigs-click" @click="toggleInd()"></div>
-							<div class="spbcigs-dropdown" v-if="ind_opt">
-								<div class="spbcigsd-option" @click="setInd(c._id)" v-for="(c,key) in opts.industry" v-bind:key="'i'+key">{{c.name}}</div>
-							</div>
-						</div>
-					</div>
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">{{lang == 'en'?'Best practice':'Лучшая практика'}}:</div>
-						<div class="spbcig-select">
-							{{ getName(user.partnership.bestPractice,'bestPractice') || (lang == 'en'?'Select best practice':'Выберите лучшую практику')}}
-							<i class="fa fa-angle-down" aria-hidden="true"></i>
-							<div class="spbcigs-click" @click="toggleBest()"></div>
-							<div class="spbcigs-dropdown" v-if="best_opt">
-								<div class="spbcigsd-option" @click="setBest(c._id)" v-for="(c,key) in opts.bestPractice" v-bind:key="'i'+key">{{c.name}}</div>
-							</div>
-						</div>
-					</div>
-					<div class="spbc-inputgroup">
-						<div class="spbcig-label">{{lang == 'en'?'Role':'Роль'}}:</div>
-						<div class="spbcig-select">
-							{{ getName(user.partnership.role,'role') || (lang == 'en'?'Select role':'Выберите роль')}}
-							<i class="fa fa-angle-down" aria-hidden="true"></i>
-							<div class="spbcigs-click" @click="toggleRole2()"></div>
-							<div class="spbcigs-dropdown" v-if="role2_opt">
-								<div class="spbcigsd-option" @click="setRole2(c._id)" v-for="(c,key) in opts.role" v-bind:key="'r2'+key">{{c.name}}</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>	
-			<button class="btn btn-block btn-outline btn-rounded btn-success" @click="save()">{{lang == 'en'?'save':'сохранить'}}</button>
-		</div>
-	</div>
+            <input
+              v-model="user.phone"
+              class="spbcig-val"
+              type="text"
+              :placeholder="
+                lang == 'en' ? 'Input your phone number' : 'Введите телефон'
+              "
+            />
+            <div class="spbcig-desc">
+              {{
+                lang == "en"
+                  ? "Not visible in public profile"
+                  : "Не виден остальным"
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sp-block">
+        <div class="spb-title">
+          {{ lang == "en" ? "Organization" : "Организация" }}*
+        </div>
+        <div class="spb-content">
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{
+                lang == "en" ? "Organisation name" : "Название организация"
+              }}*:
+            </div>
+            <input
+              v-model="user.organization.name"
+              class="spbcig-val"
+              type="text"
+              :placeholder="
+                lang == 'en'
+                  ? 'Input name of your organisation'
+                  : 'Введите название организации'
+              "
+            />
+          </div>
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{ lang == "en" ? "Position" : "Должность" }}*:
+            </div>
+            <input
+              v-model="user.organization.position"
+              class="spbcig-val"
+              type="text"
+              :placeholder="
+                lang == 'en' ? 'Input your position' : 'Введите должность'
+              "
+            />
+          </div>
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{ lang == "en" ? "Role" : "Роль" }}*:
+            </div>
+            <div class="spbcig-select">
+              {{
+                getNameRole(user.organization.role) ||
+                  (lang == "en" ? "Role" : "Роль")
+              }}
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+              <div class="spbcigs-click" @click="toggleRole1()"></div>
+              <div class="spbcigs-dropdown" v-if="role1_opt">
+                <div
+                  class="spbcigsd-option"
+                  @click="setRole1(c._id)"
+                  v-for="(c, key) in opts.role"
+                  v-bind:key="'r' + key"
+                >
+                  {{ c.name }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{
+                lang == "en"
+                  ? "What main issues/problems do you have in your country/organization in skills development?"
+                  : "Какие главные проблемы в Вашей организации/стране в развитии навыков?"
+              }}
+            </div>
+            <input
+              v-model="user.organization.problems"
+              class="spbcig-val"
+              type="text"
+            />
+          </div>
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{
+                lang == "en"
+                  ? "What perspectives/vision/goals/possibilities do you see for your country/organization?"
+                  : "Какие перспективы/цели/возможности Вы видите для Вашей организации/страны?"
+              }}
+            </div>
+            <input
+              v-model="user.organization.perspectives"
+              class="spbcig-val"
+              type="text"
+            />
+          </div>
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{
+                lang == "en"
+                  ? "What main obstacles/barriers do you see on your way to your vision/goals?"
+                  : "Какие преграды Вы видите на пути к Вашим целям?"
+              }}
+            </div>
+            <input
+              v-model="user.organization.barriers"
+              class="spbcig-val"
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="sp-block">
+        <div class="spb-title">
+          {{ lang == "en" ? "WSR Products" : "Продукты WSR" }}*
+        </div>
+        <div class="spb-content">
+          <div class="spbc-advice">
+            {{
+              lang == "en"
+                ? "Tap products you interesting in"
+                : "Нажмите на продукты, интересующие Вас "
+            }}
+          </div>
+          <div
+            class="spbc-taggroup"
+            v-for="(w, key) in opts.wsrProducts"
+            v-bind:key="'w' + key"
+          >
+            <div
+              @click="toggleWsr(w._id)"
+              class="spbc-onetag"
+              :class="{
+                'spbct-active':
+                  user.wsrProducts && user.wsrProducts.includes(w._id)
+              }"
+            >
+              {{ w.name }}
+            </div>
+            <div
+              v-if="![0, 8, 9].includes(key)"
+              class="spbc-taginfo"
+              @click="
+                getTagInfo(
+                  key,
+                  user.wsrProducts && user.wsrProducts.includes(w._id)
+                )
+              "
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="sp-block">
+        <div class="spb-title">
+          {{
+            lang == "en"
+              ? "Partnership I am interested in"
+              : "Сотрудничества, в которых Вы заинтересованы"
+          }}
+        </div>
+        <div class="spb-content">
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{ lang == "en" ? "Country" : "Страны" }}:
+            </div>
+            <div class="spbcig-select">
+              {{
+                getName(user.partnership.country, "country") ||
+                  (lang == "en" ? "Select country" : "Выберите страны")
+              }}
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+              <div class="spbcigs-click" @click="toggleCountry2()"></div>
+              <div class="spbcigs-dropdown" v-if="country2_opt">
+                <div
+                  class="spbcigsd-option"
+                  @click="setCountry2(c._id)"
+                  v-for="(c, key) in opts.country"
+                  v-bind:key="'c2' + key"
+                >
+                  {{ c.name }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{ lang == "en" ? "Partnership mode" : "Вид сотрудничества" }}:
+            </div>
+            <div class="spbcig-select">
+              {{
+                getName(user.partnership.partnershipMode, "partnershipMode") ||
+                  (lang == "en"
+                    ? "Select partnership mode"
+                    : "Выберите вид сотрудничества")
+              }}
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+              <div class="spbcigs-click" @click="toggleMode()"></div>
+              <div class="spbcigs-dropdown" v-if="mode_opt">
+                <div
+                  class="spbcigsd-option"
+                  @click="setMode(c._id)"
+                  v-for="(c, key) in opts.partnershipMode"
+                  v-bind:key="'m' + key"
+                >
+                  {{ c.name }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{ lang == "en" ? "Industry" : "Отрасль" }}:
+            </div>
+            <div class="spbcig-select">
+              {{
+                getName(user.partnership.industry, "industry") ||
+                  (lang == "en"
+                    ? "Select industry/field"
+                    : "Выберите отрасль/сферу")
+              }}
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+              <div class="spbcigs-click" @click="toggleInd()"></div>
+              <div class="spbcigs-dropdown" v-if="ind_opt">
+                <div
+                  class="spbcigsd-option"
+                  @click="setInd(c._id)"
+                  v-for="(c, key) in opts.industry"
+                  v-bind:key="'i' + key"
+                >
+                  {{ c.name }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{ lang == "en" ? "Best practice" : "Лучшая практика" }}:
+            </div>
+            <div class="spbcig-select">
+              {{
+                getName(user.partnership.bestPractice, "bestPractice") ||
+                  (lang == "en"
+                    ? "Select best practice"
+                    : "Выберите лучшую практику")
+              }}
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+              <div class="spbcigs-click" @click="toggleBest()"></div>
+              <div class="spbcigs-dropdown" v-if="best_opt">
+                <div
+                  class="spbcigsd-option"
+                  @click="setBest(c._id)"
+                  v-for="(c, key) in opts.bestPractice"
+                  v-bind:key="'i' + key"
+                >
+                  {{ c.name }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              {{ lang == "en" ? "Role" : "Роль" }}:
+            </div>
+            <div class="spbcig-select">
+              {{
+                getName(user.partnership.role, "role") ||
+                  (lang == "en" ? "Select role" : "Выберите роль")
+              }}
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+              <div class="spbcigs-click" @click="toggleRole2()"></div>
+              <div class="spbcigs-dropdown" v-if="role2_opt">
+                <div
+                  class="spbcigsd-option"
+                  @click="setRole2(c._id)"
+                  v-for="(c, key) in opts.role"
+                  v-bind:key="'r2' + key"
+                >
+                  {{ c.name }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        class="btn btn-block btn-outline btn-rounded btn-success"
+        @click="save()"
+      >
+        {{ lang == "en" ? "save" : "сохранить" }}
+      </button>
+    </div>
+  </div>
 </template>
 
 <script>
-	
-	export default{
-		props: ['data'],
-		data(){
-			return {
-				lang: 'en',
-                phonecodes: [''],
-                opts: {
-                    role:[]
-                },
-                prefix_opt: false,
-                country1_opt: false,
-                country2_opt: false,
-                mode_opt: false,
-                ind_opt: false,
-                role1_opt: false,
-                role2_opt: false,
-                best_opt: false,
-                user:{
-                    prefix: null,
-                    name: '',
-                    sname: '',
-                    prefname: '',
-                    country: '',
-                    photo: '',
-                    email: '',
-                    organization: {
-                        name: '',
-                        position: '',
-                        role: '',
-                        problems: '',
-                        perspectives: '',
-                        barriers: '',
-                    },
-                    permission: 'user',
-                    wsrProducts: [],
-                    partnership: {
-                        country: [], // max - 3
-                        partnershipMode: [], // max - 3
-                        bestPractice: [], // max - 3
-                        industry: [], // max - 3
-                        role: [], // max - 3 
-                    },
-                }
-			}
-		},
-		created(){
-			this.lang = localStorageProxy.getItem('lang')
-            this.$root.$on('selectcomp',(obj)=>{
-                this.toggleWsr(this.opts.wsrProducts[obj.id]._id)
-            })
-            App.User.getTags()
-                .then(data=>{
-                    this.opts = data
-                })
-		},
-		methods:{
-			getTagInfo(key,selected){
-                this.$root.$emit('compdesc', {id:key,selected: selected})
-            },
-            save(){
-                Request.post('/api/admin/reg', this.user)
-                    .then(()=>{
-                    })
-                    .catch(()=>{
-                        if(this.lang == 'en'){
-                            swal('Error', 'Fill in the required fields', 'error')
-                        }else{
-                            swal('Ошибка', 'Заполните обязательные поля', 'error')
-                        }
-                    })
-            },
-            convertImg() {
-                const file = document.getElementById('img_input').files[0];
-                toBase64(file)
-                    .then(data=>{
-                        this.user.photo = data
-                    })
-            },
-            getName(arr,opt){
-                let str = ''
-                let arr1 = []
-                if(typeof arr == 'string' || typeof arr == 'undefined' ){
-                    arr1.push(arr)
-                }else{
-                    arr1 = arr
-                }
-                arr1.forEach(item=>{
-                    if (this.opts[opt])
-                        this.opts[opt].forEach(elem=>{
-                            if(item == elem._id){
-                                str += `${elem.name}, `
-                            }
-                        })
-                })
-                return str.slice(0, str.length - 2)
-            },
-            getNameRole(id){
-                let str = ''
-                if(!this.opts.role) return str
-                this.opts.role.forEach(elem=>{
-                    if(id == elem._id){
-                        str += `${elem.name}`
-                    }
-                })
-                return str
-            },
-            getImg(url){
-                if(url != ''){
-                    return `background: url(${url}) center no-repeat`
-                }else{
-                    return `background: white`
-                }
-            },
-            loadFile(event){
-				let someFiles = event.target.files[0]
-				this.upload(someFiles);
-			},
-			upload(file){
-				if(file.name.toLowerCase().indexOf("jpg") == -1 && file.name.toLowerCase().indexOf("png") == -1 && file.name.toLowerCase().indexOf("jpeg") == -1)
-					return swal('Error','File format must be jpg, png or jpeg!','error');
-				var that = this;
-				var xhr = new XMLHttpRequest();
-				xhr.upload.onprogress = event=>{
-
-				}
-				let filena = (file.name.toLowerCase().split('.'))[(file.name.toLowerCase().split('.')).length-1]
-				that.photo = that.data + '.' + filena;
-                xhr.onload = xhr.onerror = function() {
-                    if (this.status == 200) { 
-                        let data;
-                        try{
-                            data = JSON.parse(this.response)
-                            if(isJson(data)){
-                                that.user.photo = '/src/img/photos/' + that.photo
-                            }else{
-                                swal('Error',ans(data),'error');
-                            }
-                        }catch(e){
-                            swal('Error',"Error",'error');
-                        }
-                    } else {
-                        
-                    }
-                };
-				xhr.open("POST", "/api/user/loadphoto/" + that.data + '.'+filena , true);
-				xhr.send(file);
-			},
-            togglePrefix(){
-                this.country1_opt = false
-                this.role1_opt = false
-                this.role2_opt = false
-                this.country2_opt = false
-                this.mode_opt = false
-                this.ind_opt = false
-                this.prefix_opt = !this.prefix_opt
-                this.best_opt = false
-            },
-            setPrefix(v){
-                this.user.prefix = v
-                this.prefix_opt = false
-            },
-            toggleCountry1(){
-                this.prefix_opt = false
-                this.role1_opt = false
-                this.role2_opt = false
-                this.country2_opt = false
-                this.mode_opt = false
-                this.ind_opt = false
-                this.country1_opt = !this.country1_opt
-                this.best_opt = false
-            },
-            setCountry1(v){
-                this.user.country = v
-                this.country1_opt = false
-            },
-            toggleCountry2(){
-                this.prefix_opt = false
-                this.role1_opt = false
-                this.role2_opt = false
-                this.country1_opt = false
-                this.mode_opt = false
-                this.ind_opt = false
-                this.country2_opt = !this.country2_opt
-                this.best_opt = false
-            },
-            setCountry2(v){
-                if(this.user.partnership.country.includes(v)){
-                    this.user.partnership.country.forEach((item,i)=>{
-                        if(item == v){
-                            this.user.partnership.country.splice(i,1)
-                        }
-                    })
-                }else{
-                    if(this.user.partnership.country.length < 3){
-                        this.user.partnership.country.push(v)
-                        if(this.user.partnership.country.length == 3){
-                            this.country2_opt = false
-                        }
-                    }
-                }
-            },
-            toggleMode(){
-                this.prefix_opt = false
-                this.role1_opt = false
-                this.role2_opt = false
-                this.country1_opt = false
-                this.country2_opt = false
-                this.ind_opt = false
-                this.mode_opt = !this.mode_opt
-                this.best_opt = false
-            },
-            setMode(v){
-                if(this.user.partnership.partnershipMode.includes(v)){
-                    this.user.partnership.partnershipMode.forEach((item,i)=>{
-                        if(item == v){
-                            this.user.partnership.partnershipMode.splice(i,1)
-                        }
-                    })
-                }else{
-                    if(this.user.partnership.partnershipMode.length < 3){
-                        this.user.partnership.partnershipMode.push(v)
-                        if(this.user.partnership.partnershipMode.length == 3){
-                            this.mode_opt = false
-                        }
-                    }
-                }
-            },
-            toggleInd(){
-                this.prefix_opt = false
-                this.role1_opt = false
-                this.role2_opt = false
-                this.country1_opt = false
-                this.country2_opt = false
-                this.mode_opt = false
-                this.ind_opt = !this.ind_opt
-                this.best_opt = false
-            },
-            setInd(v){
-                if(this.user.partnership.industry.includes(v)){
-                    this.user.partnership.industry.forEach((item,i)=>{
-                        if(item == v){
-                            this.user.partnership.industry.splice(i,1)
-                        }
-                    })
-                }else{
-                    if(this.user.partnership.industry.length < 3){
-                        this.user.partnership.industry.push(v)
-                        if(this.user.partnership.industry.length == 3){
-                            this.ind_opt = false
-                        }
-                    }
-                }
-            },
-            toggleBest(){
-                this.prefix_opt = false
-                this.role1_opt = false
-                this.role2_opt = false
-                this.country1_opt = false
-                this.country2_opt = false
-                this.mode_opt = false
-                this.ind_opt = false
-                this.best_opt = !this.best_opt
-            },
-            setBest(v){
-                if(this.user.partnership.bestPractice.includes(v)){
-                    this.user.partnership.bestPractice.forEach((item,i)=>{
-                        if(item == v){
-                            this.user.partnership.bestPractice.splice(i,1)
-                        }
-                    })
-                }else{
-                    if(this.user.partnership.bestPractice.length < 3){
-                        this.user.partnership.bestPractice.push(v)
-                        if(this.user.partnership.bestPractice.length == 3){
-                            this.best_opt = false
-                        }
-                    }
-                }
-            },
-            toggleRole1(){
-                this.prefix_opt = false
-                this.country1_opt = false
-                this.country2_opt = false
-                this.mode_opt = false
-                this.ind_opt = false
-                this.role2_opt = false
-                this.role1_opt = !this.role1_opt
-                this.best_opt = false
-            },
-            setRole1(v){
-                this.user.organization.role = v
-                this.role1_opt = false
-            },
-            toggleRole2(){
-                this.prefix_opt = false
-                this.country1_opt = false
-                this.country2_opt = false
-                this.mode_opt = false
-                this.ind_opt = false
-                this.role1_opt = false
-                this.role2_opt = !this.role2_opt
-                this.best_opt = false
-            },
-            setRole2(v){
-                if(this.user.partnership.role.includes(v)){
-                    this.user.partnership.role.forEach((item,i)=>{
-                        if(item == v){
-                            this.user.partnership.role.splice(i,1)
-                        }
-                    })
-                }else{
-                    if(this.user.partnership.role.length < 3){
-                        this.user.partnership.role.push(v)
-                        if(this.user.partnership.role.length == 3){
-                            this.role2_opt = false
-                        }
-                    }
-                }
-            },
-            toggleWsr(v){
-                if(this.user.wsrProducts.includes(v)){
-                    this.user.wsrProducts.forEach((item,i)=>{
-                        if(item == v){
-                            this.user.wsrProducts.splice(i,1)
-                        }
-                    })
-                }else{
-                    this.user.wsrProducts.push(v)
-                }
+export default {
+  props: ["data"],
+  data() {
+    return {
+      lang: "en",
+      phonecodes: [""],
+      opts: {
+        role: []
+      },
+      prefix_opt: false,
+      country1_opt: false,
+      country2_opt: false,
+      mode_opt: false,
+      ind_opt: false,
+      role1_opt: false,
+      role2_opt: false,
+      best_opt: false,
+      user: {
+        prefix: null,
+        name: "",
+        sname: "",
+        prefname: "",
+        country: "",
+        photo: "",
+        email: "",
+        organization: {
+          name: "",
+          position: "",
+          role: "",
+          problems: "",
+          perspectives: "",
+          barriers: ""
+        },
+        permission: "user",
+        wsrProducts: [],
+        partnership: {
+          country: [], // max - 3
+          partnershipMode: [], // max - 3
+          bestPractice: [], // max - 3
+          industry: [], // max - 3
+          role: [] // max - 3
+        }
+      }
+    };
+  },
+  created() {
+    this.lang = localStorageProxy.getItem("lang");
+    this.$root.$on("selectcomp", obj => {
+      this.toggleWsr(this.opts.wsrProducts[obj.id]._id);
+    });
+    App.User.getTags().then(data => {
+      this.opts = data;
+    });
+  },
+  methods: {
+    getTagInfo(key, selected) {
+      this.$root.$emit("compdesc", { id: key, selected: selected });
+    },
+    save() {
+      Request.post("/api/admin/reg", this.user)
+        .then(() => {})
+        .catch(() => {
+          if (this.lang == "en") {
+            swal("Error", "Fill in the required fields", "error");
+          } else {
+            swal("Ошибка", "Заполните обязательные поля", "error");
+          }
+        });
+    },
+    convertImg() {
+      const file = document.getElementById("img_input").files[0];
+      toBase64(file).then(data => {
+        this.user.photo = data;
+      });
+    },
+    getName(arr, opt) {
+      let str = "";
+      let arr1 = [];
+      if (typeof arr == "string" || typeof arr == "undefined") {
+        arr1.push(arr);
+      } else {
+        arr1 = arr;
+      }
+      arr1.forEach(item => {
+        if (this.opts[opt])
+          this.opts[opt].forEach(elem => {
+            if (item == elem._id) {
+              str += `${elem.name}, `;
             }
-		},
-		computed:{
-		}
-		
-	}
-	
+          });
+      });
+      return str.slice(0, str.length - 2);
+    },
+    getNameRole(id) {
+      let str = "";
+      if (!this.opts.role) return str;
+      this.opts.role.forEach(elem => {
+        if (id == elem._id) {
+          str += `${elem.name}`;
+        }
+      });
+      return str;
+    },
+    getImg(url) {
+      if (url != "") {
+        return `background: url(${url}) center no-repeat`;
+      } else {
+        return `background: white`;
+      }
+    },
+    loadFile(event) {
+      let someFiles = event.target.files[0];
+      this.upload(someFiles);
+    },
+    upload(file) {
+      if (
+        file.name.toLowerCase().indexOf("jpg") == -1 &&
+        file.name.toLowerCase().indexOf("png") == -1 &&
+        file.name.toLowerCase().indexOf("jpeg") == -1
+      )
+        return swal("Error", "File format must be jpg, png or jpeg!", "error");
+      var that = this;
+      var xhr = new XMLHttpRequest();
+      xhr.upload.onprogress = event => {};
+      let filena = file.name.toLowerCase().split(".")[
+        file.name.toLowerCase().split(".").length - 1
+      ];
+      that.photo = that.data + "." + filena;
+      xhr.onload = xhr.onerror = function() {
+        if (this.status == 200) {
+          let data;
+          try {
+            data = JSON.parse(this.response);
+            if (isJson(data)) {
+              that.user.photo = "/src/img/photos/" + that.photo;
+            } else {
+              swal("Error", ans(data), "error");
+            }
+          } catch (e) {
+            swal("Error", "Error", "error");
+          }
+        } else {
+        }
+      };
+      xhr.open("POST", "/api/user/loadphoto/" + that.data + "." + filena, true);
+      xhr.send(file);
+    },
+    togglePrefix() {
+      this.country1_opt = false;
+      this.role1_opt = false;
+      this.role2_opt = false;
+      this.country2_opt = false;
+      this.mode_opt = false;
+      this.ind_opt = false;
+      this.prefix_opt = !this.prefix_opt;
+      this.best_opt = false;
+    },
+    setPrefix(v) {
+      this.user.prefix = v;
+      this.prefix_opt = false;
+    },
+    toggleCountry1() {
+      this.prefix_opt = false;
+      this.role1_opt = false;
+      this.role2_opt = false;
+      this.country2_opt = false;
+      this.mode_opt = false;
+      this.ind_opt = false;
+      this.country1_opt = !this.country1_opt;
+      this.best_opt = false;
+    },
+    setCountry1(v) {
+      this.user.country = v;
+      this.country1_opt = false;
+    },
+    toggleCountry2() {
+      this.prefix_opt = false;
+      this.role1_opt = false;
+      this.role2_opt = false;
+      this.country1_opt = false;
+      this.mode_opt = false;
+      this.ind_opt = false;
+      this.country2_opt = !this.country2_opt;
+      this.best_opt = false;
+    },
+    setCountry2(v) {
+      if (this.user.partnership.country.includes(v)) {
+        this.user.partnership.country.forEach((item, i) => {
+          if (item == v) {
+            this.user.partnership.country.splice(i, 1);
+          }
+        });
+      } else {
+        if (this.user.partnership.country.length < 3) {
+          this.user.partnership.country.push(v);
+          if (this.user.partnership.country.length == 3) {
+            this.country2_opt = false;
+          }
+        }
+      }
+    },
+    toggleMode() {
+      this.prefix_opt = false;
+      this.role1_opt = false;
+      this.role2_opt = false;
+      this.country1_opt = false;
+      this.country2_opt = false;
+      this.ind_opt = false;
+      this.mode_opt = !this.mode_opt;
+      this.best_opt = false;
+    },
+    setMode(v) {
+      if (this.user.partnership.partnershipMode.includes(v)) {
+        this.user.partnership.partnershipMode.forEach((item, i) => {
+          if (item == v) {
+            this.user.partnership.partnershipMode.splice(i, 1);
+          }
+        });
+      } else {
+        if (this.user.partnership.partnershipMode.length < 3) {
+          this.user.partnership.partnershipMode.push(v);
+          if (this.user.partnership.partnershipMode.length == 3) {
+            this.mode_opt = false;
+          }
+        }
+      }
+    },
+    toggleInd() {
+      this.prefix_opt = false;
+      this.role1_opt = false;
+      this.role2_opt = false;
+      this.country1_opt = false;
+      this.country2_opt = false;
+      this.mode_opt = false;
+      this.ind_opt = !this.ind_opt;
+      this.best_opt = false;
+    },
+    setInd(v) {
+      if (this.user.partnership.industry.includes(v)) {
+        this.user.partnership.industry.forEach((item, i) => {
+          if (item == v) {
+            this.user.partnership.industry.splice(i, 1);
+          }
+        });
+      } else {
+        if (this.user.partnership.industry.length < 3) {
+          this.user.partnership.industry.push(v);
+          if (this.user.partnership.industry.length == 3) {
+            this.ind_opt = false;
+          }
+        }
+      }
+    },
+    toggleBest() {
+      this.prefix_opt = false;
+      this.role1_opt = false;
+      this.role2_opt = false;
+      this.country1_opt = false;
+      this.country2_opt = false;
+      this.mode_opt = false;
+      this.ind_opt = false;
+      this.best_opt = !this.best_opt;
+    },
+    setBest(v) {
+      if (this.user.partnership.bestPractice.includes(v)) {
+        this.user.partnership.bestPractice.forEach((item, i) => {
+          if (item == v) {
+            this.user.partnership.bestPractice.splice(i, 1);
+          }
+        });
+      } else {
+        if (this.user.partnership.bestPractice.length < 3) {
+          this.user.partnership.bestPractice.push(v);
+          if (this.user.partnership.bestPractice.length == 3) {
+            this.best_opt = false;
+          }
+        }
+      }
+    },
+    toggleRole1() {
+      this.prefix_opt = false;
+      this.country1_opt = false;
+      this.country2_opt = false;
+      this.mode_opt = false;
+      this.ind_opt = false;
+      this.role2_opt = false;
+      this.role1_opt = !this.role1_opt;
+      this.best_opt = false;
+    },
+    setRole1(v) {
+      this.user.organization.role = v;
+      this.role1_opt = false;
+    },
+    toggleRole2() {
+      this.prefix_opt = false;
+      this.country1_opt = false;
+      this.country2_opt = false;
+      this.mode_opt = false;
+      this.ind_opt = false;
+      this.role1_opt = false;
+      this.role2_opt = !this.role2_opt;
+      this.best_opt = false;
+    },
+    setRole2(v) {
+      if (this.user.partnership.role.includes(v)) {
+        this.user.partnership.role.forEach((item, i) => {
+          if (item == v) {
+            this.user.partnership.role.splice(i, 1);
+          }
+        });
+      } else {
+        if (this.user.partnership.role.length < 3) {
+          this.user.partnership.role.push(v);
+          if (this.user.partnership.role.length == 3) {
+            this.role2_opt = false;
+          }
+        }
+      }
+    },
+    toggleWsr(v) {
+      if (this.user.wsrProducts.includes(v)) {
+        this.user.wsrProducts.forEach((item, i) => {
+          if (item == v) {
+            this.user.wsrProducts.splice(i, 1);
+          }
+        });
+      } else {
+        this.user.wsrProducts.push(v);
+      }
+    }
+  },
+  computed: {}
+};
 </script>
 
 <style lang="scss">
 .skittles-profile {
-	padding-bottom: 100px;
-    .sp-block{
-        padding-bottom: 10px;
-        .spb-title{
-            font-family: Akrobat;
-            font-size: 12px;
-            line-height: 1.08;
-            letter-spacing: normal;
-            color: #000000;
-            text-transform: uppercase;
-            padding: 7px 0;
-            border-bottom: solid 1px #979797;
-        }
-        .spb-content {
-            padding: 9px 0 0px;
-            .spbc-row {
-                display: flex;
-                .spbcr-img {
-                    border: solid 1px #979797;
-                    width: 54px;
-                    height: 54px;
-                    position: relative;
-                    padding: 14px;
-                    background-size: cover!important;
-                    .spbcri-icon{
-                        width: 24px;
-                        height: 24px;
-                        background: url(/src/build/img/camera.png) center no-repeat;
-                        background-size: contain;
-                        &.spbcrii-none{
-                            background: transparent;
-                        }
-                    }
-                    .spbcri-input{
-                        top:0;
-                        width: 0;
-                        height: 0;
-                        left: 0;
-                        position: absolute;
-                        &:before{
-                            content: "";
-                            display: block;
-                            width: 54px;
-                            height: 54px;
-                        }
-                    }
-                }
-            }
-            .spbc-inputgroup {
-                padding-top: 10px;
-                .spbcig-label {
-                    font-family: Akrobat;
-                    font-size: 12px;
-                    line-height: 1;
-                    letter-spacing: normal;
-                    color: #132d75;
-                    padding-bottom: 6px;
-                }
-                .spbcig-select {
-                    border: solid 1px #838383;
-                    position: relative;
-                    font-size: 12px;
-                    font-weight: 300;
-                    line-height: 1.75;
-                    color: #838383;
-                    padding: 4px 31px 4px 10px;
-                    .fa-angle-down {
-                        position: absolute;
-                        top: 7px;
-                        right: 11px;
-                        font-size: 16px;
-                    }
-                    .spbcigs-click {
-                        position: absolute;
-                        top: 0;
-                        right: 0;
-                        bottom: 0;
-                        left: 0;
-                    }
-                    .spbcigs-dropdown {
-                        display: block;
-                        margin-left: -1px;
-                        border: solid 1px #838383;
-                        position: absolute;
-                        top: 29px;
-                        left: 0;
-                        width: calc(100% + 2px);
-                        background: white;
-                        z-index: 1000;
-                        max-height: 150px;
-                        overflow-y: auto;
-                        .spbcigsd-option {
-                            padding: 10px;
-                        }
-                    }
-                }
-                .spbcig-val {
-                    border: solid 1px #838383;
-                    padding: 3px 10px;
-                    font-size: 12px;
-                    font-weight: 300;
-                    line-height: 1.75;
-                    letter-spacing: normal;
-                    color: #838383;
-                    width: 100%;
-                }
-                .spbcig-desc {
-                    font-family: Akrobat;
-                    font-size: 10px;
-                    font-weight: 300;
-                    font-style: normal;
-                    font-stretch: normal;
-                    line-height: 1.2;
-                    letter-spacing: normal;
-                    color: #838383;
-                    margin-top: 3px;
-                }
-                .spbcig-comb {
-                    display: flex;
-                    .spbcig-val {
-                        flex: 1;
-                    }
-                    .spbcig-select {
-                        margin-right: 10px;
-                        width: 65px;
-                    }
-                }
-            }
-            .spbc-advice {
-                font-family: Akrobat;
-                font-size: 10px;
-                line-height: 1.2;
-                letter-spacing: normal;
-                color: #838383;
-                text-transform: uppercase;
-                padding-bottom: 10px;
-            }
-            .spbc-taggroup{
-                display: flex;
-                margin-bottom: 13px;
-                .spbc-onetag {
-                    font-family: Akrobat;
-                    font-size: 10px;
-                    line-height: 1.5;
-                    letter-spacing: normal;
-                    color: #838383;
-                    border-radius: 13px;
-                    border: solid 1px #cccccc;
-                    padding: 3px 10px 2px 22px;
-                    position: relative;
-                    width: fit-content;
-                    &:before{
-                        content: "";
-                        display: block;
-                        top: 3px;
-                        left: 3px;
-                        width: 12px;
-                        height: 12px;
-                        position: absolute;
-                        border: 1px solid #cccccc;
-                        border-radius: 50%;
-                    }
-                    &:after{
-                        content: "";
-                        display: none;
-                        top: 6px;
-                        left: 6px;
-                        width: 8px;
-                        height: 8px;
-                        position: absolute;
-                        background: #479ccf;
-                        border-radius: 50%;
-                    }
-                    &.spbct-active{
-                        border: solid 1px #479ccf;
-                        color: #000000;
-                        &:before{
-                            border: 1px solid #479ccf;
-                        }
-                        &:after{
-                            display: block;
-                        }
-                    }
-                }
-                .spbc-taginfo{
-                    background: url(/src/build/img/info.png) center no-repeat;
-                    background-size: contain;
-                    width: 14px;
-                    margin-left: 12px;
-                }
-            }
-        }
+  padding-bottom: 100px;
+  .sp-block {
+    padding-bottom: 10px;
+    .spb-title {
+      font-family: Akrobat;
+      font-size: 12px;
+      line-height: 1.08;
+      letter-spacing: normal;
+      color: #000000;
+      text-transform: uppercase;
+      padding: 7px 0;
+      border-bottom: solid 1px #979797;
     }
-    .sp-save {
-        margin-bottom: -70px;
-        margin-top: 20px;
-        margin-left: -15px;
-        width: calc(100% + 30px);
-        background-color: #62b5e5;
-        color: white;
-        text-align: center;
-        padding: 10px;
+    .spb-content {
+      padding: 9px 0 0px;
+      .spbc-row {
+        display: flex;
+        .spbcr-img {
+          border: solid 1px #979797;
+          width: 54px;
+          height: 54px;
+          position: relative;
+          padding: 14px;
+          background-size: cover !important;
+          .spbcri-icon {
+            width: 24px;
+            height: 24px;
+            background: url(/src/build/img/camera.png) center no-repeat;
+            background-size: contain;
+            &.spbcrii-none {
+              background: transparent;
+            }
+          }
+          .spbcri-input {
+            top: 0;
+            width: 0;
+            height: 0;
+            left: 0;
+            position: absolute;
+            &:before {
+              content: "";
+              display: block;
+              width: 54px;
+              height: 54px;
+            }
+          }
+        }
+      }
+      .spbc-inputgroup {
+        padding-top: 10px;
+        .spbcig-label {
+          font-family: Akrobat;
+          font-size: 12px;
+          line-height: 1;
+          letter-spacing: normal;
+          color: #132d75;
+          padding-bottom: 6px;
+        }
+        .spbcig-select {
+          border: solid 1px #838383;
+          position: relative;
+          font-size: 12px;
+          font-weight: 300;
+          line-height: 1.75;
+          color: #838383;
+          padding: 4px 31px 4px 10px;
+          .fa-angle-down {
+            position: absolute;
+            top: 7px;
+            right: 11px;
+            font-size: 16px;
+          }
+          .spbcigs-click {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+          }
+          .spbcigs-dropdown {
+            display: block;
+            margin-left: -1px;
+            border: solid 1px #838383;
+            position: absolute;
+            top: 29px;
+            left: 0;
+            width: calc(100% + 2px);
+            background: white;
+            z-index: 1000;
+            max-height: 150px;
+            overflow-y: auto;
+            .spbcigsd-option {
+              padding: 10px;
+            }
+          }
+        }
+        .spbcig-val {
+          border: solid 1px #838383;
+          padding: 3px 10px;
+          font-size: 12px;
+          font-weight: 300;
+          line-height: 1.75;
+          letter-spacing: normal;
+          color: #838383;
+          width: 100%;
+        }
+        .spbcig-desc {
+          font-family: Akrobat;
+          font-size: 10px;
+          font-weight: 300;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1.2;
+          letter-spacing: normal;
+          color: #838383;
+          margin-top: 3px;
+        }
+        .spbcig-comb {
+          display: flex;
+          .spbcig-val {
+            flex: 1;
+          }
+          .spbcig-select {
+            margin-right: 10px;
+            width: 65px;
+          }
+        }
+      }
+      .spbc-advice {
+        font-family: Akrobat;
+        font-size: 10px;
+        line-height: 1.2;
+        letter-spacing: normal;
+        color: #838383;
         text-transform: uppercase;
-        font-size: 14px;
+        padding-bottom: 10px;
+      }
+      .spbc-taggroup {
+        display: flex;
+        margin-bottom: 13px;
+        .spbc-onetag {
+          font-family: Akrobat;
+          font-size: 10px;
+          line-height: 1.5;
+          letter-spacing: normal;
+          color: #838383;
+          border-radius: 13px;
+          border: solid 1px #cccccc;
+          padding: 3px 10px 2px 22px;
+          position: relative;
+          width: fit-content;
+          &:before {
+            content: "";
+            display: block;
+            top: 3px;
+            left: 3px;
+            width: 12px;
+            height: 12px;
+            position: absolute;
+            border: 1px solid #cccccc;
+            border-radius: 50%;
+          }
+          &:after {
+            content: "";
+            display: none;
+            top: 6px;
+            left: 6px;
+            width: 8px;
+            height: 8px;
+            position: absolute;
+            background: #479ccf;
+            border-radius: 50%;
+          }
+          &.spbct-active {
+            border: solid 1px #479ccf;
+            color: #000000;
+            &:before {
+              border: 1px solid #479ccf;
+            }
+            &:after {
+              display: block;
+            }
+          }
+        }
+        .spbc-taginfo {
+          background: url(/src/build/img/info.png) center no-repeat;
+          background-size: contain;
+          width: 14px;
+          margin-left: 12px;
+        }
+      }
     }
+  }
+  .sp-save {
+    margin-bottom: -70px;
+    margin-top: 20px;
+    margin-left: -15px;
+    width: calc(100% + 30px);
+    background-color: #62b5e5;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
 }
 </style>

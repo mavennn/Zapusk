@@ -1,3 +1,5 @@
+require('../../app');
+
 global.templates.empty = class {
   constructor(req, res) {
     this.req = req;

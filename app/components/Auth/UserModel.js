@@ -1,3 +1,6 @@
+require('../../../app');
+require('../../libs/autoincrement');
+
 var User = new Schema({
   ids: Number,
   email: String,

@@ -1,3 +1,5 @@
+require('../../../app');
+
 var xlsx = require("node-xlsx");
 global.UserManager = new (class {
   constructor() {
@@ -42,7 +44,7 @@ global.UserManager = new (class {
           name: item[1],
           sname: item[2],
           prefname: item[2],
-          country: (tagsManager.country.filter(v => v.name == item[3])[0] || {})
+          country: (tagsManager.country.filter(v => v.name === item[3])[0] || {})
             ._id,
           city: item[4],
           phone: item[9],
@@ -78,7 +80,7 @@ global.UserManager = new (class {
         } else {
           console.log("Уже создан");
           ch.country = tagsManager.country.filter(
-            v => v.name == item[4]
+            v => v.name === item[4]
           )[0]._id;
           ch.photo = item[12]
             ? "https://getfile.dokpub.com/yandex/get/" + item[12]
@@ -106,13 +108,13 @@ global.UserManager = new (class {
           name: item[2],
           prefname: item[2],
           sname: item[3],
-          country: (tagsManager.country.filter(v => v.name == item[4])[0] || {})
+          country: (tagsManager.country.filter(v => v.name === item[4])[0] || {})
             ._id,
           city: item[5],
           organization: {
             name: item[6],
             position: item[7],
-            role: (tagsManager.country.filter(v => v.name == item[8])[0] || {})
+            role: (tagsManager.country.filter(v => v.name === item[8])[0] || {})
               ._id
           },
           email: item[9],
@@ -131,7 +133,7 @@ global.UserManager = new (class {
         } else {
           console.log("Уже создан");
           ch.country = tagsManager.country.filter(
-            v => v.name == item[4]
+            v => v.name === item[4]
           )[0]._id;
           ch.photo = item[12]
             ? "https://getfile.dokpub.com/yandex/get/" + item[12]
@@ -153,7 +155,7 @@ global.UserManager = new (class {
   async checkToken(token) {
     if (empty(token)) return erJson("invalid_token");
 
-    if (this.Users[token] != undefined) return suJson(this.Users[token]);
+    if (this.Users[token] !== undefined) return suJson(this.Users[token]);
     let User = await userModel.findOne({ token: token });
     if (empty(User)) return erJson("invalid_token");
     return suJson(this.addToCache(User));
@@ -162,13 +164,13 @@ global.UserManager = new (class {
   async checkAdmin(token) {
     if (empty(token)) return erJson("invalid_token");
 
-    if (this.Users[token] != undefined)
-      if (this.Users[token].permission == "admin")
+    if (this.Users[token] !== undefined)
+      if (this.Users[token].permission === "admin")
         return suJson(this.Users[token]);
 
     let User = await userModel.findOne({ token: token });
 
-    if (User.permission != "admin") return erJson("invalid_token");
+    if (User.permission !== "admin") return erJson("invalid_token");
     return suJson(this.addToCache(User));
   }
 

@@ -1,3 +1,5 @@
+require('../../../app');
+
 var Schedule = new Schema({
   day: Number,
   time: String,

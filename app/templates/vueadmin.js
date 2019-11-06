@@ -1,3 +1,5 @@
+require('../../app');
+
 global.templates.vueadmin = class {
   constructor(req, res) {
     this.req = req;

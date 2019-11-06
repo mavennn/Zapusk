@@ -1,3 +1,5 @@
+require('../../app');
+
 global.nodemailer = require("nodemailer");
 global.Mail = new (class {
   constructor() {

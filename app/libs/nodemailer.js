@@ -1,1 +1,3 @@
-global.nodemailer = require('nodemailer');
+require('../../app');
+
+global.nodemailer = require("nodemailer");
