@@ -20,9 +20,9 @@
                 <li class="" :class="{ 'tab-current': day == 1 }">
                   <a href="#" @click.prevent="day = 1"><span>Day 1</span></a>
                 </li>
-<!--                <li class="" :class="{ 'tab-current': day == 2 }">-->
-<!--                  <a href="#" @click.prevent="day = 2"><span>Day 2</span></a>-->
-<!--                </li>-->
+                <!--                <li class="" :class="{ 'tab-current': day == 2 }">-->
+                <!--                  <a href="#" @click.prevent="day = 2"><span>Day 2</span></a>-->
+                <!--                </li>-->
               </ul>
             </nav>
           </div>

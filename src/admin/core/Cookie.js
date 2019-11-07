@@ -15,6 +15,10 @@ global.Cookies = new (function() {
   this.set = function(name, value, options) {
     options = options || { domain: location.host, path: "/" };
 
+    if (location.host === 'localhost' || location.host === '127.0.0.1:1222') {
+      options["domain"] = '127.0.0.1';
+    }
+
     var expires = options.expires;
 
     if (typeof expires == "number" && expires) {

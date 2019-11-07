@@ -40,7 +40,7 @@
 				days: [
 					{
 						day: 1,
-						date: 'august 24',
+						date: 'November 28',
 						blocks: [
 							{
 								title: 'Introductory',
@@ -54,22 +54,6 @@
 							},
 						]
 					},
-					{
-						day: 2,
-						date: 'august 25',
-						blocks: [
-							{
-								title: 'Introductory',
-								place: 'Conference Hall',
-								events: []
-							},
-							{
-								title: 'Presentations',
-								place: 'Conference Hall',
-								events: []
-							},
-						]
-					}
 				]
 			}
 		},
