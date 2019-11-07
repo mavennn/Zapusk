@@ -6,7 +6,7 @@
                 <div class="smhn-title">ONE-TO-ONE MEETINGS AGENDA</div>
                 <div class="smhn-subtitle">Meeting Zone</div>
             </div>
-            <div class="smh-date">AUGUST 25</div>
+            <div class="smh-date">NOVEMBER 28</div>
         </div>
         <div class="sm-body">
             <table class="smb-table">
