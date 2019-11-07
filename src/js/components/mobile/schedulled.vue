@@ -51,7 +51,7 @@
 		data () {
 			return {
 				lang: 'en',
-				days: [1,2],
+				days: [1],
 				active_day: 2,
 				users: {},
 				blocks: [

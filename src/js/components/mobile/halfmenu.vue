@@ -11,7 +11,7 @@
                 <div class="smwg-item" @click="nav('/')">{{lang == 'en'?'agenda':'повестка дня'}}</div>
                 <div class="smwg-item" @click="nav('/profile')">{{lang == 'en'?'my profile':'мой профиль'}}</div>
                 <div class="smwg-item" @click="helpme()">{{lang == 'en'?'help':'Помощь'}}</div>
-                <div class="smwg-item" @click="changeLang()">{{lang == 'en'?'Русский язык':'English'}}</div>
+<!--                <div class="smwg-item" @click="changeLang()">{{lang == 'en'?'Русский язык':'English'}}</div>-->
             </div>
             <div class="smw-divider"></div>
             <div class="smw-group">

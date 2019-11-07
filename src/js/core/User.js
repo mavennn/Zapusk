@@ -62,9 +62,9 @@ export default new (class {
     this.isAuth = true;
     this.arUser = arUser;
     this.setUserToLocalStorage();
-    console.log(this.arUser);
+    console.log(this.arUser["token"]);
     Cookies.set("token", this.arUser["token"]);
-    //location.href = "/";
+    location.href = "/";
   }
 
   setUserToLocalStorage() {

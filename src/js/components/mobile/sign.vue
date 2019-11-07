@@ -41,27 +41,28 @@ export default {
     this.$root.$on("forgot", () => {
       this.tab = "forgot";
     });
-    if (!localStorageProxy.getItem("lang")) {
-      swal.fire({
-        title: "Выберите язык / Choose language",
-        input: "select",
-        inputOptions: {
-          ru: "Русский",
-          en: "English"
-        },
-        inputPlaceholder: "Язык / Language",
-        showCancelButton: false,
-        allowEscapeKey: false,
-        allowOutsideClick: false,
-        inputValidator: value => {
-          return new Promise(resolve => {
-            localStorageProxy.setItem("lang", value);
-            this.lang = value;
-            resolve();
-          });
-        }
-      });
-    }
+    localStorageProxy.setItem("lang", "ru");
+    // if (!localStorageProxy.getItem("lang")) {
+    //   swal.fire({
+    //     title: "Выберите язык / Choose language",
+    //     input: "select",
+    //     inputOptions: {
+    //       ru: "Русский",
+    //       en: "English"
+    //     },
+    //     inputPlaceholder: "Язык / Language",
+    //     showCancelButton: false,
+    //     allowEscapeKey: false,
+    //     allowOutsideClick: false,
+    //     inputValidator: value => {
+    //       return new Promise(resolve => {
+    //         localStorageProxy.setItem("lang", value);
+    //         this.lang = value;
+    //         resolve();
+    //       });
+    //     }
+    //   });
+    // }
   },
   created() {},
   methods: {

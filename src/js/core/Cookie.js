@@ -31,13 +31,12 @@ global.Cookies = new (function() {
     var updatedCookie = name + "=" + value;
 
     for (var propName in options) {
-      updatedCookie += "; " + propName;
+      updatedCookie += ";" + propName;
       var propValue = options[propName];
       if (propValue !== true) {
         updatedCookie += "=" + propValue;
       }
     }
-
     document.cookie = updatedCookie;
   };
 
