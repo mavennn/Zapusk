@@ -37,7 +37,7 @@ var User = new Schema({
   hashed_password: String,
   hidden_tags: [],
   salt: String,
-  permission: String, //admin, user, speaker
+  permission: String, // admin, user, speaker
   active: Boolean,
   recording_status: {
     day1: Number, // 0 - nothing, 1 - ready to open, 2 - open, 3 - waiting, 4 - close
@@ -142,6 +142,7 @@ User.methods.changePass = async function(pass) {
 };
 
 User.methods.forClient = function() {
+  console.log(this);
   return {
     id: this.id,
     _id: this._id,
@@ -161,7 +162,7 @@ User.methods.forClient = function() {
     email: this.email,
     permission: this.permission,
     active: this.active,
-    recording_status: this.recording_status
+    recording_status: 1,
   };
 };
 
