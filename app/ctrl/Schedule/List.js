@@ -1,18 +1,14 @@
-require('../../../app');
+require("../../../app");
 
-module.exports = class extends AbstractCtrl{
-	
-	extConstructor(){
-		this.body = this.req.body;
-	}
-	
-	async exect(){
+module.exports = class extends AbstractCtrl {
+  extConstructor() {
+    this.body = this.req.body;
+  }
 
-		let schedule = await scheduleModel.find({})
+  async exect() {
 
-		return suJson(schedule)
+    let schedule = await scheduleModel.find({});
 
-	}
-	
-	
-}
+    return suJson(schedule);
+  }
+};
