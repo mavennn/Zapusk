@@ -10,7 +10,6 @@ module.exports = class extends AbstractCtrl {
   //exect - реализация
 
   async exect() {
-    UserManager.loadSpeakers();
     if (empty(this.req.User)) return erJson("Access denied");
 
     if (this.req.User.permission != "admin") return erJson("");
