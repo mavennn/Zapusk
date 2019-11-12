@@ -46,7 +46,7 @@ Vue.mixin({
     },
     requestError,
     getDays
-  }
+  },
 });
 
 export default {
@@ -55,6 +55,7 @@ export default {
       page: "main",
       cur_object: 1,
       cur_complex: 1,
+      cur_lead: 1
       cur_lead: 1
     };
   },
