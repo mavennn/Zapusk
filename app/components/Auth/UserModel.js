@@ -161,7 +161,10 @@ User.methods.forClient = function() {
     email: this.email,
     permission: this.permission, //
     active: this.active,
-    recording_status: this.recording_status //
+    recording_status: {
+      day1: 1,
+      day2: 1,
+    }
   };
 };
 
