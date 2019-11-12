@@ -22,8 +22,6 @@ module.exports = class extends AbstractCtrl {
       return val;
     });
 
-    UserManager.loadSpeakers();
-
     return suJson(speakers);
   }
 };
