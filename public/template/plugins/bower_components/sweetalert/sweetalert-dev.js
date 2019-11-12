@@ -350,7 +350,7 @@ var _getModal = require('./handle-swal-dom');
 var _hasClass$isDescendant = require('./handle-dom');
 
 /*
- * User clicked on "Confirm"/"OK" or "Cancel"
+ * Auth clicked on "Confirm"/"OK" or "Cancel"
  */
 var handleButton = function handleButton(event, params, modal) {
   var e = event || window.event;
@@ -425,7 +425,7 @@ var handleButton = function handleButton(event, params, modal) {
 };
 
 /*
- *  User clicked on "Confirm"/"OK"
+ *  Auth clicked on "Confirm"/"OK"
  */
 var handleConfirm = function handleConfirm(modal, params) {
   var callbackValue = true;
@@ -450,7 +450,7 @@ var handleConfirm = function handleConfirm(modal, params) {
 };
 
 /*
- *  User clicked on "Cancel"
+ *  Auth clicked on "Cancel"
  */
 var handleCancel = function handleCancel(modal, params) {
   // Check if callback function expects a parameter (to track cancel actions)

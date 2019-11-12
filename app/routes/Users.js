@@ -27,7 +27,7 @@ app.post("/api/user/loadphoto/:filename", async (req, res) => {
   let filePath = rootPath + "/public/img/photos/" + req.params.filename;
   let _id = req.params.filename.split(".")[0];
   let user = await userModel.findOne({ _id });
-  if (empty(user)) return res.send(erJson("User not found"));
+  if (empty(user)) return res.send(erJson("Auth not found"));
 
   if (
     user._id.toString() != req.User._id.toString() &&

@@ -4,7 +4,7 @@ global.requestManager = new (class {
   async create({ userId, speakerId, day }) {
     if (day != 1 && day != 2) return erJson("Day?");
 
-    if (empty(userId)) return erJson("User?");
+    if (empty(userId)) return erJson("Auth?");
 
     if (empty(speakerId)) return erJson("Speaker?");
 
@@ -20,7 +20,7 @@ global.requestManager = new (class {
       permission: ["user", "admin"]
     });
 
-    if (empty(user)) return erJson("User not found");
+    if (empty(user)) return erJson("Auth not found");
 
     let speaker = await userModel.findOne({
       _id: speakerId,

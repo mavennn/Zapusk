@@ -1,5 +1,5 @@
-require('../../../app');
-require('../../libs/autoincrement');
+require("../../../app");
+require("../../libs/autoincrement");
 
 var User = new Schema({
   ids: Number,
@@ -114,7 +114,7 @@ User.statics.regUser = async function({ name, sname, email, password, phone }) {
       token: genToken(),
       password,
       pin: password,
-      permission: "user", //admin, user
+      permission: "user", // admin, user
       active: true
     };
 
@@ -142,27 +142,26 @@ User.methods.changePass = async function(pass) {
 };
 
 User.methods.forClient = function() {
-  console.log(this);
   return {
     id: this.id,
     _id: this._id,
     name: this.name,
     sname: this.sname,
-    prefname: this.prefname,
+    prefname: this.prefname, //
     email: this.email,
-    country: this.country,
-    city: this.city,
+    country: this.country, //
+    city: this.city, //
     phone: this.phone,
-    prefix: this.prefix,
-    photo: this.photo,
-    presentation: this.presentation,
-    organization: this.organization,
-    partnership: this.partnership,
-    wsrProducts: this.wsrProducts,
+    prefix: this.prefix, //
+    photo: this.photo, //
+    presentation: this.presentation, //
+    organization: this.organization, //
+    partnership: this.partnership, //
+    wsrProducts: this.wsrProducts, //
     email: this.email,
-    permission: this.permission,
+    permission: this.permission, //
     active: this.active,
-    recording_status: 1,
+    recording_status: this.recording_status //
   };
 };
 

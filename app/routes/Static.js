@@ -17,7 +17,7 @@ if (config.dev()) {
 app.use("/favicon.png", express.static(`${rootPath}/public/favicon.png`));
 app.use("/src/", express.static(`${rootPath}/public`));
 app.use("/file/", express.static(`${rootPath}/file`));
-app.use("/robots.txt", (req, res) => res.send("User-Agent: *\nDisallow: /"));
+app.use("/robots.txt", (req, res) => res.send("Auth-Agent: *\nDisallow: /"));
 
 app.get("/src/*", (req, res) => {
   res.status(404).send("Not Found");

@@ -17,7 +17,7 @@
 </template>
 
 <script>
-/*		types: Building Client Complex Contact Object User Village	*/
+/*		types: Building Client Complex Contact Object Auth Village	*/
 
 export default {
   props: {

@@ -99,7 +99,7 @@ global.Logger = new function(){
 			type: type,
 			region: Region.regionID,
 			user: {
-				id: User.getID() || false,
+				id: Auth.getID() || false,
 				sid: localStorage.getItem('sid') || false
 			},
 			date: new Date().toISOString(),

@@ -693,7 +693,7 @@
 			}
 		}
 	
-		/* User specified column options */
+		/* Auth specified column options */
 		if ( oOptions !== undefined && oOptions !== null )
 		{
 			// Backwards compatibility

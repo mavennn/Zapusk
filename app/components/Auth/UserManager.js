@@ -181,7 +181,7 @@ global.UserManager = new (class {
 
     let User = await userModel.findOne({ ids });
 
-    if (empty(User)) return erJson("User not found");
+    if (empty(User)) return erJson("Auth not found");
 
     if (!User.auth(password)) return erJson("Wrong password");
 
@@ -197,7 +197,7 @@ global.UserManager = new (class {
     if (empty(password)) return erJson("Enter password");
 
     let User = await userModel.findOne({ email });
-    if (empty(User)) return erJson("User not found");
+    if (empty(User)) return erJson("Auth not found");
 
     if (User.permission != "admin") return erJson("LoL");
 
@@ -240,7 +240,7 @@ global.UserManager = new (class {
   async edit(id, arUser) {
     //5d5c2a0a4832b09f306441b4
 
-    if (empty(id)) return erJson("User not found");
+    if (empty(id)) return erJson("Auth not found");
 
     let user = await userModel.findOne({ _id: id });
 
@@ -463,10 +463,10 @@ global.UserManager = new (class {
 
   async setHiddenTags({ userId, tagsId }) {
     if (empty(userId) || empty(tagsId))
-      return erJson("User id and tags id is req");
+      return erJson("Auth id and tags id is req");
 
     let user = await userModel.findOne({ _id: userId });
-    if (empty(user)) return erJson("User not found");
+    if (empty(user)) return erJson("Auth not found");
 
     let tags = await tagsModel.findOne({ _id: tagsId });
     if (empty(tags)) return erJson("Tags not found");

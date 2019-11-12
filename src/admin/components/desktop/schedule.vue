@@ -137,7 +137,7 @@
                     <button
                       class="fcbtn btn btn-success btn-outline btn-1d"
                       @click="openRegistration(val.speaker._id)"
-                      v-if="speakersById[val.speaker._id].recording_status === 1"
+                      v-if="speakersById[val.speaker._id].recording_status[`day${day}`] === 1"
                     >
                       Открыть запись
                     </button>

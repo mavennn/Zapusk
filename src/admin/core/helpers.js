@@ -89,7 +89,7 @@ global.timer = function(time) {
 
 global.buildHeader = function(params = false){
 	let headers = {
-		'App-Token' : App.User.getToken(),
+		'App-Token' : App.Auth.getToken(),
 		'stock' : App.Region.stock || App.Region.defaultStock
 	};
 	if (params != false)

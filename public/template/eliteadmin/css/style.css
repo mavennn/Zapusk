@@ -2737,7 +2737,7 @@ Basic List
 .item-info p {
   margin-bottom: 10px !important;
 }
-/*User-box*/
+/*Auth-box*/
 .user-bg {
   margin: -25px;
   height: 230px;
@@ -14676,7 +14676,7 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
   color: #686868;
   margin-right: 10px;
 }
-/*User Cards*/
+/*Auth Cards*/
 .el-element-overlay .white-box {
   padding: 0px;
 }

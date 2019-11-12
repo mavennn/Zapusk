@@ -4,14 +4,14 @@
     <div class="skittles-profile">
       <div class="sp-block">
         <div class="spb-title">
-          {{ lang == "en" ? "Personal Info" : "Персональная информация" }}
+          {{ lang === "en" ? "Personal Info" : "Персональная информация" }}
         </div>
         <div class="spb-content" v-if="opts.country">
           <div class="spbc-row">
             <div class="spbcr-img" :style="getImg(user.photo)">
               <div
                 class="spbcri-icon"
-                :class="{ 'spbcrii-none': user.photo && user.photo != '' }"
+                :class="{ 'spbcrii-none': user.photo && user.photo !== '' }"
               ></div>
               <input
                 @change="loadFile($event)"
@@ -24,58 +24,58 @@
           </div>
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang == "en" ? "Prefix" : "Форма обращения" }}*:
+              {{ lang === "en" ? "Prefix" : "Форма обращения" }}*:
             </div>
             <div class="spbcig-select">
               {{
                 user.prefix ||
-                  (lang == "en" ? "Select prefix" : "Выберите форму обращения")
+                  (lang === "en" ? "Select prefix" : "Выберите форму обращения")
               }}
               <i class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="spbcigs-click" @click="togglePrefix()"></div>
               <div class="spbcigs-dropdown" v-if="prefix_opt">
                 <div
                   class="spbcigsd-option"
-                  @click="setPrefix(lang == 'en' ? 'Mr.' : 'г-н')"
+                  @click="setPrefix(lang === 'en' ? 'Mr.' : 'г-н')"
                 >
-                  {{ lang == "en" ? "Mr." : "г-н" }}
+                  {{ lang === "en" ? "Mr." : "г-н" }}
                 </div>
                 <div
                   class="spbcigsd-option"
-                  @click="setPrefix(lang == 'en' ? 'Mrs.' : 'г-жа')"
+                  @click="setPrefix(lang === 'en' ? 'Mrs.' : 'г-жа')"
                 >
-                  {{ lang == "en" ? "Mrs." : "г-жа" }}
+                  {{ lang === "en" ? "Mrs." : "г-жа" }}
                 </div>
                 <div
                   class="spbcigsd-option"
-                  @click="setPrefix(lang == 'en' ? 'Dr.' : 'доктор')"
+                  @click="setPrefix(lang === 'en' ? 'Dr.' : 'доктор')"
                 >
-                  {{ lang == "en" ? "Mrs." : "доктор" }}
+                  {{ lang === "en" ? "Mrs." : "доктор" }}
                 </div>
               </div>
             </div>
           </div>
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang == "en" ? "First name" : "Имя" }}*:
+              {{ lang === "en" ? "First name" : "Имя" }}*:
             </div>
             <input
               v-model="user.name"
               class="spbcig-val"
               type="text"
-              :placeholder="lang == 'en' ? 'Input first name' : 'Введите имя'"
+              :placeholder="lang === 'en' ? 'Input first name' : 'Введите имя'"
             />
           </div>
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang == "en" ? "Preffered name" : "Предпочтительное имя" }}*:
+              {{ lang === "en" ? "Preffered name" : "Предпочтительное имя" }}*:
             </div>
             <input
               v-model="user.prefname"
               class="spbcig-val"
               type="text"
               :placeholder="
-                lang == 'en'
+                lang === 'en'
                   ? 'Input preferred name'
                   : 'Введите предпочтительное имя'
               "
@@ -83,25 +83,25 @@
           </div>
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang == "en" ? "Second name" : "Фамилия" }}*:
+              {{ lang === "en" ? "Second name" : "Фамилия" }}*:
             </div>
             <input
               v-model="user.sname"
               class="spbcig-val"
               type="text"
               :placeholder="
-                lang == 'en' ? 'Input your second name' : 'Введите фамилию'
+                lang === 'en' ? 'Input your second name' : 'Введите фамилию'
               "
             />
           </div>
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang == "en" ? "Country" : "Страна" }}*:
+              {{ lang === "en" ? "Country" : "Страна" }}*:
             </div>
             <div class="spbcig-select">
               {{
                 getName(user.country, "country") ||
-                  (lang == "en" ? "Select your country" : "Выберите страну")
+                  (lang === "en" ? "Select your country" : "Выберите страну")
               }}
               <i class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="spbcigs-click" @click="toggleCountry1()"></div>
@@ -127,7 +127,7 @@
             />
             <div class="spbcig-desc">
               {{
-                lang == "en"
+                lang === "en"
                   ? "Not visible in public profile"
                   : "Не виден остальным"
               }}
@@ -135,7 +135,7 @@
           </div>
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang == "en" ? "Phone number" : "Телефон" }}:
+              {{ lang === "en" ? "Phone number" : "Телефон" }}:
             </div>
             <!-- <div class="spbcig-comb">
 							<div class="spbcig-select">
@@ -152,12 +152,12 @@
               class="spbcig-val"
               type="text"
               :placeholder="
-                lang == 'en' ? 'Input your phone number' : 'Введите телефон'
+                lang === 'en' ? 'Input your phone number' : 'Введите телефон'
               "
             />
             <div class="spbcig-desc">
               {{
-                lang == "en"
+                lang === "en"
                   ? "Not visible in public profile"
                   : "Не виден остальным"
               }}
@@ -173,7 +173,7 @@
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{
-                lang == "en" ? "Organisation name" : "Название организация"
+                lang === "en" ? "Organisation name" : "Название организация"
               }}*:
             </div>
             <input
@@ -181,7 +181,7 @@
               class="spbcig-val"
               type="text"
               :placeholder="
-                lang == 'en'
+                lang === 'en'
                   ? 'Input name of your organisation'
                   : 'Введите название организации'
               "
@@ -189,25 +189,25 @@
           </div>
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang == "en" ? "Position" : "Должность" }}*:
+              {{ lang === "en" ? "Position" : "Должность" }}*:
             </div>
             <input
               v-model="user.organization.position"
               class="spbcig-val"
               type="text"
               :placeholder="
-                lang == 'en' ? 'Input your position' : 'Введите должность'
+                lang === 'en' ? 'Input your position' : 'Введите должность'
               "
             />
           </div>
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang == "en" ? "Role" : "Роль" }}*:
+              {{ lang === "en" ? "Role" : "Роль" }}*:
             </div>
             <div class="spbcig-select">
               {{
                 getNameRole(user.organization.role) ||
-                  (lang == "en" ? "Role" : "Роль")
+                  (lang === "en" ? "Role" : "Роль")
               }}
               <i class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="spbcigs-click" @click="toggleRole1()"></div>
@@ -226,7 +226,7 @@
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{
-                lang == "en"
+                lang === "en"
                   ? "What main issues/problems do you have in your country/organization in skills development?"
                   : "Какие главные проблемы в Вашей организации/стране в развитии навыков?"
               }}
@@ -240,7 +240,7 @@
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{
-                lang == "en"
+                lang === "en"
                   ? "What perspectives/vision/goals/possibilities do you see for your country/organization?"
                   : "Какие перспективы/цели/возможности Вы видите для Вашей организации/страны?"
               }}
@@ -254,7 +254,7 @@
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{
-                lang == "en"
+                lang === "en"
                   ? "What main obstacles/barriers do you see on your way to your vision/goals?"
                   : "Какие преграды Вы видите на пути к Вашим целям?"
               }}
@@ -269,12 +269,12 @@
       </div>
       <div class="sp-block">
         <div class="spb-title">
-          {{ lang == "en" ? "WSR Products" : "Продукты WSR" }}*
+          {{ lang === "en" ? "WSR Products" : "Продукты WSR" }}*
         </div>
         <div class="spb-content">
           <div class="spbc-advice">
             {{
-              lang == "en"
+              lang === "en"
                 ? "Tap products you interesting in"
                 : "Нажмите на продукты, интересующие Вас "
             }}
@@ -310,7 +310,7 @@
       <div class="sp-block">
         <div class="spb-title">
           {{
-            lang == "en"
+            lang === "en"
               ? "Partnership I am interested in"
               : "Сотрудничества, в которых Вы заинтересованы"
           }}
@@ -318,12 +318,12 @@
         <div class="spb-content">
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang == "en" ? "Country" : "Страны" }}:
+              {{ lang === "en" ? "Country" : "Страны" }}:
             </div>
             <div class="spbcig-select">
               {{
                 getName(user.partnership.country, "country") ||
-                  (lang == "en" ? "Select country" : "Выберите страны")
+                  (lang === "en" ? "Select country" : "Выберите страны")
               }}
               <i class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="spbcigs-click" @click="toggleCountry2()"></div>
@@ -341,12 +341,12 @@
           </div>
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang == "en" ? "Partnership mode" : "Вид сотрудничества" }}:
+              {{ lang === "en" ? "Partnership mode" : "Вид сотрудничества" }}:
             </div>
             <div class="spbcig-select">
               {{
                 getName(user.partnership.partnershipMode, "partnershipMode") ||
-                  (lang == "en"
+                  (lang === "en"
                     ? "Select partnership mode"
                     : "Выберите вид сотрудничества")
               }}
@@ -366,12 +366,12 @@
           </div>
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang == "en" ? "Industry" : "Отрасль" }}:
+              {{ lang === "en" ? "Industry" : "Отрасль" }}:
             </div>
             <div class="spbcig-select">
               {{
                 getName(user.partnership.industry, "industry") ||
-                  (lang == "en"
+                  (lang === "en"
                     ? "Select industry/field"
                     : "Выберите отрасль/сферу")
               }}
@@ -391,12 +391,12 @@
           </div>
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang == "en" ? "Best practice" : "Лучшая практика" }}:
+              {{ lang === "en" ? "Best practice" : "Лучшая практика" }}:
             </div>
             <div class="spbcig-select">
               {{
                 getName(user.partnership.bestPractice, "bestPractice") ||
-                  (lang == "en"
+                  (lang === "en"
                     ? "Select best practice"
                     : "Выберите лучшую практику")
               }}
@@ -416,12 +416,12 @@
           </div>
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang == "en" ? "Role" : "Роль" }}:
+              {{ lang === "en" ? "Role" : "Роль" }}:
             </div>
             <div class="spbcig-select">
               {{
                 getName(user.partnership.role, "role") ||
-                  (lang == "en" ? "Select role" : "Выберите роль")
+                  (lang === "en" ? "Select role" : "Выберите роль")
               }}
               <i class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="spbcigs-click" @click="toggleRole2()"></div>
@@ -443,7 +443,7 @@
         class="btn btn-block btn-outline btn-rounded btn-success"
         @click="save()"
       >
-        {{ lang == "en" ? "save" : "сохранить" }}
+        {{ lang === "en" ? "save" : "сохранить" }}
       </button>
     </div>
   </div>

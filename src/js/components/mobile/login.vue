@@ -40,7 +40,7 @@ export default {
   methods: {
     login() {
       if (this.id.length == 4 && this.pin.length == 4) {
-        // App.User.login(this.id, this.pin).then(d => {
+        // App.Auth.login(this.id, this.pin).then(d => {
         //   if (isJson(d)) router.push({ path: "/agenda" });
         // });
 
