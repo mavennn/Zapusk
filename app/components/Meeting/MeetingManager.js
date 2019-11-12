@@ -139,7 +139,7 @@ global.meetingManager = new (class {
       }
     }
 
-    speaker.recording_status[`day${day}`] = status;
+    speaker.recording_status[`day${day}`] = 1;
     let resp = await speaker.save();
     console.log("status", resp);
     return suJson("su");
