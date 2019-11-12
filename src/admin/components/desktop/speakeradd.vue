@@ -340,7 +340,7 @@
             </div>
           </div>
           <div class="spbc-inputgroup">
-            <div class="spbcig-label">
+            <div class="spbcig-label">c
               {{ lang === "en" ? "Partnership mode" : "Вид сотрудничества" }}:
             </div>
             <div class="spbcig-select">
