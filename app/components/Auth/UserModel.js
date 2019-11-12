@@ -163,7 +163,7 @@ User.methods.forClient = function() {
     active: this.active,
     recording_status: {
       day1: 1,
-      day2: 1,
+      day2: 1
     }
   };
 };

@@ -17,6 +17,7 @@ module.exports = class extends AbstractCtrl {
       const cntr = tagsManager.country.filter(v => v._id == val.country);
       const countryName = cntr.length > 0 ? cntr[0].name : "";
       val = val.forClient();
+      erJson(val);
       val.countryName = countryName;
       return val;
     });
