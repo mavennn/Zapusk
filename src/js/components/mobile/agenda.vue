@@ -13,6 +13,8 @@
           {{ lang == "en" ? "Day" : "День" }} {{ day }}
         </div>
       </div>
+
+      <!--    INTRODUCTORY AND SPEAKERS    -->
       <div
         class="skittles-block"
         v-for="(block, key) in blocks"
@@ -49,6 +51,8 @@
         </div>
       </div>
     </div>
+
+    <!--      MEETENGS AND REQUESTS    -->
     <div class="schedulled-content">
       <div
         class="skittles-block"
@@ -136,7 +140,7 @@ export default {
     return {
       lang: "en",
       days: [1],
-      active_day: 2,
+      active_day: 1,
       users: {},
       blocks: [
         {
