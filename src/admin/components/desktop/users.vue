@@ -23,7 +23,7 @@
                     @click="addNewUser"
                     class="btn btn-outline btn-primary btn-sm"
                   >
-                    <i class="icon wb-plus" aria-hidden="true"></i>Add New Row
+                    <i class="icon wb-plus" aria-hidden="true"></i>Add User
                   </button>
                 </div>
               </div>

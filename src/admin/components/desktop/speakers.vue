@@ -14,7 +14,18 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="white-box">
+          <!--        Add new row Button       -->
+          <div class="form-group">
+            <button
+                    id="demo-btn-addrow"
+                    @click="addNewSpeaker"
+                    class="btn btn-outline btn-primary btn-sm"
+            >
+              <i class="icon wb-plus" aria-hidden="true"></i>Add Speaker
+            </button>
+          </div>
           <h3 class="box-title m-b-0">Speakers list</h3>
+          <!--     Speakers table     -->
           <table
             id="demo-foo-addrow"
             class="table table-bordered table-hover toggle-circle"
@@ -98,6 +109,9 @@ export default {
     },
     openDetail(id) {
       App.Mpage.open({ component: "speaker-detail-info", data: id });
+    },
+    addNewSpeaker() {
+      App.Mpage.open({ component: "user-add" });
     }
   },
   created() {
