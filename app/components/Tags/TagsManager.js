@@ -15,7 +15,7 @@ global.tagsManager = new (class {
   }
 
   async init() {
-    this.tags = await tagsModel.find();
+    this.tags = await tagsModel.find({});
     this.tagsById = this.tags.byKey("_id");
     this.country = this.tags.filter(v => v.type == "country");
     this.role = this.tags.filter(v => v.type == "role");

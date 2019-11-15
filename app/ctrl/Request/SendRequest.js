@@ -24,7 +24,7 @@ module.exports = class extends AbstractCtrl {
     if (empty(speaker)) return erJson("Speaker not found");
 
     let sched = await scheduleModel.findOne({ "speaker._id": speaker._id });
-    this.day = 2; // ВТОРОЙ ДЕНЬ
+    this.day = 1; // ВТОРОЙ ДЕНЬ
 
     let checkMeck = await requestModel.findOne({
       speaker: this.speakerId,

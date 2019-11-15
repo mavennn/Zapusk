@@ -2,12 +2,16 @@
   <div>
     <h3>Редактирование пользователя</h3>
     <div class="skittles-profile">
+
+      <!--   ПЕРСОНАЛЬНАЯ ИНФОРМАЦИЯ     -->
       <div class="sp-block">
         <div class="spb-title">
           {{ lang === "en" ? "Personal Info" : "Персональная информация" }}
         </div>
-        <div class="spb-content" v-if="opts.country">
+        <div class="spb-content" v-if="opts.country"> <!--  <<<-----  тут проблема -->
           <div class="spbc-row">
+
+            <!--     Загрузка фотки       -->
             <div class="spbcr-img" :style="getImg(user.photo)">
               <div
                 class="spbcri-icon"
@@ -22,6 +26,8 @@
               />
             </div>
           </div>
+
+          <!--     Форма обращения     -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{ lang === "en" ? "Prefix" : "Форма обращения" }}*:
@@ -55,6 +61,8 @@
               </div>
             </div>
           </div>
+
+          <!--     Имя     -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{ lang === "en" ? "First name" : "Имя" }}*:
@@ -66,6 +74,8 @@
               :placeholder="lang === 'en' ? 'Input first name' : 'Введите имя'"
             />
           </div>
+
+          <!--     Предпочтительное имя     -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{ lang === "en" ? "Preffered name" : "Предпочтительное имя" }}*:
@@ -81,6 +91,8 @@
               "
             />
           </div>
+
+          <!--    Фамилия      -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{ lang === "en" ? "Second name" : "Фамилия" }}*:
@@ -94,6 +106,8 @@
               "
             />
           </div>
+
+          <!--     Страна     -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{ lang === "en" ? "Country" : "Страна" }}*:
@@ -117,6 +131,8 @@
               </div>
             </div>
           </div>
+
+          <!--    Email      -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">E-mail*:</div>
             <input
@@ -133,6 +149,8 @@
               }}
             </div>
           </div>
+
+          <!--    Телефон      -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{ lang === "en" ? "Phone number" : "Телефон" }}:
@@ -164,11 +182,15 @@
             </div>
           </div>
         </div>
+
+      <!--    ОРГАНИЗАЦИЯ    -->
       </div>
       <div class="sp-block">
         <div class="spb-title">
           {{ lang == "en" ? "Organization" : "Организация" }}*
         </div>
+
+        <!--   Название организации     -->
         <div class="spb-content">
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
@@ -187,6 +209,8 @@
               "
             />
           </div>
+
+          <!--    Должность      -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{ lang === "en" ? "Position" : "Должность" }}*:
@@ -200,15 +224,14 @@
               "
             />
           </div>
+
+          <!--     Роль      -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{ lang === "en" ? "Role" : "Роль" }}*:
             </div>
             <div class="spbcig-select">
-              {{
-                getNameRole(user.organization.role) ||
-                  (lang === "en" ? "Role" : "Роль")
-              }}
+              {{ getNameRole(user.organization.role) || (lang === "en" ? "Role" : "Роль") }}
               <i class="fa fa-angle-down" aria-hidden="true"></i>
               <div class="spbcigs-click" @click="toggleRole1()"></div>
               <div class="spbcigs-dropdown" v-if="role1_opt">
@@ -223,6 +246,8 @@
               </div>
             </div>
           </div>
+
+          <!--     Какие главные проблемы в Вашей организации/стране в развитии навыков?      -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{
@@ -237,6 +262,8 @@
               type="text"
             />
           </div>
+
+          <!--     Какие перспективы/цели/возможности Вы видите для Вашей организации/страны?      -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{
@@ -251,6 +278,8 @@
               type="text"
             />
           </div>
+
+          <!--     Какие преграды Вы видите на пути к Вашим целям?      -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{
@@ -267,6 +296,8 @@
           </div>
         </div>
       </div>
+
+      <!--   ПРОДУКТЫ WSR    -->
       <div class="sp-block">
         <div class="spb-title">
           {{ lang === "en" ? "WSR Products" : "Продукты WSR" }}*
@@ -307,6 +338,8 @@
           </div>
         </div>
       </div>
+
+      <!--   СОТРУДНИЧЕСТВА, В КОТОРЫХ ВЫ ЗАИНТЕРЕСОВАНЫ   -->
       <div class="sp-block">
         <div class="spb-title">
           {{
@@ -315,6 +348,8 @@
               : "Сотрудничества, в которых Вы заинтересованы"
           }}
         </div>
+
+        <!--    Страны     -->
         <div class="spb-content">
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
@@ -339,8 +374,10 @@
               </div>
             </div>
           </div>
+
+          <!--     Вид сотрудничества     -->
           <div class="spbc-inputgroup">
-            <div class="spbcig-label">c
+            <div class="spbcig-label">
               {{ lang === "en" ? "Partnership mode" : "Вид сотрудничества" }}:
             </div>
             <div class="spbcig-select">
@@ -364,6 +401,8 @@
               </div>
             </div>
           </div>
+
+          <!--     Отрасль     -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{ lang === "en" ? "Industry" : "Отрасль" }}:
@@ -389,6 +428,8 @@
               </div>
             </div>
           </div>
+
+          <!--     Лучшая практика     -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{ lang === "en" ? "Best practice" : "Лучшая практика" }}:
@@ -414,6 +455,8 @@
               </div>
             </div>
           </div>
+
+          <!--     Роль     -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{ lang === "en" ? "Role" : "Роль" }}:
