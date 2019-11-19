@@ -38,7 +38,7 @@ module.exports = class extends AbstractCtrl {
 */
 
     if (speaker.recording_status[`day${this.day}`] == 1) {
-      return erJson("fuck");
+      return erJson("You can’t sign up yet");
     }
 
     if (speaker.recording_status[`day${this.day}`] == 4) {
