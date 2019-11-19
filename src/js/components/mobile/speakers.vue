@@ -140,11 +140,12 @@ export default {
           speakerId: this.speakers[this.current]._id
         })
           .then(data => {
+            console.log(data)
             swal("Success", "Request sent successfully", "success");
           })
           .catch(err => {
             if (err == "feedback") {
-              this.smessage();
+              this.smessage()
             } else {
               swal("Info", err, "info");
             }
