@@ -31,13 +31,14 @@ module.exports = class extends AbstractCtrl {
       user: this.user._id,
       day: this.day
     });
+
     if (checkMeck) return erJson("You have already submitted an application");
     /*
 		if (!this.day)
 			return erJson('Day?')
 */
 
-    if (speaker.recording_status[`day${this.day}`] == 1) {
+    if (speaker.recording_status[`day1`] == 1) {
       return erJson("You can’t sign up yet");
     }
 
