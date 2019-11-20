@@ -7,9 +7,6 @@ import Load from "./Load";
 import Router from "./Router";
 import User from "./User";
 
-import io from "socket.io-client";
-global.io = io;
-
 //global.Emitter = Emitter;
 //global.TimeMinutes = TimeMinutes;
 

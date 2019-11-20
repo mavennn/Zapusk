@@ -5,10 +5,7 @@ import Request from "./Request";
 import localStorageProxy from "./localStorageProxy";
 import Load from "./Load";
 import Router from "./Router";
-import io from "socket.io-client";
 import User from "./User";
-
-global.io = io;
 
 //global.Emitter = Emitter;
 //global.TimeMinutes = TimeMinutes;
