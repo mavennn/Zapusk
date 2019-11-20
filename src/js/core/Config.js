@@ -1,7 +1,6 @@
 global.Config = new class{
 	
 	constructor(){
-		
 		this.host;
 		this.token;
 		this.nodeServer;
