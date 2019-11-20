@@ -4,7 +4,7 @@ global.templates.vue = class {
   constructor(req, res) {
     this.req = req;
     this.res = res;
-    this.title = "german 2019";
+    this.title = "WorldSkills 2019";
     this.description = "Description";
     this.keyWords = "key words";
     this.layout = "vue";
