@@ -55,47 +55,64 @@
                 </div>
             </div>
         </div>
-		<div class="sp-block">
-            <div class="spb-title">{{lang == 'en'?'WSR Products I am interested in':'Продукты WSR, в которых я заинтересован'}}</div>
+<!--		<div class="sp-block">-->
+<!--            <div class="spb-title">{{lang == 'en'?'WSR Products I am interested in':'Продукты WSR, в которых я заинтересован'}}</div>-->
+<!--            <div class="spb-content">-->
+<!--                <div class="spbc-onetag" v-for="wsr in user.wsrProducts" :key='wsr'>{{getNameById(wsr, 'wsrProducts')}}</div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--   ЭТО ПОТОМ РАСКОММЕНТИТЬ     -->
+
+        <div class="sp-block">
+            <div class="spb-title">{{lang == 'en'?'Soft Skills':'Soft Skills'}}</div>
             <div class="spb-content">
-                <div class="spbc-onetag" v-for="wsr in user.wsrProducts" :key='wsr'>{{getNameById(wsr, 'wsrProducts')}}</div>
+                <div class="spbc-onetag" v-for="wsr in user.softSkills" :key='wsr'>{{getNameById(wsr, 'softSkills')}}</div>
             </div>
         </div>
-		<div class="sp-block" v-if="user.partnership">
-            <div class="spb-title">{{lang == 'en'?'Partnership I am interested in':'Сотрудничества, в которых я заинтересован'}}</div>
+        <div class="sp-block">
+            <div class="spb-title">{{lang == 'en'?'Hard Skills':'Hard Skills'}}</div>
             <div class="spb-content">
-                <div class="spbc-group">
-                    <div class="spbcg-title">{{lang == 'en'?'Country':'Страны'}}:</div>
-                    <div class="spbcg-body">
-                        <div class="spbcgb-tag" v-for="country in user.partnership.country" :key='country'>{{getNameById(country, 'country')}}</div>
-                    </div>
-                </div>
-                <div class="spbc-group">
-                    <div class="spbcg-title">{{lang == 'en'?'Partnership mode':'Вид сотрудничества'}}:</div>
-                    <div class="spbcg-body">
-                        <div class="spbcgb-tag" v-for="mode in user.partnership.partnershipMode" :key='mode'>{{getNameById(mode, 'partnershipMode')}}</div>
-                    </div>
-                </div>
-                <div class="spbc-group">
-                    <div class="spbcg-title">{{lang == 'en'?'Industry':'Отрасль'}}:</div>
-                    <div class="spbcg-body">
-                        <div class="spbcgb-tag" v-for="industry in user.partnership.industry" :key='industry'>{{getNameById(industry, 'industry')}}</div>
-                    </div>
-                </div>
-                <div class="spbc-group">
-                    <div class="spbcg-title">{{lang == 'en'?'Best practice':'Лучшая практика'}}:</div>
-                    <div class="spbcg-body">
-                        <div class="spbcgb-tag" v-for="bestPractice in user.partnership.bestPractice" :key='bestPractice'>{{getNameById(bestPractice, 'bestPractice')}}</div>
-                    </div>
-                </div>
-                <div class="spbc-group">
-                    <div class="spbcg-title">{{lang == 'en'?'Role':'Роль'}}:</div>
-                    <div class="spbcg-body">
-                        <div class="spbcgb-tag" v-for="role in user.partnership.role" :key='role'>{{getNameById(role, 'role')}}</div>
-                    </div>
-                </div>
+                <div class="spbc-onetag" v-for="wsr in user.hardSkills" :key='wsr'>{{getNameById(wsr, 'hardSkills')}}</div>
             </div>
         </div>
+
+
+        <!--		<div class="sp-block" v-if="user.partnership">-->
+<!--            <div class="spb-title">{{lang == 'en'?'Partnership I am interested in':'Сотрудничества, в которых я заинтересован'}}</div>-->
+<!--            <div class="spb-content">-->
+<!--                <div class="spbc-group">-->
+<!--                    <div class="spbcg-title">{{lang == 'en'?'Country':'Страны'}}:</div>-->
+<!--                    <div class="spbcg-body">-->
+<!--                        <div class="spbcgb-tag" v-for="country in user.partnership.country" :key='country'>{{getNameById(country, 'country')}}</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="spbc-group">-->
+<!--                    <div class="spbcg-title">{{lang == 'en'?'Partnership mode':'Вид сотрудничества'}}:</div>-->
+<!--                    <div class="spbcg-body">-->
+<!--                        <div class="spbcgb-tag" v-for="mode in user.partnership.partnershipMode" :key='mode'>{{getNameById(mode, 'partnershipMode')}}</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="spbc-group">-->
+<!--                    <div class="spbcg-title">{{lang == 'en'?'Industry':'Отрасль'}}:</div>-->
+<!--                    <div class="spbcg-body">-->
+<!--                        <div class="spbcgb-tag" v-for="industry in user.partnership.industry" :key='industry'>{{getNameById(industry, 'industry')}}</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="spbc-group">-->
+<!--                    <div class="spbcg-title">{{lang == 'en'?'Best practice':'Лучшая практика'}}:</div>-->
+<!--                    <div class="spbcg-body">-->
+<!--                        <div class="spbcgb-tag" v-for="bestPractice in user.partnership.bestPractice" :key='bestPractice'>{{getNameById(bestPractice, 'bestPractice')}}</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="spbc-group">-->
+<!--                    <div class="spbcg-title">{{lang == 'en'?'Role':'Роль'}}:</div>-->
+<!--                    <div class="spbcg-body">-->
+<!--                        <div class="spbcgb-tag" v-for="role in user.partnership.role" :key='role'>{{getNameById(role, 'role')}}</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="speakers-btn" @click="sendRequest()">{{lang=='en'?'make an appointment':'записаться на собеседование'}}</div>
 		<SpeakerMessage />
 	</div>
@@ -115,6 +132,8 @@ import swal from 'sweetalert2';
                 lang: 'en',
                 load: false,
                 opts: {
+                    hardSkills: [],
+                    softSkills: [],
                     role:[],
                     country:[]
                 },
@@ -142,6 +161,8 @@ import swal from 'sweetalert2';
                         barriers: '',
                     },
                     wsrProducts: [],
+                    hardSkills: [],
+                    softSkills: [],
                     partnership: {
                         country: [], // max - 3
                         partnershipMode: [], // max - 3
@@ -159,26 +180,27 @@ import swal from 'sweetalert2';
 		created(){
             this.lang = localStorageProxy.getItem('lang')
             this.permission = JSON.parse(localStorageProxy.getItem('user')).permission
-            App.User.getTags()
-                .then(data=>{
-                    this.opts = data
-                    if(this.lang == 'en'){
-                        this.opts.wsrProducts[0].name = 'Expert society development'
-                        this.opts.wsrProducts[1].name = 'SkillsCamp'
-                        this.opts.wsrProducts[2].name = 'WorldSkills Academy'
-                        this.opts.wsrProducts[3].name = 'SkillsPassport'
-                        this.opts.wsrProducts[4].name = 'FutureSkills'
-                        this.opts.wsrProducts[5].name = 'JuniorSkills'
-                        this.opts.wsrProducts[6].name = 'DigitalSkills'
-                        this.opts.wsrProducts[7].name = 'WorldSkills Hi-Tech and industry competitions'
+            App.User.getTags ()
+                .then(data => {
+                    this.opts = data;
+                    if (this.lang == 'en') {
+                        this.opts.wsrProducts[0].name = 'Expert society development';
+                        this.opts.wsrProducts[1].name = 'SkillsCamp';
+                        this.opts.wsrProducts[2].name = 'WorldSkills Academy';
+                        this.opts.wsrProducts[3].name = 'SkillsPassport';
+                        this.opts.wsrProducts[4].name = 'FutureSkills';
+                        this.opts.wsrProducts[5].name = 'JuniorSkills';
+                        this.opts.wsrProducts[6].name = 'DigitalSkills';
+                        this.opts.wsrProducts[7].name = 'WorldSkills Hi-Tech and industry competitions';
                         this.opts.wsrProducts[8].name = 'Skills of the Wise'
                         this.opts.wsrProducts[9].name = 'Transformation of national/regional skills development system'
                     }
                 })
                 .then(() => {
                     App.User.getUserById(App.Router.Router.history.current.params.id)
-                    .then(res=>{
-                        let data = { user: res}
+                    .then(res => {
+                        let data = { user: res};
+
                         this.user._id = data.user._id || ''
                         this.user.prefix = data.user.prefix || ""
                         this.user.name = data.user.name || ""
@@ -189,6 +211,8 @@ import swal from 'sweetalert2';
                         this.user.phone = data.user.phone || ""
                         this.user.email = data.user.email || ""
                         this.user.email = data.user.email || ""
+                        this.user.hardSkills = data.user.hardSkills || "";
+                        this.user.softSkills = data.user.softSkills || "";
                         
                         if(data.user.presentation){
                             this.user.presentation.link = data.user.presentation.link
@@ -223,7 +247,7 @@ import swal from 'sweetalert2';
                             }
                         }
                         App.User.getSchedulle()
-						.then(resp=>{
+						.then(resp => {
 							resp.forEach(element => {
 								if(element.speaker.name == this.user.name && element.speaker.sname == this.user.sname){
 									this.user.presentation.day = element.day
@@ -243,7 +267,7 @@ import swal from 'sweetalert2';
                 if(!url) return 'background: grey'
                 return `background: url(${url}) center no-repeat`
             },
-            getName(arr,opt){
+            getName(arr,opt) {
                 let str = ''
                 let arr1 = []
                 if(typeof arr == 'string' || typeof arr == 'undefined' ){
@@ -251,16 +275,17 @@ import swal from 'sweetalert2';
                 }else{
                     arr1 = arr
                 }
-                if(undefined == arr1){
+                if (undefined == arr1) {
                     console.log(opt)
                 }
-                arr1.forEach(item=>{
-                    this.opts[opt].forEach(elem=>{
-                        if(item == elem._id){
-                            str += `${elem.name}, `
-                        }
-                    })
-                })
+
+                // arr1.forEach(item=>{   // тут ошибка с forEACH
+                //     this.opts[opt].forEach(elem=>{
+                //         if(item == elem._id){
+                //             str += `${elem.name}, `
+                //         }
+                //     })
+                // })
                 return str.slice(0, str.length - 2)
             },
             getNameById(id, opt) {

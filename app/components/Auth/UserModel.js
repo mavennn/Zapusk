@@ -32,6 +32,8 @@ var User = new Schema({
     role: [] // max - 3
   },
   wsrProducts: [],
+  hardSkills: [],
+  softSkills: [],
   token: String,
   pin: String,
   hashed_password: String,
@@ -158,6 +160,8 @@ User.methods.forClient = function() {
     organization: this.organization, //
     partnership: this.partnership, //
     wsrProducts: this.wsrProducts, //
+    hardSkills: this.hardSkills,
+    softSkills: this.softSkills,
     email: this.email,
     permission: this.permission, //
     active: this.active,

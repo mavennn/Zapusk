@@ -21,12 +21,13 @@ module.exports = class extends AbstractCtrl {
     if (empty(speaker)) return erJson("Speaker not found");
 
     if (
-      !speaker.wsrProducts.length &&
-      !speaker.partnership.country.length &&
-      !speaker.partnership.partnershipMode.length &&
-      !speaker.partnership.bestPractice.length &&
-      !speaker.partnership.industry.length &&
-      !speaker.partnership.role.length
+      // !speaker.wsrProducts.length &&
+      // !speaker.partnership.country.length &&
+      // !speaker.partnership.partnershipMode.length &&
+      // !speaker.partnership.bestPractice.length &&
+      // !speaker.partnership.industry.length &&
+      // !speaker.partnership.role.length
+         !speaker.hardSkills.length || !speaker.softSkills.length
     )
       return erJson("Заполните теги!");
 

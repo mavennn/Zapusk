@@ -251,6 +251,8 @@ global.UserManager = new (class {
     user.city = arUser.city || user.city;
     user.prefix = arUser.prefix || user.prefix;
     user.photo = arUser.photo || user.photo;
+    user.hardSkills = arUser.hardSkills || user.hardSkills;
+    user.softSkills = arUser.softSkills || user.softSkills;
 
     if (!empty(arUser.wsrProducts)) user.wsrProducts = arUser.wsrProducts;
 
@@ -279,6 +281,7 @@ global.UserManager = new (class {
         role: arUser.partnership.role
       };
     }
+
     await user.save();
     this.addToCache(user);
     return suJson("su");

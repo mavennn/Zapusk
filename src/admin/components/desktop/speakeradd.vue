@@ -8,7 +8,7 @@
         <div class="spb-title">
           {{ lang === "en" ? "Personal Info" : "Персональная информация" }}
         </div>
-        <div class="spb-content" v-if="opts.country"> <!--  <<<-----  тут проблема -->
+        <div class="spb-content" v-if="opts.country">
           <div class="spbc-row">
 
             <!--     Загрузка фотки       -->
@@ -543,6 +543,7 @@ export default {
     this.$root.$on("selectcomp", obj => {
       this.toggleWsr(this.opts.wsrProducts[obj.id]._id);
     });
+    // тут
     App.User.getTags().then(data => {
       this.opts = data;
     });

@@ -259,7 +259,6 @@ export default {
     },
     getSpeakers() {
       Request.postJson("/api/user/getSpeakerList").then(data => {
-        debugger;
         this.speakers = data;
         this.speakersById = data.byKey("_id");
       });

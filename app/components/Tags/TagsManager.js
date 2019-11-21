@@ -3,6 +3,8 @@ require('../../../app');
 var xlsx = require("node-xlsx");
 global.tagsManager = new (class {
   constructor() {
+    this.hardSkills;
+    this.softSkills;
     this.country;
     this.role;
     this.wsrProducts;
@@ -16,13 +18,15 @@ global.tagsManager = new (class {
 
   async init() {
     this.tags = await tagsModel.find({});
+    this.hardSkills = await  this.tags.filter(v => v.type === "hardSkills");
+    this.softSkills = await  this.tags.filter(v => v.type === "softSkills");
     this.tagsById = this.tags.byKey("_id");
-    this.country = this.tags.filter(v => v.type == "country");
-    this.role = this.tags.filter(v => v.type == "role");
-    this.partnershipMode = this.tags.filter(v => v.type == "partnershipMode");
-    this.industry = this.tags.filter(v => v.type == "industry");
-    this.bestPractice = this.tags.filter(v => v.type == "bestPractice");
-    this.wsrProducts = this.tags.filter(v => v.type == "wsrProducts");
+    this.country = this.tags.filter(v => v.type === "country");
+    this.role = this.tags.filter(v => v.type === "role");
+    this.partnershipMode = this.tags.filter(v => v.type === "partnershipMode");
+    this.industry = this.tags.filter(v => v.type === "industry");
+    this.bestPractice = this.tags.filter(v => v.type === "bestPractice");
+    this.wsrProducts = this.tags.filter(v => v.type === "wsrProducts");
   }
 
   addToCache(tag) {
@@ -59,11 +63,12 @@ global.tagsManager = new (class {
     for (let item of file) {
       if (item[1]) {
         let tag = {
-          type: item[0],
+          type: _.camelCase(item[0]),
           name: item[1],
           weight: 1,
           hidden: false
         };
+        console.log(tag);
         let ch = await this.checkTags(tag.name);
         if (!ch) {
           let us = await this.create(tag);

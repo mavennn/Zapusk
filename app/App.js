@@ -38,6 +38,7 @@ global.App = new (class {
   async init() {
     await HttpServer.listern(config.get("host.port"));
     await tagsManager.init();
+    tagsManager.loadTags();
     await UserManager.init();
     console.timeEnd("appstart");
     console.log("listening on *:" + config.get("host.port"));

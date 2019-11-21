@@ -1,12 +1,14 @@
 <template>
   <div>
     <h3>Редактирование пользователя</h3>
+    <!--   ПЕРСОНАЛЬНАЯ ИНФОРМАЦИЯ     -->
     <div class="skittles-profile">
       <div class="sp-block">
         <div class="spb-title">
           {{ lang == "en" ? "Personal Info" : "Персональная информация" }}
         </div>
-        <div class="spb-content" v-if="opts.country">
+        <div class="spb-content">
+          <!--   Фото     -->
           <div class="spbc-row">
             <div class="spbcr-img" :style="getImg(user.photo)">
               <div
@@ -22,6 +24,7 @@
               />
             </div>
           </div>
+          <!--    Форма обращения      -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
               {{ lang == "en" ? "Prefix" : "Форма обращения" }}*:
@@ -267,46 +270,91 @@
           </div>
         </div>
       </div>
+      <!--   hard skills   -->
       <div class="sp-block">
         <div class="spb-title">
-          {{ lang == "en" ? "WSR Products" : "Продукты WSR" }}*
+          {{ lang == "en" ? "Hard Skills" : "Hard Skills" }}*
         </div>
-        <div class="spb-content">
-          <div class="spbc-advice">
-            {{
-              lang == "en"
-                ? "Tap products you interesting in"
-                : "Нажмите на продукты, интересующие Вас "
-            }}
-          </div>
-          <div
-            class="spbc-taggroup"
-            v-for="(w, key) in opts.wsrProducts"
-            v-bind:key="'w' + key"
+          <div class="spb-content">
+            <div class="spbc-advice">
+              {{
+                lang == "en"
+                  ? "Tap products you interesting in"
+                  : "Нажмите на продукты, интересующие Вас "
+              }}
+            </div>
+            <div
+                  class="spbc-taggroup"
+                  v-for="(w, key) in opts.hardSkills"
+                  v-bind:key="'w' + key"
           >
             <div
-              @click="toggleWsr(w._id)"
-              class="spbc-onetag"
-              :class="{
-                'spbct-active':
-                  user.wsrProducts && user.wsrProducts.includes(w._id)
-              }"
+                    @click="toggleHardSkills(w._id)"
+                    class="spbc-onetag"
+                    :class="{
+                  'spbct-active':
+                    user.hardSkills && user.hardSkills.includes(w._id)
+                }"
             >
               {{ w.name }}
             </div>
             <div
-              v-if="![0, 8, 9].includes(key)"
-              class="spbc-taginfo"
-              @click="
-                getTagInfo(
-                  key,
-                  user.wsrProducts && user.wsrProducts.includes(w._id)
-                )
-              "
+                    v-if="![0, 8, 9].includes(key)"
+                    class="spbc-taginfo"
+                    @click="
+                  getTagInfo(
+                    key,
+                    user.hardSkills && user.hardSkills.includes(w._id)
+                  )
+                "
+            ></div>
+          </div>
+          </div>
+      </div>
+
+
+      <!--   soft skills   -->
+      <div class="sp-block">
+        <div class="spb-title">
+          {{ lang == "en" ? "Soft Skills" : "Soft Skills" }}*
+        </div>
+        <div class="spb-content">
+          <div class="spbc-advice">
+            {{
+            lang == "en"
+            ? "Tap products you interesting in"
+            : "Нажмите на продукты, интересующие Вас "
+            }}
+          </div>
+          <div
+                  class="spbc-taggroup"
+                  v-for="(w, key) in opts.softSkills"
+                  v-bind:key="'w' + key"
+          >
+            <div
+                    @click="toggleSoftSkills(w._id)"
+                    class="spbc-onetag"
+                    :class="{
+                  'spbct-active':
+                    user.softSkills && user.softSkills.includes(w._id)
+                }"
+            >
+              {{ w.name }}
+            </div>
+            <div
+                    v-if="![0, 8, 9].includes(key)"
+                    class="spbc-taginfo"
+                    @click="
+                  getTagInfo(
+                    key,
+                    user.softSkills && user.softSkills.includes(w._id)
+                  )
+                "
             ></div>
           </div>
         </div>
       </div>
+
       <div class="sp-block">
         <div class="spb-title">
           {{
@@ -503,6 +551,7 @@ export default {
       this.opts = data;
     });
     App.User.getUserById(this.data).then(data => {
+      console.log(data);
       this.user = data;
       this.user.organization = data.organization || {
         name: "",
@@ -790,6 +839,30 @@ export default {
         });
       } else {
         this.user.wsrProducts.push(v);
+      }
+    },
+    toggleHardSkills(v) {
+      console.log(v);
+      if (this.user.hardSkills.includes(v)) {
+        this.user.hardSkills.forEach((item, i) => {
+          if (item == v) {
+            this.user.hardSkills.splice(i, 1);
+          }
+        });
+      } else {
+        this.user.hardSkills.push(v);
+      }
+    },
+    toggleSoftSkills(v) {
+      console.log(v);
+      if (this.user.softSkills.includes(v)) {
+        this.user.softSkills.forEach((item, i) => {
+          if (item == v) {
+            this.user.softSkills.splice(i, 1);
+          }
+        });
+      } else {
+        this.user.softSkills.push(v);
       }
     }
   },

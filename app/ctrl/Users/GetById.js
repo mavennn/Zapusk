@@ -36,6 +36,7 @@ module.exports = class extends AbstractCtrl {
         usr = {};
       }
     }
+
     return suJson(usr);
   }
 };
