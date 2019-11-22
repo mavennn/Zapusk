@@ -171,6 +171,7 @@ export default {
   props: {},
   computed: {},
   created() {
+    debugger;
     this.lang = localStorageProxy.getItem("lang");
     if (this.lang == "ru") {
       this.blocks[0].title = "выступления";
@@ -206,7 +207,6 @@ export default {
     getMyMeetings() {
       Request.postJson("/api/user/meetings/forUser", { day: this.active_day })
         .then(data => {
-
           this.users = data.users;
           this.blocks1[0].events = data.meetings.map(val => {
             if (App.User.isSpeaker()) {
@@ -228,7 +228,7 @@ export default {
           });
         })
         .catch(err => {
-
+          console.log(err);
           // swal('Error', err, 'error')
         });
     },
@@ -236,19 +236,17 @@ export default {
       Request.postJson("/api/user/requests/forUser", { day: this.active_day })
         .then(data => {
           this.users = data.users;
-
           this.blocks1[1].events = data.requests.map(val => {
             val.username =
               this.users[val.speaker].name + this.users[val.speaker].sname;
             val.organization = this.users[val.speaker].organization.name;
             val.country = this.users[val.speaker].country;
             val.photo = this.users[val.speaker].photo;
-
             return val;
           });
         })
         .catch(err => {
-
+          console.log(err);
           // swal("Error", err, "error");
         });
     }
