@@ -27,7 +27,8 @@ module.exports = class extends AbstractCtrl {
       // !speaker.partnership.bestPractice.length &&
       // !speaker.partnership.industry.length &&
       // !speaker.partnership.role.length
-         !speaker.hardSkills.length || !speaker.softSkills.length
+          speaker.hardSkills.length === 0 &&
+          speaker.softSkills.length === 0
     )
       return erJson("Заполните теги!");
 
