@@ -64,7 +64,7 @@ export default new (class {
     this.setUserToLocalStorage();
     console.log(this.arUser["token"]);
     Cookies.set("token", this.arUser["token"]);
-    location.href = "/";
+    setTimeout(() => location.href = "/", 3000);
   }
 
   setUserToLocalStorage() {
