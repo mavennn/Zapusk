@@ -44,7 +44,7 @@
                 {{ event.speaker.name }} {{ event.speaker.sname }}
               </div>
               <div class="sbbip-company">
-                &nbsp;| {{ event.speaker.organization }}
+                {{ event.speaker.organization }}
               </div>
             </div>
           </div>
@@ -171,6 +171,7 @@ export default {
   props: {},
   computed: {},
   created() {
+    debugger;
     this.lang = localStorageProxy.getItem("lang");
     if (this.lang == "ru") {
       this.blocks[0].title = "выступления";
