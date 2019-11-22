@@ -79,9 +79,9 @@ global.UserManager = new (class {
           console.log(us);
         } else {
           console.log("Уже создан");
-          ch.country = tagsManager.country.filter(
-            v => v.name === item[4]
-          )[0]._id;
+          // ch.country = tagsManager.country.filter(
+          //   v => v.name === item[4]
+          // )[0]._id;
           ch.photo = item[12]
             ? "https://getfile.dokpub.com/yandex/get/" + item[12]
             : "";
