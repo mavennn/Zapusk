@@ -203,6 +203,7 @@ export default {
     getImg(url) {
       return `background: url(${url}) center no-repeat;background-size:cover;`;
     },
+    // тут ошибка с swal err в начале загрузки агенды
     getMyMeetings() {
       Request.postJson("/api/user/meetings/forUser", { day: this.active_day })
         .then(data => {
@@ -245,7 +246,8 @@ export default {
           });
         })
         .catch(err => {
-          swal("Error", err, "error");
+          console.log(err);
+          // swal("Error", err, "error");
         });
     }
   },
