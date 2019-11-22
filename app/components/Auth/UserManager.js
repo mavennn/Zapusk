@@ -20,7 +20,6 @@ global.UserManager = new (class {
     this.arUsers = await userModel.find();
     this.Users = this.arUsers.byKey("token");
     this.UsersByID = this.arUsers.byKey("_id");
-    this.loadSpeakers();
   }
 
   addToCache(User) {

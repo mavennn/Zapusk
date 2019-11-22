@@ -27,7 +27,6 @@ global.tagsManager = new (class {
     this.industry = this.tags.filter(v => v.type === "industry");
     this.bestPractice = this.tags.filter(v => v.type === "bestPractice");
     this.wsrProducts = this.tags.filter(v => v.type === "wsrProducts");
-    this.loadTags()
   }
 
   addToCache(tag) {
