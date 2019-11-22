@@ -9,9 +9,10 @@ let connection = mongoose.connect(
     "/" +
     config.get("db.name") +
     "",
-  { useNewUrlParser: true }
+  { useNewUrlParser: true, useUnifiedTopology: true }
 );
 mongoose.Promise = global.Promise;
+mongoose.set('useCreateIndex', true);
 global.Float = require("mongoose-float").loadType(mongoose);
 
 global.Schema = new Proxy(function() {}, {
