@@ -44,7 +44,7 @@
                 {{ event.speaker.name }} {{ event.speaker.sname }}
               </div>
               <div class="sbbip-company">
-                {{ event.speaker.organization }}
+                | {{ event.speaker.organization }}
               </div>
             </div>
           </div>
@@ -324,6 +324,7 @@ export default {
           }
           .sbbip-company {
             font-weight: 300;
+            padding-left: 0.2rem;
           }
         }
       }
