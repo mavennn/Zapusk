@@ -64,7 +64,15 @@ export default new (class {
     this.setUserToLocalStorage();
     console.log(this.arUser["token"]);
     Cookies.set("token", this.arUser["token"]);
-    setTimeout(() => location.href = "/", 3000);
+    location.href = "/";
+  }
+
+  createInApp(arUser) {
+    this.isAuth = true;
+    this.arUser = arUser;
+    this.setUserToLocalStorage();
+    console.log(this.arUser["token"]);
+    Cookies.set("token", this.arUser["token"]);
   }
 
   setUserToLocalStorage() {
@@ -238,7 +246,7 @@ export default new (class {
     return Request.postJson("/api/reg", arUser, false, true)
       .then(data => {
         Load.stop();
-        this.regInApp(data);
+        this.createInApp(data);
         return data;
       })
       .catch(requestError);

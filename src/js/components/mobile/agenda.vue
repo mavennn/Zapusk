@@ -171,7 +171,6 @@ export default {
   props: {},
   computed: {},
   created() {
-    debugger;
     this.lang = localStorageProxy.getItem("lang");
     if (this.lang == "ru") {
       this.blocks[0].title = "выступления";

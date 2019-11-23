@@ -233,7 +233,7 @@ global.UserManager = new (class {
     let data = await userModel.regUser(arUser);
     if (!isJson(data)) return data;
     let User = ans(data);
-    await this.sendLoginData(User);
+    // await this.sendLoginData(User); // отправляет письмо на почту, потом надо раскомментить
     return suJson(this.addToCache(User).forAdmin());
   }
 

@@ -323,7 +323,7 @@ export default new (class {
     )
       return Promise.reject("Заполните корректно все поля");
     if (User.password.length > 0 && User.password.length < 6)
-      return Promise.reject("Введите пароль, дина пароля не меннее 6 символов");
+      return Promise.reject("Введите пароль, длина пароля не меннее 6 символов");
 
     let arUser = {
       name: User.name,

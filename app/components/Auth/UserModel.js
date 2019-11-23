@@ -48,7 +48,7 @@ var User = new Schema({
 });
 
 User.statics.validEmail = function(email) {
-  var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
+  var pattern = /^([a-z0-9_\.-])+@[a-z0-9]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
   if (!pattern.test(email)) return erJson("Email не верен");
   return suJson("su");
 };
@@ -98,7 +98,7 @@ User.statics.regUser = async function({ name, sname, email, password, phone }) {
     if (empty(email)) return erJson("Please enter your email");
 
     let ids = await this.genToken();
-    validEm = this.validEmail(email);
+    let validEm = this.validEmail(email);
     if (!isJson(validEm)) return validEm;
 
     email = email.toLowerCase();

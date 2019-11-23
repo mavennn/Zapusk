@@ -1,18 +1,24 @@
 <template>
   <div class="skittles-reg">
 
-<!--	ввод имени, фамилии, email и телефона  -->
+    <!-- Ввод имени, фамилии, email и телефона -->
     <div class="sr-block" v-if="step === 0">
+
+      <!-- Имя -->
       <div class="sr-input">
         <div class="sri-label">{{ lang === "en" ? "First name" : "Имя" }}*:</div>
         <input class="sri-val" v-model="user.name" />
       </div>
+
+      <!-- Фамилия -->
       <div class="sr-input">
         <div class="sri-label">
           {{ lang === "en" ? "Family name" : "Фамилия" }}*:
         </div>
         <input class="sri-val" v-model="user.sname" />
       </div>
+
+      <!-- Email -->
       <div class="sr-input">
         <div class="sri-label">
           E-mail ({{
@@ -21,6 +27,8 @@
         </div>
         <input class="sri-val" v-model="user.email" />
       </div>
+
+      <!-- Телефон -->
       <div class="sr-input">
         <div class="sri-label">
           {{
@@ -31,6 +39,8 @@
         </div>
         <input class="sri-val" v-model="user.phone" />
       </div>
+
+      <!-- Согласие с условиями политики конфиденциальности -->
       <div class="sr-policy">
         <div class="sr-check"></div>
         <div class="sr-links">
@@ -78,12 +88,18 @@
 
 <!--	показ информации о входе    -->
     <div class="sr-block" v-if="step == 2">
+
+<!--   Ваш id   -->
       <div class="sr-label">{{ lang == "en" ? "your id" : "ваш id" }}:</div>
       <div class="sr-val">{{ id }}</div>
+
+<!--   Ваш пароль   -->
       <div class="sr-label">
         {{ lang == "en" ? "your pin code" : "ваш pin код" }}:
       </div>
       <div class="sr-val">{{ user.password }}</div>
+
+      <!-- подсказка -->
       <div class="sr-advice">
         {{
           lang == "en"
@@ -93,10 +109,14 @@
       </div>
     </div>
     <div class="sr-next" v-if="step != 1" @click="nextStep()">
+
+<!--   Кнопка далее   -->
       <template v-if="step < 2"
-        >{{ lang == "en" ? "next" : "далее" }}
+        >{{ lang === "en" ? "next" : "далее" }}
         <i class="fa fa-angle-right" aria-hidden="true"></i
       ></template>
+
+<!--    Кнопка войти    -->
       <template v-else>{{ lang == "en" ? "log in" : "войти" }}</template>
     </div>
   </div>
@@ -179,8 +199,8 @@ export default {
           }
         case 2:
 			App.User.login(this.id, this.user.password).then(() => {
-				location.href = "/edit";
-			});
+			  location.href="/edit";
+            });
           break;
       }
     }
