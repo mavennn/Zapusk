@@ -238,14 +238,14 @@ global.UserManager = new (class {
   }
 
   async edit(id, arUser) {
-    //5d5c2a0a4832b09f306441b4
-
     if (empty(id)) return erJson("Auth not found");
 
     let user = await userModel.findOne({ _id: id });
 
     user.name = arUser.name || user.name;
+    user.phone = arUser.phone || user.phone;
     user.sname = arUser.sname || user.sname;
+    user.email = arUser.email || user.email;
     user.prefname = arUser.prefname || user.prefname;
     user.country = arUser.country || user.country;
     user.city = arUser.city || user.city;
@@ -300,6 +300,8 @@ global.UserManager = new (class {
     user.permission = arUser.permission;
     user.active = true;
     user.name = arUser.name || "";
+    user.phone = arUser.phone || "";
+    user.email = arUser.email || "";
     user.sname = arUser.sname || "";
     user.prefname = arUser.prefname || "";
     user.country = arUser.country || "";

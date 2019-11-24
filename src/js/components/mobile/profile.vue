@@ -25,7 +25,7 @@
                 {{ lang == "en" ? "Country" : "Страна" }}:
               </div>
               <div class="spbcrdr-val">
-                {{ getName(user.country, "country") }}
+                {{ user.country }}
               </div>
             </div>
 
@@ -97,7 +97,7 @@
         <div class="spbc-row">
           <div class="spbcr-label">{{ lang == "en" ? "Role" : "Роль" }}:</div>
           <div class="spbcr-val">
-            {{ getName(user.organization.role, "role") }}
+            {{ user.organization.role }}
           </div>
         </div>
 
@@ -336,7 +336,7 @@ export default {
     this.permission = JSON.parse(localStorageProxy.getItem("user")).permission;
     App.User.getTags()
       .then(data => {
-        this.opts = data;
+          this.opts = data;
         // if ((this.lang = "en")) {
         //   this.opts.wsrProducts[0].name = "Expert society development";
         //   this.opts.wsrProducts[1].name = "SkillsCamp";
@@ -365,7 +365,6 @@ export default {
           this.user.email = data.user.email || "";
           this.user.hardSkills = data.user.hardSkills || [];
           this.user.softSkills = data.user.softSkills || [];
-
           if (data.user.organization) {
             this.user.organization.name = data.user.organization.name || "";
             this.user.organization.position =

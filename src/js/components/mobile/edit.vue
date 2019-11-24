@@ -610,6 +610,9 @@ export default {
       }
     });
     App.User.getUserInfo().then(data => {
+      this.user.name = data.user.name;
+      this.user.sname = data.user.sname;
+      this.user.email = data.user.email;
       this.user.prefix = data.user.prefix || "";
       this.user.photo = data.user.photo || "";
       this.user.prefname = data.user.prefname || "";
