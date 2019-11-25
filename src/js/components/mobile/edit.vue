@@ -90,13 +90,13 @@
             Страна:
           </div>
           <div class="spbcig-select">
-            {{ getName(user.country, "country") || "Выберите страну" }}
+            {{ user.country || "Выберите страну" }}
             <i class="fa fa-angle-down" aria-hidden="true"></i>
             <div class="spbcigs-click" @click="toggleCountry1()"></div>
             <div class="spbcigs-dropdown" v-if="country1_opt">
               <div
                 class="spbcigsd-option"
-                @click="setCountry1(c._id)"
+                @click="setCountry1(c.name)"
                 v-for="(c, key) in opts.country"
                 v-bind:key="'c' + key"
               >

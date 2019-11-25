@@ -21,7 +21,7 @@
             <!--      Тут страна        -->
             <div class="spbcrd-row">
               <div class="spbcrdr-label">
-                {{ lang == "en" ? "Country" : "Страна" }}:
+                Странa:
               </div>
               <div class="spbcrdr-val">
                 {{ user.country }}
@@ -31,7 +31,7 @@
             <!--      Тут город        -->
             <div class="spbcrd-row">
               <div class="spbcrdr-label">
-                {{ lang == "en" ? "City" : "Город" }}:
+                Город:
               </div>
               <div class="spbcrdr-val">{{ user.city }}</div>
             </div>
@@ -42,11 +42,7 @@
               <div class="spbcrdr-val">{{ user.email }}</div>
             </div>
             <div class="spbcrdr-btm-l">
-              {{
-                lang == "en"
-                  ? "Not visible in public profile"
-                  : "Не виден остальным"
-              }}
+              Не виден остальным
             </div>
 
             <!--      телефон        -->
@@ -57,11 +53,7 @@
               <div class="spbcrdr-val">{{ user.phone }}</div>
             </div>
             <div class="spbcrdr-btm-l">
-              {{
-                lang == "en"
-                  ? "Not visible in public profile"
-                  : "Не виден остальным"
-              }}
+              Не виден остальным
             </div>
           </div>
         </div>
@@ -309,11 +301,6 @@ export default {
       permission: "user",
       lang: "en",
       load: false,
-      opts: {
-        role: [],
-        country: [],
-        wsrProducts: []
-      },
       user: {
         prefix: null,
         name: App.User.getName(),
