@@ -3,7 +3,7 @@
     <div class="sp-block">
       <!-- title персональная информация -->
       <div class="spb-title">
-        {{ lang === "en" ? "Personal Info" : "Персональная информация" }}
+        Персональная информация
       </div>
       <div class="spb-content">
         <!-- фото пользователя -->
@@ -61,41 +61,36 @@
         <!-- Имя -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            {{ lang == "en" ? "First name" : "Имя" }}*:
+            Имя:
           </div>
           <input
             v-model="user.name"
             class="spbcig-val"
             type="text"
-            :placeholder="lang == 'en' ? 'Input first name' : 'Введите имя'"
+            :placeholder="'Введите имя'"
           />
         </div>
 
         <!-- Фамилия -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            {{ lang == "en" ? "Family name" : "Фамилия" }}*:
+            Фамилия:
           </div>
           <input
             v-model="user.sname"
             class="spbcig-val"
             type="text"
-            :placeholder="
-              lang == 'en' ? 'Input your second name' : 'Введите фамилию'
-            "
+            :placeholder="'Введите фамилию'"
           />
         </div>
 
         <!-- Страна -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            {{ lang == "en" ? "Country" : "Страна" }}*:
+            Страна:
           </div>
           <div class="spbcig-select">
-            {{
-              getName(user.country, "country") ||
-                (lang == "en" ? "Select your country" : "Выберите страну")
-            }}
+            {{ getName(user.country, "country") || "Выберите страну" }}
             <i class="fa fa-angle-down" aria-hidden="true"></i>
             <div class="spbcigs-click" @click="toggleCountry1()"></div>
             <div class="spbcigs-dropdown" v-if="country1_opt">
@@ -114,13 +109,13 @@
         <!-- Город -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            {{ lang == "en" ? "City" : "Город" }}*:
+            Город:
           </div>
           <input
             v-model="user.city"
             class="spbcig-val"
             type="text"
-            :placeholder="lang == 'en' ? 'Input your city' : 'Введите город'"
+            :placeholder="'Введите город'"
           />
         </div>
 
@@ -134,18 +129,14 @@
             placeholder="Input your e-mail"
           />
           <div class="spbcig-desc">
-            {{
-              lang == "en"
-                ? "Not visible in public profile"
-                : "Не виден остальным"
-            }}
+            Не виден остальным
           </div>
         </div>
 
         <!-- Телефон -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            {{ lang == "en" ? "Phone number" : "Телефон" }}:
+            Телефон:
           </div>
           <!-- <div class="spbcig-comb">
                         <div class="spbcig-select">
@@ -161,37 +152,28 @@
             v-model="user.phone"
             class="spbcig-val"
             type="text"
-            :placeholder="
-              lang == 'en' ? 'Input your phone number' : 'Введите телефон'
-            "
+            :placeholder="'Введите телефон'"
           />
           <div class="spbcig-desc">
-            {{
-              lang == "en"
-                ? "Not visible in public profile"
-                : "Не виден остальным"
-            }}
+            Не виден остальным
           </div>
         </div>
       </div>
     </div>
     <div class="sp-block">
       <!-- title организация -->
-      <div class="spb-title">{{ lang == "en" ? "University" : "ВУЗ" }}*</div>
+      <div class="spb-title">ВУЗ*</div>
       <div class="spb-content">
         <!-- Название организации -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            {{ lang == "en" ? "University name" : "Название ВУЗ'а" }}*:
+            Название ВУЗ'а *:
           </div>
           <input
             v-model="user.university"
             class="spbcig-val"
             type="text"
-            :placeholder="
-              lang == 'en'
-                ? 'Input name of your organisation'
-                : 'Введите название ВУЗ\'а'
+            :placeholder="'Введите название ВУЗ\'а'
             "
           />
         </div>
@@ -199,41 +181,33 @@
         <!-- Специальность -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            {{ lang == "en" ? "Speciality" : "Специальность" }}*:
+            Специальность*:
           </div>
           <input
             v-model="user.speciality"
             class="spbcig-val"
             type="text"
-            :placeholder="
-              lang == 'en' ? 'Input your speciality' : 'Введите специальность'
-            "
+            :placeholder="'Введите специальность'"
           />
         </div>
 
         <!-- Год окончания -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            {{ lang == "en" ? "Engind Year" : "Год окончания" }}*:
+            Год окончания*:
           </div>
           <input
             v-model="user.endingYear"
             class="spbcig-val"
             type="text"
-            :placeholder="
-              lang == 'en' ? 'Input your ending year' : 'Введите год окончания'
-            "
+            :placeholder="'Введите год окончания'"
           />
         </div>
 
         <!-- Вопрос про достаточно денег -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            {{
-              lang == "en"
-                ? "Imagine that you have enough money for the rest of your life. What are you going to do?"
-                : "Представь, что тебе достаточно денег до конца твоей жизни. Чем ты будешь заниматься?"
-            }}
+            Представь, что тебе достаточно денег до конца твоей жизни. Чем ты будешь заниматься?
           </div>
           <input
             v-model="user.questionsForUser.enoughMoney"
@@ -245,11 +219,7 @@
         <!-- Вопрос про английский -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            {{
-              lang == "en"
-                ? "Your level of English."
-                : "Твой уровень владения английским языком."
-            }}
+            Твой уровень владения английским языком:
           </div>
           <input
             v-model="user.questionsForUser.english"
@@ -261,11 +231,7 @@
         <!-- Вопрос про другой язык -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            {{
-              lang == "en"
-                ? "Do you speak another language ?"
-                : "Владеешь ли ты другим языком ?"
-            }}
+            Владеешь ли ты другим языком ?
           </div>
           <input
             v-model="user.questionsForUser.anotherLanguage"
@@ -277,11 +243,7 @@
         <!-- Вопрос про Worldskills -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            {{
-              lang == "en"
-                ? "Have you ever participated in the Worldskills Championship ?"
-                : "Участвовал ли ты когда-нибудь в чемпионате Worldskills ?"
-            }}
+            Участвовал ли ты когда-нибудь в чемпионате Worldskills ?
           </div>
           <input
             v-model="user.questionsForUser.isWorldSkills"
@@ -293,11 +255,7 @@
         <!-- Вопрос про Hackatons -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            {{
-              lang == "en"
-                ? "Have you ever participated in hackathons? If so, in which ?"
-                : "Участвовал ли ты когда-нибудь в хакатонах? Если да, то в каких ?"
-            }}
+            Участвовал ли ты когда-нибудь в хакатонах? Если да, то в каких ?
           </div>
           <input
             v-model="user.questionsForUser.isHackaton"
@@ -309,11 +267,7 @@
         <!-- Вопрос про школу программирования -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            {{
-              lang == "en"
-                ? "Have you been or are currently in school or programming ?"
-                : "Проходил ли или проходишь сейчас школу или курс программирования ?"
-            }}
+            Проходил ли или проходишь сейчас школу или курс программирования ?
           </div>
           <input
             v-model="user.questionsForUser.courses"
@@ -325,11 +279,7 @@
         <!-- Вопрос про digital -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            {{
-              lang == "en"
-                ? "What digital competencies do you have and at what level ?"
-                : "Какими digital компетенциями ты обладаешь и на каком уровне ?"
-            }}
+            Какими digital компетенциями ты обладаешь и на каком уровне ?
           </div>
           <input
             v-model="user.questionsForUser.digital"
@@ -341,11 +291,7 @@
         <!-- Вопрос про работу -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            {{
-              lang == "en"
-                ? "Do you work in any mode now? ?"
-                : "Работаешь ли ты сейчас в любом режиме ?"
-            }}
+            Работаешь ли ты сейчас в любом режиме ?
           </div>
           <input
             v-model="user.questionsForUser.isWorking"
@@ -360,16 +306,12 @@
     <div class="sp-block">
       <!-- Hard Skills -->
       <div class="spb-title">
-        {{ lang === "en" ? "Hard Skills" : "Hard Skills" }}*
+        Hard Skills*
       </div>
       <div class="spb-content">
         <!-- подсказочка p.s. она может и не нужна -->
         <div class="spbc-advice">
-          {{
-            lang === "en"
-              ? "Tap skills you interesting in"
-              : "Нажмите на интересующие вас навыки "
-          }}
+          Нажмите на интересующие вас навыки
         </div>
 
         <!-- hard skills теги   -->
@@ -401,16 +343,12 @@
 
         <!-- title softskills -->
         <div class="spb-title">
-          {{ lang === "en" ? "Sotf Skills" : "Sotf Skills" }}*
+          Soft Skills*
         </div>
 
         <!-- подсказка для softskills -->
         <div class="spbc-advice">
-          {{
-            lang === "en"
-              ? "Tap skills you interesting in"
-              : "Нажмите на навыки, интересующие Вас "
-          }}
+          Нажмите на навыки, интересующие Вас
         </div>
 
         <!-- тут сами теги -->
@@ -444,7 +382,7 @@
 
     <!-- кнопочка сохранить -->
     <div class="sp-save" @click="save()">
-      {{ lang == "en" ? "save" : "сохранить" }}
+      Cохранить
     </div>
     <CompDesc :lang="lang" />
   </div>
