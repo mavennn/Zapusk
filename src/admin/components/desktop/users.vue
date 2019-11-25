@@ -42,7 +42,7 @@
                 <th>id</th>
                 <th data-sort-initial="true" data-toggle="true">Имя</th>
                 <th>Фамилия</th>
-                <th data-hide="phone, tablet">Организация</th>
+                <th data-hide="phone, tablet">ВУЗ</th>
                 <th data-hide="phone, tablet">Пин</th>
                 <th data-hide="phone, tablet">Status</th>
               </tr>
@@ -63,8 +63,8 @@
                 <td>{{ speaker.name }}</td>
                 <td>{{ speaker.sname }}</td>
                 <td>
-                  <span v-if="speaker.organization">
-                    {{ speaker.organization.name || "" }}
+                  <span v-if="speaker.university">
+                    {{ speaker.university || "" }}
                   </span>
                 </td>
                 <td>
