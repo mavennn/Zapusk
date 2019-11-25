@@ -18,8 +18,10 @@ module.exports = class extends AbstractCtrl {
   async exect() {
     if (!this.user) return erJson("Not auth");
 
-    console.log(this.req.body)
-    if (empty(this.speakerId)) return erJson("Speaker ID?");
+    console.log(this.req.body);
+    // if (empty(this.speakerId)) return erJson("Speaker ID?");
+
+    if (empty(this.speakerId)) return erJson("Запись пока недоступна");
 
     let speaker = await userModel.findOne({ _id: this.speakerId });
     if (empty(speaker)) return erJson("Speaker not found");
