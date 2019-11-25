@@ -8,7 +8,7 @@ var Schedule = new Schema({
     _id: String,
     name: String,
     sname: String,
-    organization: String
+    companyName: String
   },
   type: String, //speaker, introductory
   active: Boolean
@@ -31,7 +31,7 @@ Schedule.statics.createNew = async function({
         _id: speaker._id,
         name: speaker.name,
         sname: speaker.sname,
-        organization: speaker.organization
+        companyName: speaker.companyName
       },
       type,
       active: true

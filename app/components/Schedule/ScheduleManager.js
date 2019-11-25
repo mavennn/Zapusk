@@ -49,6 +49,13 @@ global.scheduleManager = new (class {
 
   async removeItem(id) {
     let sch = await scheduleModel.findOne({ _id: id });
+    let sp = await userModel.findOne({ _id: sch.speaker._id });
+
+    if (empty(sp)) return erJson("Speaker not found");
+
+    sp.recording_status = 1;
+    let resp = await sp.save();
+    console.log("resp", resp);
     if (!sch) return erJson("Not found");
     await sch.remove();
     return suJson("su");
@@ -80,7 +87,7 @@ global.scheduleManager = new (class {
         _id: speaker._id,
         name: speaker.name,
         sname: speaker.sname,
-        organization: speaker.organization.name
+        companyName: speaker.companyName
       },
       type
     };

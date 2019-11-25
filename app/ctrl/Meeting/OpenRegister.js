@@ -21,24 +21,18 @@ module.exports = class extends AbstractCtrl {
     if (empty(speaker)) return erJson("Speaker not found");
 
     if (
-      // !speaker.wsrProducts.length &&
-      // !speaker.partnership.country.length &&
-      // !speaker.partnership.partnershipMode.length &&
-      // !speaker.partnership.bestPractice.length &&
-      // !speaker.partnership.industry.length &&
-      // !speaker.partnership.role.length
           speaker.hardSkills.length === 0 &&
           speaker.softSkills.length === 0
     )
       return erJson("Заполните теги!");
 
     if (
-      speaker.recording_status[`day${this.day}`] == 2 ||
-      speaker.recording_status[`day${this.day}`] == 3
+      speaker.recording_status == 2 ||
+      speaker.recording_status == 3
     )
       return erJson("Recording is already open");
 
-    let time_start = this.day == 1 ? "12:07" : "16:07";
+    let time_start = this.day === 1 ? "12:07" : "16:07";
 
     const check = await meetingManager.calc({
       day: this.day,
@@ -47,7 +41,7 @@ module.exports = class extends AbstractCtrl {
     });
     if (!isJson(check)) return check;
 
-    speaker.recording_status[`day${this.day}`] = 2;
+    speaker.recording_status = 2;
     await speaker.save();
     return suJson("su");
   }

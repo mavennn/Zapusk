@@ -17,7 +17,7 @@
         <div class="sci-desc">
           <div class="scid-name">{{ sp.name }} {{ sp.sname }}</div>
           <div class="scid-company">
-            {{ sp.organization.name }}{{ sp.country ? ", " + sp.country : "" }}
+            {{ sp.companyName }}
           </div>
         </div>
         <div class="sci-status" v-if="key == current">
@@ -110,7 +110,7 @@ export default {
             });
             let getit = true;
             this.speakers.forEach((item, i) => {
-              if (item.recording_status.day2 == 2 && getit) {
+              if (item.recording_status == 2 && getit) {
                 console.log(i);
                 this.current = i;
                 getit = false;

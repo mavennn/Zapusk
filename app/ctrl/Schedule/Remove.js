@@ -1,25 +1,18 @@
-require('../../../app');
+require("../../../app");
 
-module.exports = class extends AbstractCtrl{
-	
-	extConstructor(){
-		this.body = this.req.body
-		this.user = this.req.User
-	}
-	
-	async exect(){
-		if (!this.user)
-			return erJson('Not auth')
+module.exports = class extends AbstractCtrl {
+  extConstructor() {
+    this.body = this.req.body;
+    this.user = this.req.User;
+  }
 
-		if (empty(this.body.id))
-			return erJson('ID?')
+  async exect() {
+    if (!this.user) return erJson("Not auth");
 
-		if (this.user.permission != 'admin')
-			return erJson('Permission problems')
-		
-		return await scheduleManager.removeItem(this.body.id)
+    if (empty(this.body.id)) return erJson("ID?");
 
-	}
-	
-	
-}
+    if (this.user.permission != "admin") return erJson("Permission problems");
+
+    return await scheduleManager.removeItem(this.body.id);
+  }
+};

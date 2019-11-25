@@ -15,7 +15,7 @@ global.meetingManager = new (class {
     if (empty(comp)) return erJson("Speaker not found");
 
     let time_man = [time_start];
-    for (let i = 0; i < 9; i++) {
+    for (let i =  0; i < 9; i++) {
       if (i % 4 || i == 8 || i == 0)
         time_man.push(
           moment(time_man[i], "HH:mm")
@@ -51,7 +51,7 @@ global.meetingManager = new (class {
     });
     if (empty(speaker)) return erJson("Speaker not found");
 
-    if (speaker.recording_status[`day${this.day}`] == 4)
+    if (speaker.recording_status == 4)
       return erJson("Recording is already close");
 
     let requests = await requestModel
@@ -139,7 +139,7 @@ global.meetingManager = new (class {
       }
     }
 
-    speaker.recording_status[`day${day}`] = 1;
+    speaker.recording_status = 1;
     let resp = await speaker.save();
     console.log("status", resp);
     return suJson("su");

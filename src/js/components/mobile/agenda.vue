@@ -44,7 +44,7 @@
                 {{ event.speaker.name }} {{ event.speaker.sname }}
               </div>
               <div class="sbbip-company">
-                | {{ event.speaker.organization }}
+                | {{ event.speaker.companyName }}
               </div>
             </div>
           </div>

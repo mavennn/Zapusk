@@ -25,6 +25,22 @@
             <SshTunnelingConfiguration />
           </option>
         </ServerConfiguration>
+        <ServerConfiguration>
+          <option name="label" value="german_Zapusk" />
+          <option name="serverUrls">
+            <list>
+              <option value="localhost:27017" />
+            </list>
+          </option>
+          <option name="sshTunnelingConfiguration">
+            <SshTunnelingConfiguration>
+              <option name="authenticationMethod" value="Password" />
+              <option name="proxyPassword" value="@GerMan@345" />
+              <option name="proxyUrl" value="91.206.14.78" />
+              <option name="proxyUser" value="german" />
+            </SshTunnelingConfiguration>
+          </option>
+        </ServerConfiguration>
       </list>
     </option>
   </component>

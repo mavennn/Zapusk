@@ -1,37 +1,61 @@
 require("../../../app");
 require("../../libs/autoincrement");
 
+// var User = new Schema({
+//   ids: Number,
+//   email: String,
+//   name: String,
+//   sname: String,
+//   prefname: String,
+//   country: String,
+//   city: String,
+//   phone: String,
+//   prefix: String,
+//   photo: String,
+//   presentation: {
+//     subject: String,
+//     link: String
+//   },
+//   organization: {
+//     name: String,
+//     position: String,
+//     role: String,
+//     problems: String,
+//     perspectives: String,
+//     barriers: String
+//   },
+//   partnership: {
+//     country: [], // max - 3
+//     partnershipMode: [], // max - 3
+//     bestPractice: [],
+//     industry: [], // max - 3
+//     role: [] // max - 3
+//   },
+//   wsrProducts: [],
+//   hardSkills: [],
+//   softSkills: [],
+//   token: String,
+//   pin: String,
+//   hashed_password: String,
+//   hidden_tags: [],
+//   salt: String,
+//   permission: String, // admin, user, speaker
+//   active: Boolean,
+//   recording_status: {
+//     day1: Number, // 0 - nothing, 1 - ready to open, 2 - open, 3 - waiting, 4 - close
+//     day2: Number // 0 - nothing, 1 - ready to open, 2 - open, 3 - waiting, 4 - close
+//   }
+// });
+
 var User = new Schema({
+
+  /* общие поля */
   ids: Number,
-  email: String,
   name: String,
   sname: String,
-  prefname: String,
-  country: String,
-  city: String,
+  email: String,
   phone: String,
-  prefix: String,
   photo: String,
-  presentation: {
-    subject: String,
-    link: String
-  },
-  organization: {
-    name: String,
-    position: String,
-    role: String,
-    problems: String,
-    perspectives: String,
-    barriers: String
-  },
-  partnership: {
-    country: [], // max - 3
-    partnershipMode: [], // max - 3
-    bestPractice: [],
-    industry: [], // max - 3
-    role: [] // max - 3
-  },
-  wsrProducts: [],
   hardSkills: [],
   softSkills: [],
   token: String,
@@ -41,11 +65,44 @@ var User = new Schema({
   salt: String,
   permission: String, // admin, user, speaker
   active: Boolean,
-  recording_status: {
-    day1: Number, // 0 - nothing, 1 - ready to open, 2 - open, 3 - waiting, 4 - close
-    day2: Number // 0 - nothing, 1 - ready to open, 2 - open, 3 - waiting, 4 - close
-  }
+  prefname: String,
+  country: String,
+  city: String,
+  prefix: String,
+
+
+  /* поля юзера */
+  birthday: String,
+  university: String,
+  speciality: String,
+  endingYear: String,
+  questionsForUser: {
+    digital: String,
+    english: String,
+    anotherLanguage: String,
+    isHackaton: String,
+    isWorldSkills: String,
+    courses: String,
+    enoughMoney: String,
+    achievements: String,
+    isWorking: String
+  },
+
+  /* поля спикера */
+  companyName: String,
+  companyUrl: String,
+  vacanciesUrl: String,
+  businessSphere: String,
+  questionsForSpeaker: {
+    yourProduct: String,
+    companyTasks: String,
+    positions: String,
+    candidatsTasks: String,
+    intership: String,
+  },
+  recording_status: Number,
 });
+
 
 User.statics.validEmail = function(email) {
   var pattern = /^([a-z0-9_\.-])+@[a-z0-9]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
@@ -149,22 +206,47 @@ User.methods.forClient = function() {
     _id: this._id,
     name: this.name,
     sname: this.sname,
-    prefname: this.prefname, //
+    email: this.email,
     email: this.email,
     country: this.country, //
     city: this.city, //
     phone: this.phone,
     prefix: this.prefix, //
     photo: this.photo, //
-    presentation: this.presentation, //
-    organization: this.organization, //
-    partnership: this.partnership, //
-    wsrProducts: this.wsrProducts, //
     hardSkills: this.hardSkills,
     softSkills: this.softSkills,
-    email: this.email,
     permission: this.permission, //
     active: this.active,
+
+    /* user */
+    birthday: this.birthday,
+    university: this.university,
+    speciality: this.speciality,
+    endingYear: this.endingYear,
+    questionsForUser: {
+      digital: this.questionsForUser.digital,
+      english: this.questionsForUser.english,
+      anotherLanguage: this.questionsForUser.anotherLanguage,
+      isHackaton: this.questionsForUser.isHackaton,
+      isWorldSkills: this.questionsForUser.isWorldSkills,
+      courses: this.questionsForUser.courses,
+      enoughMoney: this.questionsForUser.enoughMoney,
+      achievements: this.questionsForUser.achievements,
+      isWorking: this.questionsForUser.isWorking,
+    },
+
+    /* speaker */
+    companyName: this.companyName,
+    companyUrl: this.companyUrl,
+    vacanciesUrl: this.vacanciesUrl,
+    businessSphere: this.businessSphere,
+    questionsForSpeaker: {
+      yourProduct: this.questionsForSpeaker.yourProduct,
+      companyTasks: this.questionsForSpeaker.companyTasks,
+      positions: this.questionsForSpeaker.positions,
+      candidatsTasks: this.questionsForSpeaker.candidatsTasks,
+      intership: this.questionsForSpeaker.intership,
+    },
     recording_status: this.recording_status,
   };
 };

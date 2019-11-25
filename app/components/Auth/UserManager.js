@@ -12,8 +12,8 @@ global.UserManager = new (class {
       region_manager: 2,
       content: 1
     };
-    this.speakersFile = `${rootPath}/file/speakers.xls`;
-    this.userFile = `${rootPath}/file/users.xls`;
+    this.speakersFile = `${rootPath}/file/Speakers.xlsx`;
+    this.userFile = `${rootPath}/file/Users.xlsx`;
   }
 
   async init() {
@@ -28,6 +28,8 @@ global.UserManager = new (class {
     return User;
   }
 
+  getItem = item => item !== undefined ? item : "";
+
   async loadSpeakers() {
     var file = xlsx.parse(this.speakersFile)[0].data; // парсим 1ый лист
     if (!file[0]) {
@@ -38,39 +40,71 @@ global.UserManager = new (class {
     for (let item of file) {
       if (item[1]) {
         let password = genPass("number", 4);
+        // let user = {
+        //   ids: await userModel.genToken(),
+        //   email: item[8],
+        //   name: item[1],
+        //   sname: item[2],
+        //   prefname: item[2],
+        //   country: (tagsManager.country.filter(v => v.name === item[3])[0] || {})
+        //     ._id,
+        //   city: item[4],
+        //   phone: item[9],
+        //   prefix: item[0],
+        //   photo: item[12]
+        //     ? "https://getfile.dokpub.com/yandex/get/" + item[12]
+        //     : "",
+        //   presentation: {
+        //     subject: item[10],
+        //     link: item[11]
+        //   },
+        //   organization: {
+        //     name: item[5],
+        //     position: item[6],
+        //     role: item[7]
+        //   },
+        //   password,
+        //   pin: password,
+        //   token: genToken(),
+        //   permission: "speaker",
+        //   active: true,
+        //   recording_status: {
+        //     day1: 1,
+        //     day2: 1
+        //   }
+        // };
+
         let user = {
           ids: await userModel.genToken(),
-          email: item[8],
-          name: item[1],
-          sname: item[2],
-          prefname: item[2],
-          country: (tagsManager.country.filter(v => v.name === item[3])[0] || {})
-            ._id,
-          city: item[4],
-          phone: item[9],
-          prefix: item[0],
-          photo: item[12]
-            ? "https://getfile.dokpub.com/yandex/get/" + item[12]
-            : "",
-          presentation: {
-            subject: item[10],
-            link: item[11]
-          },
-          organization: {
-            name: item[5],
-            position: item[6],
-            role: item[7]
-          },
-          password,
-          pin: password,
-          token: genToken(),
-          permission: "speaker",
+          name: this.getItem(item[2]),
+          sname: this.getItem(item[3]),
+          email: this.getItem(item[4]),
+          phone: this.getItem(item[5]),
+          photo: this.getItem(item[1]),
+          hardSkills: [],
+          softSkills: [],
           active: true,
-          recording_status: {
-            day1: 1,
-            day2: 1
-          }
+          token: genToken(),
+          password: genPass("number", 4),
+          pin: genPass("number", 4),
+          permission: "speaker",
+          country: "",
+          city: "",
+          prefix: "",
+          companyName: this.getItem(item[0]),
+          companyUrl: this.getItem(item[6]),
+          vacanciesUrl: this.getItem(item[13]),
+          businessSphere: this.getItem(item[7]),
+          questionsForSpeaker: {
+            yourProduct: this.getItem(item[8]),
+            companyTasks: this.getItem(item[9]),
+            positions: this.getItem(item[10]),
+            candidatsTasks: this.getItem(item[11]),
+            intership: this.getItem(item[12]),
+          },
+          recording_status: 1,
         };
+
         console.log("user", user);
         let ch = await this.checkUsers(user.email);
         if (!ch) {
@@ -82,9 +116,9 @@ global.UserManager = new (class {
           // ch.country = tagsManager.country.filter(
           //   v => v.name === item[4]
           // )[0]._id;
-          ch.photo = item[12]
-            ? "https://getfile.dokpub.com/yandex/get/" + item[12]
-            : "";
+          // ch.photo = item[12]
+          //   ? "https://getfile.dokpub.com/yandex/get/" + item[12]
+          //   : "";
           await ch.save();
           this.addToCache(ch);
         }
@@ -101,30 +135,40 @@ global.UserManager = new (class {
     file.splice(0, 1)[0];
     for (let item of file) {
       if (item[2]) {
-        let password = genPass("number", 4);
         let user = {
           ids: await userModel.genToken(),
-          prefix: item[1],
-          name: item[2],
-          prefname: item[2],
-          sname: item[3],
-          country: (tagsManager.country.filter(v => v.name === item[4])[0] || {})
-            ._id,
-          city: item[5],
-          organization: {
-            name: item[6],
-            position: item[7],
-            role: (tagsManager.country.filter(v => v.name === item[8])[0] || {})
-              ._id
-          },
-          email: item[9],
-          phone: item[10],
-          password,
-          pin: password,
+          name: this.getItem(item[0]),
+          sname: this.getItem(item[1]),
+          email: this.getItem(item[4]),
+          phone: this.getItem(item[3]),
+          photo: "",
+          hardSkills: [],
+          softSkills: [],
           token: genToken(),
+          pin: genPass("number", 4),
+          password: genPass("number", 4),
+          active: true,
           permission: "user",
-          active: true
+          country: "",
+          city: "",
+          prefix: "",
+          birthday: this.getItem(item[2]),
+          university: this.getItem(item[5]),
+          speciality: this.getItem(item[6]),
+          endingYear: this.getItem(item[7]),
+          questionsForUser: {
+            digital: this.getItem(item[12]),
+            english: this.getItem(item[9]),
+            anotherLanguage: this.getItem(item[10]),
+            isHackaton: this.getItem(item[13]) === "" ? this.getItem(item[15]) : "",
+            isWorldSkills: this.getItem(item[11]) === "" ? this.getItem(item[16]) : "",
+            courses: this.getItem(item[14]) === "" ? this.getItem(item[17]) : "",
+            enoughMoney: this.getItem(item[8]),
+            achievements: "",
+            isWorking: this.getItem(item[18])
+          },
         };
+
         let ch = await this.checkUsers(user.email);
         if (!ch) {
           let us = await userModel.create(user);
@@ -132,12 +176,6 @@ global.UserManager = new (class {
           console.log(us);
         } else {
           console.log("Уже создан");
-          ch.country = tagsManager.country.filter(
-            v => v.name === item[4]
-          )[0]._id;
-          ch.photo = item[12]
-            ? "https://getfile.dokpub.com/yandex/get/" + item[12]
-            : "";
           await ch.save();
           this.addToCache(ch);
         }
@@ -179,11 +217,13 @@ global.UserManager = new (class {
 
     if (empty(password)) return erJson("Enter password");
 
-    let User = await userModel.findOne({ ids });
+    let User = await userModel.findOne({ ids: parseInt(ids) });
 
     if (empty(User)) return erJson("Auth not found");
 
-    if (!User.auth(password)) return erJson("Wrong password");
+    if (User.pin !== password) return erJson("Wrong password");
+
+    // if (!User.auth(password)) return erJson("Wrong password");
 
     if (!User.active)
       return erJson("Unfortunately, your account has been deactivated.");
@@ -201,7 +241,9 @@ global.UserManager = new (class {
 
     if (User.permission != "admin") return erJson("LoL");
 
-    if (!User.auth(password)) return erJson("Wrong password");
+    if (User.pin !== password) return erJson("Wrong password");
+
+    // if (!User.auth(password)) return erJson("Wrong password");
 
     if (!User.active)
       return erJson("Unfortunately, your account has been deactivated.");
@@ -450,15 +492,15 @@ global.UserManager = new (class {
   async getSpeakersShort() {
     let speakers = await userModel.find({ permission: "speaker" });
     speakers = speakers.map(val => {
-      let cntr = tagsManager.country.filter(v => v._id == val.country);
-      const countryName = cntr.length > 0 ? cntr[0].name : "";
+      // let cntr = tagsManager.country.filter(v => v._id == val.country);
+      // const countryName = cntr.length > 0 ? cntr[0].name : "";
       return {
         _id: val._id,
         name: val.name,
         sname: val.sname,
-        organization: val.organization,
-        countryName,
+        companyName: val.companyName,
         photo: val.photo,
+        businessSphere: val.businessSphere,
         recording_status: val.recording_status,
         permission: val.permission
       };

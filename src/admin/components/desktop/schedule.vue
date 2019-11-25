@@ -44,6 +44,7 @@
                 :key="key"
                 v-if="val.day === day"
               >
+                <!-- TIME -->
                 <td>
                   <span v-if="editTab !== key">{{ val.time }}</span>
                   <input
@@ -54,6 +55,8 @@
                     class="form-control form-control-line input-sm"
                   />
                 </td>
+
+                <!-- TITLE -->
                 <td>
                   <span v-if="editTab !== key">{{ val.title }}</span>
                   <input
@@ -64,6 +67,8 @@
                     class="form-control form-control-line input-sm"
                   />
                 </td>
+
+                <!-- TYPE -->
                 <td>
                   <span v-if="editTab !== key">{{ val.type }}</span>
                   <select v-else v-model="val.type" class="form-control">
@@ -71,10 +76,12 @@
                     <option value="introductory">introductory</option>
                   </select>
                 </td>
+
+                <!-- SPEAKER -->
                 <td v-if="val.type === 'speaker'" :colspan="3">
                   <span v-if="editTab !== key"
                     ><a href="#" @click.prevent="detailSpeak(val.speaker._id)"
-                      >{{ val.speaker.sname }} {{ val.speaker.name }},
+                      >{{ val.speaker.sname }} {{ val.speaker.name }}
                       {{ val.speaker.organization }}</a
                     ></span
                   >
@@ -89,8 +96,7 @@
                       :key="speak._id"
                       :value="speak._id"
                     >
-                      {{ speak.sname }} {{ speak.name }},
-                      {{ speak.organization.name }}
+                      {{ speak.sname }} {{ speak.name }}
                     </option>
                   </select>
                 </td>
@@ -115,7 +121,9 @@
                   />
                 </td>
                 <td v-if="val.type === 'introductory'">
-                  <span v-if="editTab !== key">{{val.speaker.organization}}</span>
+                  <span v-if="editTab !== key">{{
+                    val.speaker.organization
+                  }}</span>
                   <input
                     v-else
                     type="text"
@@ -125,11 +133,11 @@
                   />
                 </td>
                 <td class="text-right">
-<!--                  <button type="button" class="btn btn-primary btn-circle" v-if="editTab != key" @click="toDown(val, key)"><i class="fa fa-long-arrow-down"></i> </button>-->
-<!--                  <button type="button" class="btn btn-info btn-circle" v-if="editTab != key" @click="toUp(val, key)"><i class="fa fa-long-arrow-up"></i> </button>-->
+                  <!--                  <button type="button" class="btn btn-primary btn-circle" v-if="editTab != key" @click="toDown(val, key)"><i class="fa fa-long-arrow-down"></i> </button>-->
+                  <!--                  <button type="button" class="btn btn-info btn-circle" v-if="editTab != key" @click="toUp(val, key)"><i class="fa fa-long-arrow-up"></i> </button>-->
                   <span
                     v-if="
-                        val.type === 'speaker' &&
+                      val.type === 'speaker' &&
                         speakersById[val.speaker._id] &&
                         editTab !== key
                     "
@@ -137,39 +145,47 @@
                     <button
                       class="fcbtn btn btn-success btn-outline btn-1d"
                       @click="openRegistration(val.speaker._id)"
-                      v-if="speakersById[val.speaker._id].recording_status[`day${day}`] === 1"
+                      v-if="
+                        speakersById[val.speaker._id].recording_status === 1
+                      "
                     >
                       Открыть запись
                     </button>
                     <button
                       class="fcbtn btn btn-warning btn-outline btn-1d"
                       @click="closeRegistration(val.speaker._id)"
-                      v-if="speakersById[val.speaker._id].recording_status[`day${day}`] === 2"
+                      v-if="
+                        speakersById[val.speaker._id].recording_status === 2
+                      "
                     >
                       Закрыть запись
                     </button>
                     <button
                       class="fcbtn btn btn-primary btn-outline btn-1d"
-                      v-if="speakersById[val.speaker._id].recording_status[`day${day}`] === 3"
+                      v-if="
+                        speakersById[val.speaker._id].recording_status === 3
+                      "
                     >
                       Запись продолжается
                     </button>
                     <button
                       class="fcbtn btn btn-danger btn-outline btn-1d"
-                      v-if="speakersById[val.speaker._id].recording_status[`day${day}`] === 4"
+                      v-if="
+                        speakersById[val.speaker._id].recording_status === 4
+                      "
                     >
                       Запись закрыта
                     </button>
                   </span>
-<!--                  <span-->
-<!--                          v-if="val.type === 'speaker' && editTab !== key"-->
-<!--                  >-->
-<!--                    <button-->
-<!--                            class="fcbtn btn btn-warning btn-outline btn-1d"-->
-<!--                    >-->
-<!--                      CROC-->
-<!--                    </button>-->
-<!--                  </span>-->
+                  <!--                  <span-->
+                  <!--                          v-if="val.type === 'speaker' && editTab !== key"-->
+                  <!--                  >-->
+                  <!--                    <button-->
+                  <!--                            class="fcbtn btn btn-warning btn-outline btn-1d"-->
+                  <!--                    >-->
+                  <!--                      CROC-->
+                  <!--                    </button>-->
+                  <!--                  </span>-->
                   <button
                     type="button"
                     class="btn btn-warning btn-circle"
@@ -294,6 +310,7 @@ export default {
           id: this.schedule[id]._id
         })
           .then(data => {
+            this.getSpeakers();
             this.getSchedule();
           })
           .catch(err => {
@@ -315,10 +332,12 @@ export default {
         });
     },
     setSpeaker(val) {
-      let sp = this.speakers.find(v => v._id === this.schedule[this.editTab].speaker._id);
+      let sp = this.speakers.find(
+        v => v._id === this.schedule[this.editTab].speaker._id
+      );
       this.schedule[this.editTab].speaker.name = sp.name;
       this.schedule[this.editTab].speaker.sname = sp.sname;
-      this.schedule[this.editTab].speaker.organization = sp.organization.name;
+      this.schedule[this.editTab].speaker.companyName = sp.companyName;
     },
     detailSpeak(id) {
       App.Mpage.open({ component: "speaker-detail", data: id });

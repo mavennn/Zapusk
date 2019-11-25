@@ -1,5 +1,6 @@
 <template>
   <div class="skittles-profile" v-if="load">
+    <!--   Тут персональная информация   -->
     <div class="sp-block">
       <div class="spb-title">
         {{ lang == "en" ? "Personal Info" : "Персональная информация" }}
@@ -8,148 +9,296 @@
         <div class="spbc-row">
           <div class="spbcr-img" :style="getImg(user.photo)"></div>
           <div class="spbcr-desc">
+
+            <!--      Тут имя        -->
             <div class="spbcrd-row">
               <div class="spbcrdr-label">
                 {{ lang == "en" ? "Name" : "Имя" }}:
               </div>
               <div class="spbcrdr-val">{{ user.name }} {{ user.sname }}</div>
             </div>
+
+            <!--      Тут страна        -->
             <div class="spbcrd-row">
               <div class="spbcrdr-label">
                 {{ lang == "en" ? "Country" : "Страна" }}:
               </div>
               <div class="spbcrdr-val">
-                {{ getName(user.country, "country") }}
+                {{ user.country }}
               </div>
             </div>
+
+            <!--      Тут город        -->
             <div class="spbcrd-row">
               <div class="spbcrdr-label">
                 {{ lang == "en" ? "City" : "Город" }}:
               </div>
               <div class="spbcrdr-val">{{ user.city }}</div>
             </div>
+
+            <!--      email        -->
+<!--            <div class="spbcrd-row">-->
+<!--              <div class="spbcrdr-label">Email:</div>-->
+<!--              <div class="spbcrdr-val">{{ user.email }}</div>-->
+<!--            </div>-->
+<!--            <div class="spbcrdr-btm-l">-->
+<!--              {{-->
+<!--              lang == "en"-->
+<!--              ? "Not visible in public profile"-->
+<!--              : "Не виден остальным"-->
+<!--              }}-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash;      телефон        &ndash;&gt;-->
+<!--            <div class="spbcrd-row">-->
+<!--              <div class="spbcrdr-label">-->
+<!--                {{ lang == "en" ? "Phone" : "Телефон" }}:-->
+<!--              </div>-->
+<!--              <div class="spbcrdr-val">{{ user.phone }}</div>-->
+<!--            </div>-->
+<!--            <div class="spbcrdr-btm-l">-->
+<!--              {{-->
+<!--              lang == "en"-->
+<!--              ? "Not visible in public profile"-->
+<!--              : "Не виден остальным"-->
+<!--              }}-->
+<!--            </div>-->
           </div>
         </div>
       </div>
     </div>
-    <div class="sp-block">
+
+
+    <!-- Профиль спикера -->
+    <div class="sp-block" v-if="user.permission === 'speaker'">
       <div class="spb-title">
-        {{ lang == "en" ? "My Organization" : "Моя организация" }}
+        {{ lang == "en" ? "My organization" : "Моя организация" }}
       </div>
       <div class="spb-content">
+
+        <!--     Организация       -->
         <div class="spbc-row">
           <div class="spbcr-label">
-            {{ lang == "en" ? "Organization" : "Организация" }}:
+            {{ lang == "en" ? "My organization" : "Моя организация" }}:
           </div>
-          <div class="spbcr-val">{{ user.organization.name }}</div>
+          <div class="spbcr-val">{{ user.companyName }}</div>
         </div>
+
+        <!--     Сфера бизнеса     -->
         <div class="spbc-row">
-          <div class="spbcr-label">
-            {{ lang == "en" ? "Position" : "Должность" }}:
-          </div>
-          <div class="spbcr-val">{{ user.organization.position }}</div>
-        </div>
-        <div class="spbc-row">
-          <div class="spbcr-label">{{ lang == "en" ? "Role" : "Роль" }}:</div>
+          <div class="spbcr-label">{{ lang == "en" ? "Business sphere" : "Сфера бизнеса" }}:</div>
           <div class="spbcr-val">
-            {{ getName(user.organization.role, "role") }}
+            {{ user.businessSphere }}
           </div>
         </div>
-      </div>
-    </div>
-    <div class="sp-block" v-if="user.permission == 'speaker'">
-      <div class="spb-title">
-        {{ lang == "en" ? "My Presentation" : "Моя презентация" }}
-      </div>
-      <div class="spb-content">
-        <div class="spbc-block">
-          <div class="spbc-event">
-            <div class="spbce-title">{{ user.presentation.subject }}</div>
-            <div class="spbce-divider">
-              <div class="spbced-border"></div>
-            </div>
-            <div class="spbce-time">
-              {{ user.presentation.day == 1 ? "24" : "25" }} AUG
-              {{ user.presentation.time }}
-            </div>
+
+        <!--    Cсылка на сайт компании     -->
+        <div class="spbc-wr">
+          <div class="spbcw-label">
+            {{
+            lang == "en"
+            ? "Company URL"
+            : "Ссылка на сайт компании"
+            }}
           </div>
-          <a :href="user.presentation.link" target="_blank"
-            ><div class="spbc-button">
-              {{ lang == "en" ? "Tap to open pitchdeck" : "Посмотреть" }}
-            </div></a
-          >
+          <div class="spbcw-val">{{ user.companyUrl || "-" }}</div>
         </div>
+
+        <!--     Продукт компании     -->
+        <div class="spbc-wr">
+          <div class="spbcw-label">
+            {{
+            lang == "en"
+            ? "Company Product"
+            : "Продукт компании?"
+            }}
+          </div>
+          <div class="spbcw-val">
+            {{ user.questionsForSpeaker.yourProduct || "-" }}
+          </div>
+        </div>
+
+        <!--    Вопрос про задачи      -->
+        <div class="spbc-wr">
+          <div class="spbcw-label">
+            {{
+            lang == "en"
+            ? "What tasks does your company solve ?"
+            : "Какие задачи решает ваша компания ?"
+            }}
+          </div>
+          <div class="spbcw-val">{{ user.questionsForSpeaker.companyTasks || "-" }}</div>
+        </div>
+
+        <!--    Вопрос про позиции      -->
+        <div class="spbc-wr">
+          <div class="spbcw-label">
+            {{
+            lang == "en"
+            ? "What positions do you need candidates for ?"
+            : "На какие позиции вам нужны кандидаты ?"
+            }}
+          </div>
+          <div class="spbcw-val">{{ user.questionsForSpeaker.positions || "-" }}</div>
+        </div>
+
+        <!--    Вопрос про задачи для кандидатов      -->
+        <div class="spbc-wr">
+          <div class="spbcw-label">
+            {{
+            lang == "en"
+            ? "What tasks will be entrusted to candidates ?"
+            : "Какие задачи будут поручены кандидатам ?"
+            }}
+          </div>
+          <div class="spbcw-val">{{ user.questionsForSpeaker.candidatsTasks || "-" }}</div>
+        </div>
+
+        <!--    Вопрос про стажировку      -->
+        <div class="spbc-wr">
+          <div class="spbcw-label">
+            {{
+            lang == "en"
+            ? "Are you ready to pay for an internship ?"
+            : "Готовы ли вы оплачивать стажировку ?"
+            }}
+          </div>
+          <div class="spbcw-val">{{ user.questionsForSpeaker.intership || "-" }}</div>
+        </div>
+
       </div>
     </div>
-    <!--		<div class="sp-block">-->
-    <!--            <div class="spb-title">{{lang == 'en'?'WSR Products I am interested in':'Продукты WSR, в которых я заинтересован'}}</div>-->
-    <!--            <div class="spb-content">-->
-    <!--                <div class="spbc-onetag" v-for="wsr in user.wsrProducts" :key='wsr'>{{getNameById(wsr, 'wsrProducts')}}</div>-->
-    <!--            </div>-->
-    <!--        </div>-->
 
-    <!--   ЭТО ПОТОМ РАСКОММЕНТИТЬ     -->
-
-    <div class="sp-block">
+    <!-- Профиль участника -->
+    <div class="sp-block" v-if="user.permission === 'user'">
       <div class="spb-title">
-        {{ lang == "en" ? "Soft Skills" : "Soft Skills" }}
+        {{ lang == "en" ? "My University" : "Мой ВУЗ" }}
       </div>
       <div class="spb-content">
-        <div class="spbc-onetag" v-for="wsr in user.softSkills" :key="wsr">
-          {{ getNameById(wsr, "softSkills") }}
+
+        <!--     Название вуза       -->
+        <div class="spbc-row">
+          <div class="spbcr-label">
+            {{ lang == "en" ? "My university" : "Мой ВУЗ" }}:
+          </div>
+          <div class="spbcr-val">{{ user.university }}</div>
         </div>
+
+        <!--     Ваша специальность       -->
+        <div class="spbc-row">
+          <div class="spbcr-label">
+            {{ lang == "en" ? "My speciality" : "Моя специальность" }}:
+          </div>
+          <div class="spbcr-val">{{ user.speciality }}</div>
+        </div>
+
+        <!--     Год окончания       -->
+        <div class="spbc-row">
+          <div class="spbcr-label">
+            {{ lang == "en" ? "Ending Year" : "Год окончания" }}:
+          </div>
+          <div class="spbcr-val">{{ user.endingYear }}</div>
+        </div>
+
+        <!--    Вопрос про английский      -->
+        <div class="spbc-wr">
+          <div class="spbcw-label">
+            {{
+            lang == "en"
+            ? "What tasks does your company solve ?"
+            : "Каким уровнем английского языка вы владете ?"
+            }}
+          </div>
+          <div class="spbcw-val">{{ user.questionsForUser.english || "-" }}</div>
+        </div>
+
+        <!--    Вопрос про другие языки      -->
+        <div class="spbc-wr">
+          <div class="spbcw-label">
+            {{
+            lang == "en"
+            ? "What tasks does your company solve ?"
+            : "Владеете ли вы другими языками?"
+            }}
+          </div>
+          <div class="spbcw-val">{{ user.questionsForUser.anotherLanguage || "-" }}</div>
+        </div>
+
+        <!--    Вопрос про digital      -->
+        <div class="spbc-wr">
+          <div class="spbcw-label">
+            {{
+            lang == "en"
+            ? "What tasks does your company solve ?"
+            : "Какими digital компетенциями вы обладаете и на каком уровне ?"
+            }}
+          </div>
+          <div class="spbcw-val">{{ user.questionsForUser.digital || "-" }}</div>
+        </div>
+
+        <!--    Вопрос про worldskills      -->
+        <div class="spbc-wr">
+          <div class="spbcw-label">
+            {{
+            lang == "en"
+            ? "What tasks does your company solve ?"
+            : "Участвовали ли вы ранее в чемионате WorldSkills ?"
+            }}
+          </div>
+          <div class="spbcw-val">{{ user.questionsForUser.isWorldSkills || "-" }}</div>
+        </div>
+
+        <!--    Вопрос про Hackatons      -->
+        <div class="spbc-wr">
+          <div class="spbcw-label">
+            {{
+            lang == "en"
+            ? "What tasks does your company solve ?"
+            : "Участвовали ли вы ранее в чемионате хакатонах? Если да, то в каких ?"
+            }}
+          </div>
+          <div class="spbcw-val">{{ user.questionsForUser.isHackaton || "-" }}</div>
+        </div>
+
+        <!--    Вопрос про школы программирвоания      -->
+        <div class="spbc-wr">
+          <div class="spbcw-label">
+            {{
+            lang == "en"
+            ? "What tasks does your company solve ?"
+            : "Проходил ли или проходишь сейчас школу или курс программирования"
+            }}
+          </div>
+          <div class="spbcw-val">{{ user.questionsForUser.courses || "-" }}</div>
+        </div>
+
       </div>
     </div>
+
+
+
+    <!--    Теги   -->
     <div class="sp-block">
       <div class="spb-title">
-        {{ lang == "en" ? "Hard Skills" : "Hard Skills" }}
+        {{ lang == "en" ? "My Skills" : "Мои навыки" }}
       </div>
       <div class="spb-content">
         <div class="spbc-onetag" v-for="wsr in user.hardSkills" :key="wsr">
           {{ getNameById(wsr, "hardSkills") }}
         </div>
+        <div
+                class="spbc-onetag"
+                v-for="wsr in user.softSkills"
+                :key="softSkills"
+        >
+          {{ getNameById(wsr, "softSkills") }}
+        </div>
       </div>
+      <div class="speakers-btn" @click="sendRequest()">
+        {{ lang == "en" ? "make an appointment" : "записаться на собеседование" }}
+      </div>
+      <SpeakerMessage />
     </div>
-
-    <!--		<div class="sp-block" v-if="user.partnership">-->
-    <!--            <div class="spb-title">{{lang == 'en'?'Partnership I am interested in':'Сотрудничества, в которых я заинтересован'}}</div>-->
-    <!--            <div class="spb-content">-->
-    <!--                <div class="spbc-group">-->
-    <!--                    <div class="spbcg-title">{{lang == 'en'?'Country':'Страны'}}:</div>-->
-    <!--                    <div class="spbcg-body">-->
-    <!--                        <div class="spbcgb-tag" v-for="country in user.partnership.country" :key='country'>{{getNameById(country, 'country')}}</div>-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--                <div class="spbc-group">-->
-    <!--                    <div class="spbcg-title">{{lang == 'en'?'Partnership mode':'Вид сотрудничества'}}:</div>-->
-    <!--                    <div class="spbcg-body">-->
-    <!--                        <div class="spbcgb-tag" v-for="mode in user.partnership.partnershipMode" :key='mode'>{{getNameById(mode, 'partnershipMode')}}</div>-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--                <div class="spbc-group">-->
-    <!--                    <div class="spbcg-title">{{lang == 'en'?'Industry':'Отрасль'}}:</div>-->
-    <!--                    <div class="spbcg-body">-->
-    <!--                        <div class="spbcgb-tag" v-for="industry in user.partnership.industry" :key='industry'>{{getNameById(industry, 'industry')}}</div>-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--                <div class="spbc-group">-->
-    <!--                    <div class="spbcg-title">{{lang == 'en'?'Best practice':'Лучшая практика'}}:</div>-->
-    <!--                    <div class="spbcg-body">-->
-    <!--                        <div class="spbcgb-tag" v-for="bestPractice in user.partnership.bestPractice" :key='bestPractice'>{{getNameById(bestPractice, 'bestPractice')}}</div>-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--                <div class="spbc-group">-->
-    <!--                    <div class="spbcg-title">{{lang == 'en'?'Role':'Роль'}}:</div>-->
-    <!--                    <div class="spbcg-body">-->
-    <!--                        <div class="spbcgb-tag" v-for="role in user.partnership.role" :key='role'>{{getNameById(role, 'role')}}</div>-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <div class="speakers-btn" @click="sendRequest()">
-      {{ lang == "en" ? "make an appointment" : "записаться на собеседование" }}
-    </div>
-    <SpeakerMessage />
   </div>
 </template>
 
@@ -171,37 +320,46 @@ export default {
       },
       user: {
         prefix: null,
-        name: "",
-        presentation: {
-          day: 1,
-          time: "1",
-          link: "#",
-          subject: ""
-        },
-        sname: "",
-        prefname: "",
+        name: App.User.getName(),
+        sname: App.User.getSname(),
         country: "",
         city: "",
         photo: "",
-        email: "",
-        organization: {
-          name: "",
-          position: "",
-          role: "",
-          problems: "",
-          perspectives: "",
-          barriers: ""
-        },
-        wsrProducts: [],
         hardSkills: [],
         softSkills: [],
-        partnership: {
-          country: [], // max - 3
-          partnershipMode: [], // max - 3
-          bestPractice: [],
-          industry: [], // max - 3
-          role: [] // max - 3
-        }
+        permission: "",
+        email: App.User.getEmail(),
+
+        /* поля юзера */
+        birthday: "",
+        university: "",
+        speciality: "",
+        endingYear: "",
+        questionsForUser: {
+          digital: "",
+          english: "",
+          anotherLanguage: "",
+          isHackaton: "",
+          isWorldSkills: "",
+          courses: "",
+          enoughMoney: "",
+          achievements: "",
+          isWorking: ""
+        },
+
+        /* поля спикера */
+        companyName: "",
+        companyUrl: "",
+        vacanciesUrl: "",
+        businessSphere: "",
+        questionsForSpeaker: {
+          yourProduct: "",
+          companyTasks: "",
+          positions: "",
+          candidatsTasks: "",
+          intership: ""
+        },
+        recording_status: 1
       }
     };
   },
@@ -212,85 +370,66 @@ export default {
     this.permission = JSON.parse(localStorageProxy.getItem("user")).permission;
     App.User.getTags()
       .then(data => {
-        debugger;
         this.opts = data;
-        if (this.lang == "en") {
-          this.opts.wsrProducts[0].name = "Expert society development";
-          this.opts.wsrProducts[1].name = "SkillsCamp";
-          this.opts.wsrProducts[2].name = "WorldSkills Academy";
-          this.opts.wsrProducts[3].name = "SkillsPassport";
-          this.opts.wsrProducts[4].name = "FutureSkills";
-          this.opts.wsrProducts[5].name = "JuniorSkills";
-          this.opts.wsrProducts[6].name = "DigitalSkills";
-          this.opts.wsrProducts[7].name =
-            "WorldSkills Hi-Tech and industry competitions";
-          this.opts.wsrProducts[8].name = "Skills of the Wise";
-          this.opts.wsrProducts[9].name =
-            "Transformation of national/regional skills development system";
-        }
       })
       .then(() => {
         App.User.getUserById(App.Router.Router.history.current.params.id).then(
           res => {
             let data = { user: res };
 
-            this.user._id = data.user._id || "";
-            this.user.prefix = data.user.prefix || "";
             this.user.name = data.user.name || "";
             this.user.sname = data.user.sname || "";
+            this.user.prefix = data.user.prefix || "";
             this.user.photo = data.user.photo || "";
-            this.user.prefname = data.user.prefname || "";
             this.user.country = data.user.country || "";
+            this.user.city = data.user.city || "";
             this.user.phone = data.user.phone || "";
             this.user.email = data.user.email || "";
-            this.user.email = data.user.email || "";
-            this.user.hardSkills = data.user.hardSkills || "";
-            this.user.softSkills = data.user.softSkills || "";
+            this.user.permission = data.user.permission || "";
+            this.user.hardSkills = data.user.hardSkills || [];
+            this.user.softSkills = data.user.softSkills || [];
 
-            if (data.user.presentation) {
-              this.user.presentation.link = data.user.presentation.link;
-              this.user.presentation.subject = data.user.presentation.subject;
+            if (data.user.permission === "speaker") {
+              this.user.companyName = data.user.companyName || "";
+              this.user.companyUrl = data.user.companyUrl || "";
+              this.user.vacanciesUrl = data.user.vacanciesUrl || "";
+              this.user.businessSphere = data.user.businessSphere || "";
+
+              this.user.questionsForSpeaker.yourProduct =
+                      data.user.questionsForSpeaker.yourProduct || "";
+              this.user.questionsForSpeaker.companyTasks =
+                      data.user.questionsForSpeaker.companyTasks || "";
+              this.user.questionsForSpeaker.positions =
+                      data.user.questionsForSpeaker.positions || "";
+              this.user.questionsForSpeaker.candidatsTasks =
+                      data.user.questionsForSpeaker.candidatsTasks || "";
+              this.user.questionsForSpeaker.intership =
+                      data.user.questionsForSpeaker.intership || "";
+
+            } else if (data.user.permission === "user") {
+              this.user.birthday = data.user.birthday || "";
+              this.user.university = data.user.university || "";
+              this.user.speciality = data.user.speciality || "";
+              this.user.endingYear = data.user.endingYear || "";
+
+              this.user.questionsForUser.enoughMoney =
+                      data.user.questionsForUser.enoughMoney || "";
+              this.user.questionsForUser.digital =
+                      data.user.questionsForUser.digital || "";
+              this.user.questionsForUser.english =
+                      data.user.questionsForUser.english || "";
+              this.user.questionsForUser.anotherLanguage =
+                      data.user.questionsForUser.anotherLanguage || "";
+              this.user.questionsForUser.isWorldSkills =
+                      data.user.questionsForUser.isWorldSkills || "";
+              this.user.questionsForUser.isHackaton =
+                      data.user.questionsForUser.isHackaton || "";
+              this.user.questionsForUser.courses =
+                      data.user.questionsForUser.courses || "";
+              this.user.questionsForUser.isWorldSkills =
+                      data.user.questionsForUser.isWorking || "";
             }
-            if (data.user.organization) {
-              this.user.organization.name = data.user.organization.name || "";
-              this.user.organization.position =
-                data.user.organization.position || "";
-              this.user.organization.role = data.user.organization.role || "";
-              this.user.organization.problems =
-                data.user.organization.problems || "";
-              this.user.organization.perspectives =
-                data.user.organization.perspectives || "";
-              this.user.organization.barriers =
-                data.user.organization.barriers || "";
-            }
-            if (data.user.wsrProducts) {
-              this.user.wsrProducts.push(...data.user.wsrProducts);
-            }
-            if (data.user.partnership) {
-              if (data.user.partnership.country) {
-                this.user.partnership.country.push(
-                  ...data.user.partnership.country
-                );
-              }
-              if (data.user.partnership.partnershipMode) {
-                this.user.partnership.partnershipMode.push(
-                  ...data.user.partnership.partnershipMode
-                );
-              }
-              if (data.user.partnership.industry) {
-                this.user.partnership.industry.push(
-                  ...data.user.partnership.industry
-                );
-              }
-              if (data.user.partnership.bestPractice) {
-                this.user.partnership.bestPractice.push(
-                  ...data.user.partnership.bestPractice
-                );
-              }
-              if (data.user.partnership.role) {
-                this.user.partnership.role.push(...data.user.partnership.role);
-              }
-            }
+
             App.User.getSchedulle().then(resp => {
               resp.forEach(element => {
                 if (
@@ -434,6 +573,25 @@ export default {
           line-height: 1;
           letter-spacing: -0.3px;
           color: #132d75;
+        }
+      }
+      .spbc-wr {
+        .spbcw-label {
+          font-family: Akrobat;
+          font-size: 12px;
+          line-height: 1;
+          letter-spacing: -0.3px;
+          color: #17479e;
+          margin-bottom: 10px;
+        }
+        .spbcw-val {
+          font-family: Akrobat;
+          font-size: 12px;
+          font-weight: 600;
+          line-height: 1;
+          letter-spacing: -0.3px;
+          color: #132d75;
+          margin-bottom: 10px;
         }
       }
       .spbc-block {

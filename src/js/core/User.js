@@ -292,6 +292,7 @@ export default new (class {
   getSchedulle() {
     return Request.post("/api/user/schedule/list", {}, false, true)
       .then(data => {
+        console.log(data);
         Load.stop();
         return ans(data);
       })

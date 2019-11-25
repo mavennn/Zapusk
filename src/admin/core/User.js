@@ -108,7 +108,6 @@ export default new (class {
   }
 
   getUserById(id) {
-    debugger;
     return Request.postJson("/api/user/getbyid", { id: id }, false, true)
       .then(data => {
         Load.stop();
