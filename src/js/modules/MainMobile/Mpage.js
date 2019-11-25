@@ -22,6 +22,7 @@ export default new (class {
   closeLast() {
     App.AppVue.MainVue.$refs.mpage.closeLast();
   }
+
   closePath({ to, from, next }) {
     if (!this.isOpened()) return false;
 

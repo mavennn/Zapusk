@@ -501,15 +501,12 @@ export default {
     save() {
       App.User.editProfile(this.user)
         .then(() => {
-          App.Mpage.closeLast();
-          this.goRoute("/agenda");
+          // App.Mpage.closeLast();
+          location.href="/profile";
+          // this.goRoute("/profile");
         })
         .catch(() => {
-          if (this.lang == "en") {
-            swal("Error", "Fill in the required fields", "error");
-          } else {
             swal("Ошибка", "Заполните обязательные поля", "error");
-          }
         });
     },
     convertImg() {
@@ -559,9 +556,9 @@ export default {
     },
     upload(file) {
       if (
-        file.name.toLowerCase().indexOf("jpg") == -1 &&
-        file.name.toLowerCase().indexOf("png") == -1 &&
-        file.name.toLowerCase().indexOf("jpeg") == -1
+        file.name.toLowerCase().indexOf("jpg") === -1 &&
+        file.name.toLowerCase().indexOf("png") === -1 &&
+        file.name.toLowerCase().indexOf("jpeg") === -1
       )
         return swal("Error", "File format must be jpg, png or jpeg!", "error");
       var that = this;
