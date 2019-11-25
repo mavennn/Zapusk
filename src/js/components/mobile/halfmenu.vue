@@ -44,7 +44,7 @@ export default {
   props: {},
   computed: {},
   created() {
-    // this.id = JSON.parse(localStorageProxy.getItem("user")).ids;
+    this.id = JSON.parse(localStorageProxy.getItem("user")).ids;
     this.lang = localStorageProxy.getItem("lang");
     this.$root.$on("open_menu", () => {
       this.closed = false;
