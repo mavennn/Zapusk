@@ -66,8 +66,8 @@
                 <td>{{ speaker.name }}</td>
                 <td>{{ speaker.sname }}</td>
                 <td>
-                  <span v-if="speaker.organization">{{
-                    speaker.organization.name
+                  <span v-if="speaker.companyName">{{
+                    speaker.companyName
                   }}</span>
                 </td>
                 <td>
