@@ -21,8 +21,8 @@
           </div>
         </div>
         <div class="sci-status" v-if="key == current">
-          {{ lang == "en" ? "current" : "текущий" }}<br />{{
-            lang == "en" ? "speaker" : "спикер"
+          текущий<br />
+            спикер
           }}
         </div>
       </div>
@@ -32,7 +32,7 @@
       class="speakers-btn"
       @click="sendRequest()"
     >
-      {{ lang == "en" ? "make an appointment" : "записаться на собеседование" }}
+      записаться на собеседование
     </div>
     <SpeakerMessage />
   </div>
@@ -86,18 +86,22 @@ export default {
       Request.postJson("/api/user/getSpeakerListShort")
         .then(data => {
           this.speakers = data; // .filter(v => v.)
+
+          // тут заполняется массив events
           App.User.getSchedulle().then(res => {
             res.forEach(element => {
-              if (element.type == "speaker" && element.day == 2) {
+              if (element.type == "speaker" && element.day == 1) {
                 this.events.push(element);
               }
             });
+
+            // тут расставляется очередность выступления спикеров
             this.speakers = this.speakers.map(s => {
               s.timeday = "23:59";
               s.dateday = 3;
               s.dt = "32359";
               this.events.forEach(ev => {
-                if (ev.speaker.name == s.name && ev.speaker.sname == s.sname) {
+                if (ev.speaker._id === s._id) {
                   s.timeday = ev.time;
                   s.dateday = ev.day;
                   s.dt = `${ev.day}` + ev.time.replace(":", "");
@@ -105,10 +109,15 @@ export default {
               });
               return s;
             });
+
+            // тут спикеры сортируются по порядку выступлений
             this.speakers.sort((a, b) => {
               return Number(a.dt) - Number(b.dt);
             });
+
             let getit = true;
+
+            // выбирается первый спикер, который у которого открыта запись
             this.speakers.forEach((item, i) => {
               if (item.recording_status == 2 && getit) {
                 this.current = i;

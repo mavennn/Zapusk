@@ -132,7 +132,7 @@
                   }}
                 </div>
               </div>
-              <div class="sbbid-company">{{ event.organization }}</div>
+              <div class="sbbid-company">{{ event.university }}</div>
             </div>
           </div>
           <div
@@ -256,15 +256,15 @@ export default {
     getMyRequests() {
       Request.postJson("/api/admin/requests/list", {
         speakerId: this.data,
-        day: this.active_day
       })
         .then(data => {
+          console.log(data);
           this.users = data.users;
           this.blocks[1].events = data.requests.map(val => {
             val.username =
               this.users[val.user].name + " " + this.users[val.user].sname;
-            val.organization = this.users[val.user].organization
-              ? this.users[val.user].organization.name
+            val.university = this.users[val.user].university
+              ? this.users[val.user].university
               : "";
             val.country = this.users[val.user].country;
             val.photo = this.users[val.user].photo;

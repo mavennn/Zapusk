@@ -2,17 +2,17 @@
   <div>
     <MainHeader :lang="lang" tab="schedulled" />
     <div class="schedulled-content">
-      <div class="skittles-days">
-        <div
-          class="sd-item"
-          :class="{ 'sdi-active': day == active_day }"
-          v-for="(day, key) in days"
-          v-bind:key="key"
-          @click="active_day = day"
-        >
-          {{ lang == "en" ? "Day" : "День" }} {{ day }}
-        </div>
-      </div>
+<!--      <div class="skittles-days">-->
+<!--        <div-->
+<!--          class="sd-item"-->
+<!--          :class="{ 'sdi-active': day == active_day }"-->
+<!--          v-for="(day, key) in days"-->
+<!--          v-bind:key="key"-->
+<!--          @click="active_day = day"-->
+<!--        >-->
+<!--          {{ lang == "en" ? "Day" : "День" }} {{ day }}-->
+<!--        </div>-->
+<!--      </div>-->
       <div
         class="skittles-block"
         v-for="(block, key) in blocks"
@@ -68,7 +68,7 @@
                   }}
                 </div>
               </div>
-              <div class="sbbid-company">{{ event.organization }}</div>
+              <div class="sbbid-company">{{ event.companyName }}</div>
             </div>
           </div>
           <div
@@ -163,18 +163,19 @@ export default {
     getMyRequests() {
       Request.postJson("/api/user/requests/forUser", { day: this.active_day })
         .then(data => {
+          console.log(data);
           this.users = data.users;
           this.blocks[1].events = data.requests.map(val => {
             val.username =
-              this.users[val.speaker].name + this.users[val.speaker].sname;
-            val.organization = this.users[val.speaker].organization.name;
+              this.users[val.speaker].name + " " + this.users[val.speaker].sname;
+            val.companyName = this.users[val.speaker].companyName;
             val.country = this.users[val.speaker].country;
             val.photo = this.users[val.speaker].photo;
             return val;
           });
         })
         .catch(err => {
-          swal("Error", err, "error");
+          // swal("Error", err, "error");
         });
     }
   },

@@ -308,9 +308,7 @@
         </div>
       </div>
       <div class="speakers-btn" @click="sendRequest()">
-        {{
-          lang == "en" ? "make an appointment" : "записаться на собеседование"
-        }}
+          записаться на собеседование
       </div>
       <SpeakerMessage />
     </div>
@@ -334,6 +332,7 @@ export default {
         wsrProducts: []
       },
       user: {
+        _id: "",
         prefix: null,
         name: App.User.getName(),
         sname: App.User.getSname(),
@@ -392,6 +391,7 @@ export default {
           res => {
             let data = { user: res };
 
+            this.user._id = data.user._id || "";
             this.user.name = data.user.name || "";
             this.user.sname = data.user.sname || "";
             this.user.prefix = data.user.prefix || "";
@@ -450,8 +450,8 @@ export default {
                   element.speaker.name == this.user.name &&
                   element.speaker.sname == this.user.sname
                 ) {
-                  this.user.presentation.day = element.day;
-                  this.user.presentation.time = element.time;
+                  // this.user.presentation.day = element.day;
+                  // this.user.presentation.time = element.time;
                 }
               });
             });

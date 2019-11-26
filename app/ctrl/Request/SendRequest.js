@@ -18,34 +18,39 @@ module.exports = class extends AbstractCtrl {
   async exect() {
     if (!this.user) return erJson("Not auth");
 
-    console.log(this.req.body);
-    // if (empty(this.speakerId)) return erJson("Speaker ID?");
-
-    if (empty(this.speakerId)) return erJson("Запись пока недоступна");
+    if (empty(this.speakerId)) return erJson("SpeakerID?");
 
     let speaker = await userModel.findOne({ _id: this.speakerId });
+
     if (empty(speaker)) return erJson("Speaker not found");
 
     let sched = await scheduleModel.findOne({ "speaker._id": speaker._id });
+
     this.day = 1; // ВТОРОЙ ДЕНЬ
 
+    // поиск такого реквеста
     let checkMeck = await requestModel.findOne({
       speaker: this.speakerId,
       user: this.user._id,
       day: this.day
     });
 
-    if (checkMeck) return erJson("You have already submitted an application");
+    // если такой реквест найден, то ты уже записан к спикеру
+    if (!empty(checkMeck)) return erJson("You have already submitted an application");
     /*
 		if (!this.day)
 			return erJson('Day?')
 */
 
-    if (speaker.recording_status[`day1`] == 1) {
+
+    // если у спикера еще не открыта запись
+    if (speaker.recording_status == 1) {
       return erJson("You can’t sign up yet");
     }
 
-    if (speaker.recording_status[`day${this.day}`] == 4) {
+
+    // полностью закрыта заявка
+    if (speaker.recording_status == 4) {
       if (this.feedback) {
         let params = {
           speaker: this.speakerId,
@@ -61,7 +66,8 @@ module.exports = class extends AbstractCtrl {
       }
     }
 
-    if (speaker.recording_status[`day${this.day}`] == 2) {
+    // если заявка открыта то создаем реквест
+    if (speaker.recording_status == 2) {
       return await requestManager.create({
         userId: this.user._id,
         speakerId: this.speakerId,
@@ -92,7 +98,7 @@ module.exports = class extends AbstractCtrl {
 		}
 */
 
-    if (speaker.recording_status[`day${this.day}`] == 3) {
+    if (speaker.recording_status == 3) {
       let params = {
         speaker: this.speakerId,
         user: this.user._id,

@@ -12,12 +12,10 @@ module.exports = class extends AbstractCtrl {
   async exect() {
     if (!this.user) return erJson("Not auth");
 
-    if (this.day != 1 && this.day != 2) return erJson("Problems");
-
     let requests = await requestModel.find({
       user: this.user._id,
-      day: this.day
     });
+
     let users = {};
     for (let reqs of requests) {
       let sp = await userModel.findOne({ _id: reqs.speaker });
@@ -25,6 +23,10 @@ module.exports = class extends AbstractCtrl {
         users[sp._id] = sp.forClient();
       }
     }
+
+    console.log("requests", requests);
+    console.log("users", users);
+
     return suJson({ requests, users });
   }
 };
