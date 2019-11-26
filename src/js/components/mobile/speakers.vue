@@ -2,10 +2,10 @@
   <div>
     <MainHeader :lang="lang" tab="speakers" />
     <div class="speakers-content">
+<!--              :class="{ 'sci-current': key == current }"-->
       <div
         class="sc-item"
         @click="goRoute('/speaker/' + sp._id)"
-        :class="{ 'sci-current': key == current }"
         v-for="(sp, key) in speakers"
         v-bind:key="'speaker_' + key"
       >
@@ -20,11 +20,10 @@
             {{ sp.companyName }}
           </div>
         </div>
-        <div class="sci-status" v-if="key == current">
-          текущий<br />
-            спикер
-          }}
-        </div>
+<!--        <div class="sci-status" v-if="key == current">-->
+<!--          текущий<br />-->
+<!--          спикер-->
+<!--        </div>-->
       </div>
     </div>
     <div
