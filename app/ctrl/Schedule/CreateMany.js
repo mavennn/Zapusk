@@ -13,8 +13,6 @@ module.exports = class extends AbstractCtrl {
 
     if (!this.body.schedule.length) return erJson("Schedule?");
 
-    console.log(this.body.shedule);
-
     return await scheduleManager.saveMany(this.body.schedule);
   }
 };
