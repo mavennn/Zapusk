@@ -317,7 +317,7 @@ global.UserManager = new (class {
       user.questionsForSpeaker.intership =
           arUser.questionsForSpeaker.intership || "";
 
-    } else if (arUser.permission === "user") {
+    } else if (user.permission === "user") {
 
       user.birthday = arUser.birthday || "";
       user.university = arUser.university || "";
@@ -338,9 +338,8 @@ global.UserManager = new (class {
           arUser.questionsForUser.isHackaton || "";
       user.questionsForUser.courses =
           arUser.questionsForUser.courses || "";
-      user.questionsForUser.isWorldSkills =
-          arUser.questionsForUser.isWorking || "";
     }
+
     await user.save();
     this.addToCache(user);
     return suJson("su");

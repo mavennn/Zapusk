@@ -418,8 +418,6 @@ export default {
               data.user.questionsForUser.isHackaton || "";
             this.user.questionsForUser.courses =
               data.user.questionsForUser.courses || "";
-            this.user.questionsForUser.isWorldSkills =
-              data.user.questionsForUser.isWorking || "";
           }
 
           this.load = true;
