@@ -50,11 +50,13 @@ global.scheduleManager = new (class {
   async removeItem(id) {
     let sch = await scheduleModel.findOne({ _id: id });
 
-    let sp = await userModel.findOne({ _id: sch.speaker._id });
+    if (sch.type !== "introductory") {
+      let sp = await userModel.findOne({ _id: sch.speaker._id });
+      if (empty(sp)) return erJson("Speaker not found");
+      let resp = await userModel.updateOne({_id: sp._id}, {$set: { recording_status: 1 }});
+    }
 
-    if (empty(sp)) return erJson("Speaker not found");
-
-    let resp = await userModel.updateOne({_id: sp._id}, {$set: { recording_status: 1 }});
+    if (empty(sch)) return erJson("Shedule not found");
     if (!sch) return erJson("Not found");
     await sch.remove();
     return suJson("su");
