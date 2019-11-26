@@ -216,6 +216,17 @@
           <div class="spbcw-val">{{ user.questionsForUser.anotherLanguage || "-" }}</div>
         </div>
 
+        <!--    Вопрос про деньги      -->
+        <div class="spbc-wr">
+          <div class="spbcw-label">
+            Представь, что тебе достаточно денег до конца твоей жизни. Чем ты
+            будешь заниматься?
+          </div>
+          <div class="spbcw-val">
+            {{ user.questionsForUser.enoughMoney || "-" }}
+          </div>
+        </div>
+
         <!--    Вопрос про digital      -->
         <div class="spbc-wr">
           <div class="spbcw-label">
