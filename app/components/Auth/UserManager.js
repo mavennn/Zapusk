@@ -338,6 +338,8 @@ global.UserManager = new (class {
           arUser.questionsForUser.isHackaton || "";
       user.questionsForUser.courses =
           arUser.questionsForUser.courses || "";
+      user.questionsForUser.isWorking =
+          arUser.questionsForUser.isWorking || "";
     }
 
     await user.save();

@@ -615,6 +615,8 @@ export default {
                 data.user.questionsForUser.isHackaton || "";
         this.user.questionsForUser.courses =
                 data.user.questionsForUser.courses || "";
+        this.user.questionsForUser.isWorking =
+                data.user.questionsForUser.isWorking || "";
       }
     });
   },
