@@ -343,41 +343,41 @@
         </div>
 
         <!-- title softskills -->
-        <div class="spb-title">
-          Soft Skills*
-        </div>
+<!--        <div class="spb-title">-->
+<!--          Soft Skills*-->
+<!--        </div>-->
 
         <!-- подсказка для softskills -->
-        <div class="spbc-advice">
-          Нажмите на навыки, интересующие Вас
-        </div>
+<!--        <div class="spbc-advice">-->
+<!--          Нажмите на навыки, интересующие Вас-->
+<!--        </div>-->
 
         <!-- тут сами теги -->
-        <div
-          class="spbc-taggroup"
-          v-for="(w, key) in opts.softSkills"
-          v-bind:key="'w' + key"
-        >
-          <div
-            @click="toggleSoftSkill(w._id)"
-            class="spbc-onetag"
-            :class="{
-              'spbct-active': user.softSkills && user.softSkills.includes(w._id)
-            }"
-          >
-            {{ w.name }}
-          </div>
-          <div
-            v-if="![0, 8, 9].includes(key)"
-            class="spbc-taginfo"
-            @click="
-              getTagInfo(
-                key,
-                user.wsrProducts && user.wsrProducts.includes(w._id)
-              )
-            "
-          ></div>
-        </div>
+<!--        <div-->
+<!--          class="spbc-taggroup"-->
+<!--          v-for="(w, key) in opts.softSkills"-->
+<!--          v-bind:key="'w' + key"-->
+<!--        >-->
+<!--          <div-->
+<!--            @click="toggleSoftSkill(w._id)"-->
+<!--            class="spbc-onetag"-->
+<!--            :class="{-->
+<!--              'spbct-active': user.softSkills && user.softSkills.includes(w._id)-->
+<!--            }"-->
+<!--          >-->
+<!--            {{ w.name }}-->
+<!--          </div>-->
+<!--          <div-->
+<!--            v-if="![0, 8, 9].includes(key)"-->
+<!--            class="spbc-taginfo"-->
+<!--            @click="-->
+<!--              getTagInfo(-->
+<!--                key,-->
+<!--                user.wsrProducts && user.wsrProducts.includes(w._id)-->
+<!--              )-->
+<!--            "-->
+<!--          ></div>-->
+<!--        </div>-->
       </div>
     </div>
 
