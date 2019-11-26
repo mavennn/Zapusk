@@ -1,4 +1,4 @@
-require('../../../app');
+require("../../../app");
 
 var xlsx = require("node-xlsx");
 global.UserManager = new (class {
@@ -28,7 +28,7 @@ global.UserManager = new (class {
     return User;
   }
 
-  getItem = item => item !== undefined ? item : "";
+  getItem = item => (item !== undefined ? item : "");
 
   async loadSpeakers() {
     var file = xlsx.parse(this.speakersFile)[0].data; // парсим 1ый лист
@@ -100,9 +100,9 @@ global.UserManager = new (class {
             companyTasks: this.getItem(item[9]),
             positions: this.getItem(item[10]),
             candidatsTasks: this.getItem(item[11]),
-            intership: this.getItem(item[12]),
+            intership: this.getItem(item[12])
           },
-          recording_status: 1,
+          recording_status: 1
         };
 
         console.log("user", user);
@@ -160,13 +160,16 @@ global.UserManager = new (class {
             digital: this.getItem(item[12]),
             english: this.getItem(item[9]),
             anotherLanguage: this.getItem(item[10]),
-            isHackaton: this.getItem(item[13]) === "" ? this.getItem(item[15]) : "",
-            isWorldSkills: this.getItem(item[11]) === "" ? this.getItem(item[16]) : "",
-            courses: this.getItem(item[14]) === "" ? this.getItem(item[17]) : "",
+            isHackaton:
+              this.getItem(item[13]) === "" ? this.getItem(item[15]) : "",
+            isWorldSkills:
+              this.getItem(item[11]) === "" ? this.getItem(item[16]) : "",
+            courses:
+              this.getItem(item[14]) === "" ? this.getItem(item[17]) : "",
             enoughMoney: this.getItem(item[8]),
             achievements: "",
             isWorking: this.getItem(item[18])
-          },
+          }
         };
 
         let ch = await this.checkUsers(user.email);
@@ -280,9 +283,10 @@ global.UserManager = new (class {
   }
 
   async edit(id, arUser) {
+
     if (empty(id)) return erJson("Auth not found");
 
-    let user = await userModel.findOne({ _id: id });
+    let user = await userModel.findOne({ _id: arUser._id });
 
     user.name = arUser.name || user.name;
     user.phone = arUser.phone || user.phone;
@@ -296,34 +300,47 @@ global.UserManager = new (class {
     user.hardSkills = arUser.hardSkills || user.hardSkills;
     user.softSkills = arUser.softSkills || user.softSkills;
 
-    if (!empty(arUser.wsrProducts)) user.wsrProducts = arUser.wsrProducts;
+    if (user.permission === "speaker") {
+      user.companyName = arUser.companyName || "";
+      user.companyUrl = arUser.companyUrl || "";
+      user.vacanciesUrl = arUser.vacanciesUrl || "";
+      user.businessSphere = arUser.businessSphere || "";
 
-    if (!empty(arUser.presentation)) {
-      user.presentation = {
-        subject: arUser.presentation.subject,
-        link: arUser.presentation.link
-      };
-    }
-    if (!empty(arUser.organization)) {
-      user.organization = {
-        name: arUser.organization.name,
-        position: arUser.organization.position,
-        role: arUser.organization.role,
-        problems: arUser.organization.problems,
-        perspectives: arUser.organization.perspectives,
-        barriers: arUser.organization.barriers
-      };
-    }
-    if (!empty(arUser.partnership)) {
-      user.partnership = {
-        country: arUser.partnership.country,
-        partnershipMode: arUser.partnership.partnershipMode,
-        bestPractice: arUser.partnership.bestPractice,
-        industry: arUser.partnership.industry,
-        role: arUser.partnership.role
-      };
-    }
+      user.questionsForSpeaker.yourProduct =
+          arUser.questionsForSpeaker.yourProduct || "";
+      user.questionsForSpeaker.companyTasks =
+          arUser.questionsForSpeaker.companyTasks || "";
+      user.questionsForSpeaker.positions =
+          arUser.questionsForSpeaker.positions || "";
+      user.questionsForSpeaker.candidatsTasks =
+          arUser.questionsForSpeaker.candidatsTasks || "";
+      user.questionsForSpeaker.intership =
+          arUser.questionsForSpeaker.intership || "";
 
+    } else if (arUser.permission === "user") {
+
+      user.birthday = arUser.birthday || "";
+      user.university = arUser.university || "";
+      user.speciality = arUser.speciality || "";
+      user.endingYear = arUser.endingYear || "";
+
+      user.questionsForUser.enoughMoney =
+          arUser.questionsForUser.enoughMoney || "";
+      user.questionsForUser.digital =
+          arUser.questionsForUser.digital || "";
+      user.questionsForUser.english =
+          arUser.questionsForUser.english || "";
+      user.questionsForUser.anotherLanguage =
+          arUser.questionsForUser.anotherLanguage || "";
+      user.questionsForUser.isWorldSkills =
+          arUser.questionsForUser.isWorldSkills || "";
+      user.questionsForUser.isHackaton =
+          arUser.questionsForUser.isHackaton || "";
+      user.questionsForUser.courses =
+          arUser.questionsForUser.courses || "";
+      user.questionsForUser.isWorldSkills =
+          arUser.questionsForUser.isWorking || "";
+    }
     await user.save();
     this.addToCache(user);
     return suJson("su");

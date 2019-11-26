@@ -1,5 +1,7 @@
 <template>
+
   <div class="skittles-profile" v-if="load">
+
     <div class="sp-block">
       <div class="spb-title">
         {{ lang == "en" ? "Personal Info" : "Персональная информация" }}
@@ -15,14 +17,6 @@
                 {{ lang == "en" ? "Name" : "Имя" }}:
               </div>
               <div class="spbcrdr-val">{{ user.name }} {{ user.sname }}</div>
-            </div>
-            <div class="spbcrd-row">
-              <div class="spbcrdr-label">
-                {{ lang == "en" ? "Country" : "Страна" }}:
-              </div>
-              <div class="spbcrdr-val">
-                {{ getName(user.country, "country") }}
-              </div>
             </div>
             <div class="spbcrd-row">
               <div class="spbcrdr-label">
@@ -54,7 +48,7 @@
         <div class="spbc-row">
           <div class="spbcr-label">{{ lang == "en" ? "Company URL" : "Ссылка на сайт" }}:</div>
           <div class="spbcr-val">
-            {{ getName(user.companyUrl, "role") }}
+            {{ user.companyUrl || ""}}
           </div>
         </div>
       </div>
@@ -85,17 +79,6 @@
 <!--    </div>-->
 
     <div class="schedulled-content">
-      <div class="skittles-days">
-        <div
-          class="sd-item"
-          :class="{ 'sdi-active': day == active_day }"
-          v-for="(day, key) in days"
-          v-bind:key="key"
-          @click="active_day = day"
-        >
-          {{ lang == "en" ? "Day" : "День" }} {{ day }}
-        </div>
-      </div>
       <div
         class="skittles-block"
         v-for="(block, key) in blocks"
@@ -236,7 +219,8 @@ export default {
         }
       })
       .then(() => {
-        App.User.getUserById(this.data).then(res => {
+        App.User.getUserById(this.data).then(data => {
+          console.log(data);
           this.user = data;
           this.load = true;
         });

@@ -111,12 +111,11 @@ export default {
             let getit = true;
             this.speakers.forEach((item, i) => {
               if (item.recording_status == 2 && getit) {
-                console.log(i);
                 this.current = i;
                 getit = false;
               }
             });
-            console.log("this.speakers", this.speakers);
+            // console.log("this.speakers", this.speakers);
 
             /*
 							this.speakers = this.speakers.filter(v => {

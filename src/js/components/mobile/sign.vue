@@ -1,26 +1,25 @@
 <template>
   <div class="skittles-sign" :class="{ 'ss-light': tab == 'reg' }">
     <div class="ss-logo"></div>
-
-    <div class="ss-toggler">
-      <div
-        class="sst-item"
-        :class="{ 'ssti-active': tab == 'login' }"
-        @click="tab = 'login'"
-      >
-        {{ lang == "en" ? "sign in" : "войти" }}
-      </div>
-      <div
-        class="sst-item"
-        :class="{ 'ssti-active': tab == 'reg' }"
-        @click="tab = 'reg'"
-      >
-        {{ lang == "en" ? "registration" : "регистрация" }}
-      </div>
-    </div>
+<!--      <div-->
+<!--        class="sst-item"-->
+<!--        :class="{ 'ssti-active': tab == 'reg' }"-->
+<!--        @click="tab = 'reg'"-->
+<!--      >-->
+<!--        {{ lang == "en" ? "registration" : "регистрация" }}-->
+<!--      </div>-->
     <login v-if="tab == 'login'" :lang="lang" />
     <Reg v-if="tab == 'reg'" :lang="lang" />
     <forgot v-if="tab == 'forgot'" :lang="lang" />
+<!--    <div class="ss-toggler">-->
+<!--      <div-->
+<!--              class="sst-item"-->
+<!--              :class="{ 'ssti-active': tab == 'login' }"-->
+<!--              @click="tab = 'login'"-->
+<!--      >-->
+<!--        войти-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </template>
 
@@ -42,27 +41,6 @@ export default {
       this.tab = "forgot";
     });
     localStorageProxy.setItem("lang", "ru");
-    // if (!localStorageProxy.getItem("lang")) {
-    //   swal.fire({
-    //     title: "Выберите язык / Choose language",
-    //     input: "select",
-    //     inputOptions: {
-    //       ru: "Русский",
-    //       en: "English"
-    //     },
-    //     inputPlaceholder: "Язык / Language",
-    //     showCancelButton: false,
-    //     allowEscapeKey: false,
-    //     allowOutsideClick: false,
-    //     inputValidator: value => {
-    //       return new Promise(resolve => {
-    //         localStorageProxy.setItem("lang", value);
-    //         this.lang = value;
-    //         resolve();
-    //       });
-    //     }
-    //   });
-    // }
   },
   created() {},
   methods: {
@@ -131,7 +109,7 @@ export default {
       color: white;
       text-transform: uppercase;
       padding: 7px 8px;
-      margin: 0 7px;
+      margin: 0 auto;
       font-size: 14px;
       font-weight: 100;
       &.ssti-active {

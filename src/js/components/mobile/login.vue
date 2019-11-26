@@ -1,21 +1,31 @@
 <template>
   <div class="skittles-login">
-<!--    <div class="cc-lang">-->
-<!--      <div class="ss-usa" @click="setLang('en')"></div>-->
-<!--      <div class="ss-rus" @click="setLang('ru')"></div>-->
-<!--    </div>-->
+    <!--    <div class="cc-lang">-->
+    <!--      <div class="ss-usa" @click="setLang('en')"></div>-->
+    <!--      <div class="ss-rus" @click="setLang('ru')"></div>-->
+    <!--    </div>-->
     <div class="sl-input">
       <div class="sli-label">id:</div>
-      <input class="sli-val" :type="intype" v-model="id" @change="login()" />
+      <input class="sli-val" :type="intype" v-model="id" />
     </div>
     <div class="sl-input">
       <div class="sli-label">pin:</div>
-      <input class="sli-val" :type="intype" v-model="pin" @change="login()" />
+      <input class="sli-val" :type="intype" v-model="pin" />
     </div>
-    <div class="sl-forgot" @click="forgot">
-      не помню
+<!--    <div class="sl-forgot" @click="forgot">-->
+<!--      не помню-->
+<!--    </div>-->
+    <div class="ss-toggler">
+      <div
+              class="sst-item"
+              :class="{ 'ssti-active': tab == 'login' }"
+              @click="login()"
+      >
+        войти
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -26,7 +36,7 @@ export default {
     return {
       intype: "number",
       id: "",
-      pin: ""
+      pin: "",
     };
   },
   props: {
@@ -52,11 +62,11 @@ export default {
     }
   },
   beforeDestroy() {},
-  watch: {
-    pin: function() {
-      if (this.pin.length == 4) this.login();
-    }
-  },
+  // watch: {
+  //   pin: function() {
+  //     if (this.pin.length == 4) this.login();
+  //   }
+  // },
   components: {}
 };
 </script>

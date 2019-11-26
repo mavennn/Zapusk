@@ -2,16 +2,14 @@
   <div>
     <h3>Редактирование пользователя</h3>
     <div class="skittles-profile">
-
-      <!--   ПЕРСОНАЛЬНАЯ ИНФОРМАЦИЯ     -->
       <div class="sp-block">
+        <!-- title персональная информация -->
         <div class="spb-title">
-          {{ lang === "en" ? "Personal Info" : "Персональная информация" }}
+          Персональная информация
         </div>
-        <div class="spb-content" v-if="opts.country">
+        <div class="spb-content">
+          <!-- фото пользователя -->
           <div class="spbc-row">
-
-            <!--     Загрузка фотки       -->
             <div class="spbcr-img" :style="getImg(user.photo)">
               <div
                 class="spbcri-icon"
@@ -27,112 +25,103 @@
             </div>
           </div>
 
-          <!--     Форма обращения     -->
-          <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              {{ lang === "en" ? "Prefix" : "Форма обращения" }}*:
-            </div>
-            <div class="spbcig-select">
-              {{
-                user.prefix ||
-                  (lang === "en" ? "Select prefix" : "Выберите форму обращения")
-              }}
-              <i class="fa fa-angle-down" aria-hidden="true"></i>
-              <div class="spbcigs-click" @click="togglePrefix()"></div>
-              <div class="spbcigs-dropdown" v-if="prefix_opt">
-                <div
-                  class="spbcigsd-option"
-                  @click="setPrefix(lang === 'en' ? 'Mr.' : 'г-н')"
-                >
-                  {{ lang === "en" ? "Mr." : "г-н" }}
-                </div>
-                <div
-                  class="spbcigsd-option"
-                  @click="setPrefix(lang === 'en' ? 'Mrs.' : 'г-жа')"
-                >
-                  {{ lang === "en" ? "Mrs." : "г-жа" }}
-                </div>
-                <div
-                  class="spbcigsd-option"
-                  @click="setPrefix(lang === 'en' ? 'Dr.' : 'доктор')"
-                >
-                  {{ lang === "en" ? "Mrs." : "доктор" }}
-                </div>
-              </div>
-            </div>
-          </div>
+          <!-- форма обращения -->
+          <!--        <div class="spbc-inputgroup">-->
+          <!--          <div class="spbcig-label">-->
+          <!--            {{ lang == "en" ? "Prefix" : "Форма обращения" }}*:-->
+          <!--          </div>-->
+          <!--          <div class="spbcig-select">-->
+          <!--            {{-->
+          <!--              user.prefix ||-->
+          <!--                (lang == "en" ? "Select prefix" : "Выберите форму обращения")-->
+          <!--            }}-->
+          <!--            <i class="fa fa-angle-down" aria-hidden="true"></i>-->
+          <!--            <div class="spbcigs-click" @click="togglePrefix()"></div>-->
+          <!--            <div class="spbcigs-dropdown" v-if="prefix_opt">-->
+          <!--              <div-->
+          <!--                class="spbcigsd-option"-->
+          <!--                @click="setPrefix(lang == 'en' ? 'Mr.' : 'г-н')"-->
+          <!--              >-->
+          <!--                {{ lang == "en" ? "Mr." : "г-н" }}-->
+          <!--              </div>-->
+          <!--              <div-->
+          <!--                class="spbcigsd-option"-->
+          <!--                @click="setPrefix(lang == 'en' ? 'Mrs.' : 'г-жа')"-->
+          <!--              >-->
+          <!--                {{ lang == "en" ? "Mrs." : "г-жа" }}-->
+          <!--              </div>-->
+          <!--              <div-->
+          <!--                class="spbcigsd-option"-->
+          <!--                @click="setPrefix(lang == 'en' ? 'Dr.' : 'доктор')"-->
+          <!--              >-->
+          <!--                {{ lang == "en" ? "Mrs." : "доктор" }}-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <!--        </div>-->
 
-          <!--     Имя     -->
+          <!-- Имя -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang === "en" ? "First name" : "Имя" }}*:
+              Имя*:
             </div>
             <input
               v-model="user.name"
               class="spbcig-val"
               type="text"
-              :placeholder="lang === 'en' ? 'Input first name' : 'Введите имя'"
+              :placeholder="'Введите имя'"
             />
           </div>
 
-          <!--     Предпочтительное имя     -->
+          <!-- Фамилия -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang === "en" ? "Preffered name" : "Предпочтительное имя" }}*:
-            </div>
-            <input
-              v-model="user.prefname"
-              class="spbcig-val"
-              type="text"
-              :placeholder="
-                lang === 'en'
-                  ? 'Input preferred name'
-                  : 'Введите предпочтительное имя'
-              "
-            />
-          </div>
-
-          <!--    Фамилия      -->
-          <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              {{ lang === "en" ? "Second name" : "Фамилия" }}*:
+              Фамилия*:
             </div>
             <input
               v-model="user.sname"
               class="spbcig-val"
               type="text"
-              :placeholder="
-                lang === 'en' ? 'Input your second name' : 'Введите фамилию'
-              "
+              :placeholder="'Введите фамилию'"
             />
           </div>
 
-          <!--     Страна     -->
+          <!-- Страна -->
+<!--          <div class="spbc-inputgroup">-->
+<!--            <div class="spbcig-label">-->
+<!--              Страна:-->
+<!--            </div>-->
+<!--            <div class="spbcig-select">-->
+<!--              {{ user.country || "Выберите страну" }}-->
+<!--              <i class="fa fa-angle-down" aria-hidden="true"></i>-->
+<!--              <div class="spbcigs-click" @click="toggleCountry1()"></div>-->
+<!--              <div class="spbcigs-dropdown" v-if="country1_opt">-->
+<!--                <div-->
+<!--                  class="spbcigsd-option"-->
+<!--                  @click="setCountry1(c.name)"-->
+<!--                  v-for="(c, key) in opts.country"-->
+<!--                  v-bind:key="'c' + key"-->
+<!--                >-->
+<!--                  {{ c.name }}-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+
+          <!-- Город -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang === "en" ? "Country" : "Страна" }}*:
+              Город:
             </div>
-            <div class="spbcig-select">
-              {{
-                getName(user.country, "country") ||
-                  (lang === "en" ? "Select your country" : "Выберите страну")
-              }}
-              <i class="fa fa-angle-down" aria-hidden="true"></i>
-              <div class="spbcigs-click" @click="toggleCountry1()"></div>
-              <div class="spbcigs-dropdown" v-if="country1_opt">
-                <div
-                  class="spbcigsd-option"
-                  @click="setCountry1(c._id)"
-                  v-for="(c, key) in opts.country"
-                  v-bind:key="'c' + key"
-                >
-                  {{ c.name }}
-                </div>
-              </div>
-            </div>
+            <input
+              v-model="user.city"
+              class="spbcig-val"
+              type="text"
+              :placeholder="'Введите город'"
+            />
           </div>
 
-          <!--    Email      -->
+          <!-- Email -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">E-mail*:</div>
             <input
@@ -142,185 +131,242 @@
               placeholder="Input your e-mail"
             />
             <div class="spbcig-desc">
-              {{
-                lang === "en"
-                  ? "Not visible in public profile"
-                  : "Не виден остальным"
-              }}
+              Не виден остальным
             </div>
           </div>
 
-          <!--    Телефон      -->
+          <!-- Телефон -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              {{ lang === "en" ? "Phone number" : "Телефон" }}:
+              Телефон:
             </div>
             <!-- <div class="spbcig-comb">
-							<div class="spbcig-select">
-								+9 11
-								<i class="fa fa-angle-down" aria-hidden="true"></i>
-								<div class="spbcigs-dropdown">
-									<div class="spbcigsd-option">+9 11</div>
-								</div>
-							</div>
-							<input class="spbcig-val" type="text" placeholder="Input your phone number" />
-						</div> -->
+                          <div class="spbcig-select">
+                              +9 11
+                              <i class="fa fa-angle-down" aria-hidden="true"></i>
+                              <div class="spbcigs-dropdown">
+                                  <div class="spbcigsd-option">+9 11</div>
+                              </div>
+                          </div>
+                          <input class="spbcig-val" type="text" placeholder="Input your phone number" />
+                      </div> -->
             <input
               v-model="user.phone"
               class="spbcig-val"
               type="text"
-              :placeholder="
-                lang === 'en' ? 'Input your phone number' : 'Введите телефон'
-              "
+              :placeholder="'Введите телефон'"
             />
             <div class="spbcig-desc">
-              {{
-                lang === "en"
-                  ? "Not visible in public profile"
-                  : "Не виден остальным"
-              }}
+              Не виден остальным
             </div>
-          </div>
-        </div>
-
-      <!--    ОРГАНИЗАЦИЯ    -->
-      </div>
-      <div class="sp-block">
-        <div class="spb-title">
-          {{ lang == "en" ? "Organization" : "Организация" }}*
-        </div>
-
-        <!--   Название организации     -->
-        <div class="spb-content">
-          <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              {{
-                lang === "en" ? "Organisation name" : "Название организация"
-              }}*:
-            </div>
-            <input
-              v-model="user.organization.name"
-              class="spbcig-val"
-              type="text"
-              :placeholder="
-                lang === 'en'
-                  ? 'Input name of your organisation'
-                  : 'Введите название организации'
-              "
-            />
-          </div>
-
-          <!--    Должность      -->
-          <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              {{ lang === "en" ? "Position" : "Должность" }}*:
-            </div>
-            <input
-              v-model="user.organization.position"
-              class="spbcig-val"
-              type="text"
-              :placeholder="
-                lang === 'en' ? 'Input your position' : 'Введите должность'
-              "
-            />
-          </div>
-
-          <!--     Роль      -->
-          <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              {{ lang === "en" ? "Role" : "Роль" }}*:
-            </div>
-            <div class="spbcig-select">
-              {{ getNameRole(user.organization.role) || (lang === "en" ? "Role" : "Роль") }}
-              <i class="fa fa-angle-down" aria-hidden="true"></i>
-              <div class="spbcigs-click" @click="toggleRole1()"></div>
-              <div class="spbcigs-dropdown" v-if="role1_opt">
-                <div
-                  class="spbcigsd-option"
-                  @click="setRole1(c._id)"
-                  v-for="(c, key) in opts.role"
-                  v-bind:key="'r' + key"
-                >
-                  {{ c.name }}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!--     Какие главные проблемы в Вашей организации/стране в развитии навыков?      -->
-          <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              {{
-                lang === "en"
-                  ? "What main issues/problems do you have in your country/organization in skills development?"
-                  : "Какие главные проблемы в Вашей организации/стране в развитии навыков?"
-              }}
-            </div>
-            <input
-              v-model="user.organization.problems"
-              class="spbcig-val"
-              type="text"
-            />
-          </div>
-
-          <!--     Какие перспективы/цели/возможности Вы видите для Вашей организации/страны?      -->
-          <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              {{
-                lang === "en"
-                  ? "What perspectives/vision/goals/possibilities do you see for your country/organization?"
-                  : "Какие перспективы/цели/возможности Вы видите для Вашей организации/страны?"
-              }}
-            </div>
-            <input
-              v-model="user.organization.perspectives"
-              class="spbcig-val"
-              type="text"
-            />
-          </div>
-
-          <!--     Какие преграды Вы видите на пути к Вашим целям?      -->
-          <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              {{
-                lang === "en"
-                  ? "What main obstacles/barriers do you see on your way to your vision/goals?"
-                  : "Какие преграды Вы видите на пути к Вашим целям?"
-              }}
-            </div>
-            <input
-              v-model="user.organization.barriers"
-              class="spbcig-val"
-              type="text"
-            />
           </div>
         </div>
       </div>
 
-      <!--   ПРОДУКТЫ WSR    -->
       <div class="sp-block">
+        <!-- title организация -->
+        <div class="spb-title">ВУЗ*</div>
+        <div class="spb-content">
+          <!-- Название организации -->
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              Название ВУЗ'а *:
+            </div>
+            <input
+              v-model="user.university"
+              class="spbcig-val"
+              type="text"
+              :placeholder="'Введите название ВУЗ\'а'"
+            />
+          </div>
+
+          <!-- Специальность -->
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              Специальность*:
+            </div>
+            <input
+              v-model="user.speciality"
+              class="spbcig-val"
+              type="text"
+              :placeholder="'Введите специальность'"
+            />
+          </div>
+
+          <!-- Год окончания -->
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              Год окончания*:
+            </div>
+            <input
+              v-model="user.endingYear"
+              class="spbcig-val"
+              type="text"
+              :placeholder="'Введите год окончания'"
+            />
+          </div>
+
+          <!-- Вопрос про достаточно денег -->
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              Представь, что тебе достаточно денег до конца твоей жизни. Чем ты
+              будешь заниматься?
+            </div>
+            <input
+              v-model="user.questionsForUser.enoughMoney"
+              class="spbcig-val"
+              type="text"
+            />
+          </div>
+
+          <!-- Вопрос про английский -->
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              Твой уровень владения английским языком:
+            </div>
+            <input
+              v-model="user.questionsForUser.english"
+              class="spbcig-val"
+              type="text"
+            />
+          </div>
+
+          <!-- Вопрос про другой язык -->
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              Владеешь ли ты другим языком ?
+            </div>
+            <input
+              v-model="user.questionsForUser.anotherLanguage"
+              class="spbcig-val"
+              type="text"
+            />
+          </div>
+
+          <!-- Вопрос про Worldskills -->
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              Участвовал ли ты когда-нибудь в чемпионате Worldskills ?
+            </div>
+            <input
+              v-model="user.questionsForUser.isWorldSkills"
+              class="spbcig-val"
+              type="text"
+            />
+          </div>
+
+          <!-- Вопрос про Hackatons -->
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              Участвовал ли ты когда-нибудь в хакатонах? Если да, то в каких ?
+            </div>
+            <input
+              v-model="user.questionsForUser.isHackaton"
+              class="spbcig-val"
+              type="text"
+            />
+          </div>
+
+          <!-- Вопрос про школу программирования -->
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              Проходил ли или проходишь сейчас школу или курс программирования ?
+            </div>
+            <input
+              v-model="user.questionsForUser.courses"
+              class="spbcig-val"
+              type="text"
+            />
+          </div>
+
+          <!-- Вопрос про digital -->
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              Какими digital компетенциями ты обладаешь и на каком уровне ?
+            </div>
+            <input
+              v-model="user.questionsForUser.digital"
+              class="spbcig-val"
+              type="text"
+            />
+          </div>
+
+          <!-- Вопрос про работу -->
+          <div class="spbc-inputgroup">
+            <div class="spbcig-label">
+              Работаешь ли ты сейчас в любом режиме ?
+            </div>
+            <input
+              v-model="user.questionsForUser.isWorking"
+              class="spbcig-val"
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Блоr c тегами -->
+      <div class="sp-block">
+        <!-- Hard Skills -->
         <div class="spb-title">
-          {{ lang === "en" ? "WSR Products" : "Продукты WSR" }}*
+          Hard Skills*
         </div>
         <div class="spb-content">
+          <!-- подсказочка p.s. она может и не нужна -->
           <div class="spbc-advice">
-            {{
-              lang === "en"
-                ? "Tap products you interesting in"
-                : "Нажмите на продукты, интересующие Вас "
-            }}
+            Нажмите на интересующие вас навыки
           </div>
+
+          <!-- hard skills теги   -->
           <div
             class="spbc-taggroup"
-            v-for="(w, key) in opts.wsrProducts"
+            v-for="(w, key) in opts.hardSkills"
             v-bind:key="'w' + key"
           >
             <div
-              @click="toggleWsr(w._id)"
+              @click="toggleHardSkills(w._id)"
               class="spbc-onetag"
               :class="{
                 'spbct-active':
+                  user.hardSkills && user.hardSkills.includes(w._id)
+              }"
+            >
+              {{ w.name }}
+            </div>
+            <div
+              v-if="![0, 8, 9].includes(key)"
+              class="spbc-taginfo"
+              @click="
+                getTagInfo(
+                  key,
                   user.wsrProducts && user.wsrProducts.includes(w._id)
+                )
+              "
+            ></div>
+          </div>
+
+          <!-- title softskills -->
+          <div class="spb-title">
+            Soft Skills*
+          </div>
+
+          <!-- подсказка для softskills -->
+          <div class="spbc-advice">
+            Нажмите на навыки, интересующие Вас
+          </div>
+
+          <!-- тут сами теги -->
+          <div
+            class="spbc-taggroup"
+            v-for="(w, key) in opts.softSkills"
+            v-bind:key="'w' + key"
+          >
+            <div
+              @click="toggleSoftSkills(w._id)"
+              class="spbc-onetag"
+              :class="{
+                'spbct-active':
+                  user.softSkills && user.softSkills.includes(w._id)
               }"
             >
               {{ w.name }}
@@ -338,155 +384,11 @@
           </div>
         </div>
       </div>
-
-      <!--   СОТРУДНИЧЕСТВА, В КОТОРЫХ ВЫ ЗАИНТЕРЕСОВАНЫ   -->
-      <div class="sp-block">
-        <div class="spb-title">
-          {{
-            lang === "en"
-              ? "Partnership I am interested in"
-              : "Сотрудничества, в которых Вы заинтересованы"
-          }}
-        </div>
-
-        <!--    Страны     -->
-        <div class="spb-content">
-          <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              {{ lang === "en" ? "Country" : "Страны" }}:
-            </div>
-            <div class="spbcig-select">
-              {{
-                getName(user.partnership.country, "country") ||
-                  (lang === "en" ? "Select country" : "Выберите страны")
-              }}
-              <i class="fa fa-angle-down" aria-hidden="true"></i>
-              <div class="spbcigs-click" @click="toggleCountry2()"></div>
-              <div class="spbcigs-dropdown" v-if="country2_opt">
-                <div
-                  class="spbcigsd-option"
-                  @click="setCountry2(c._id)"
-                  v-for="(c, key) in opts.country"
-                  v-bind:key="'c2' + key"
-                >
-                  {{ c.name }}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!--     Вид сотрудничества     -->
-          <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              {{ lang === "en" ? "Partnership mode" : "Вид сотрудничества" }}:
-            </div>
-            <div class="spbcig-select">
-              {{
-                getName(user.partnership.partnershipMode, "partnershipMode") ||
-                  (lang === "en"
-                    ? "Select partnership mode"
-                    : "Выберите вид сотрудничества")
-              }}
-              <i class="fa fa-angle-down" aria-hidden="true"></i>
-              <div class="spbcigs-click" @click="toggleMode()"></div>
-              <div class="spbcigs-dropdown" v-if="mode_opt">
-                <div
-                  class="spbcigsd-option"
-                  @click="setMode(c._id)"
-                  v-for="(c, key) in opts.partnershipMode"
-                  v-bind:key="'m' + key"
-                >
-                  {{ c.name }}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!--     Отрасль     -->
-          <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              {{ lang === "en" ? "Industry" : "Отрасль" }}:
-            </div>
-            <div class="spbcig-select">
-              {{
-                getName(user.partnership.industry, "industry") ||
-                  (lang === "en"
-                    ? "Select industry/field"
-                    : "Выберите отрасль/сферу")
-              }}
-              <i class="fa fa-angle-down" aria-hidden="true"></i>
-              <div class="spbcigs-click" @click="toggleInd()"></div>
-              <div class="spbcigs-dropdown" v-if="ind_opt">
-                <div
-                  class="spbcigsd-option"
-                  @click="setInd(c._id)"
-                  v-for="(c, key) in opts.industry"
-                  v-bind:key="'i' + key"
-                >
-                  {{ c.name }}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!--     Лучшая практика     -->
-          <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              {{ lang === "en" ? "Best practice" : "Лучшая практика" }}:
-            </div>
-            <div class="spbcig-select">
-              {{
-                getName(user.partnership.bestPractice, "bestPractice") ||
-                  (lang === "en"
-                    ? "Select best practice"
-                    : "Выберите лучшую практику")
-              }}
-              <i class="fa fa-angle-down" aria-hidden="true"></i>
-              <div class="spbcigs-click" @click="toggleBest()"></div>
-              <div class="spbcigs-dropdown" v-if="best_opt">
-                <div
-                  class="spbcigsd-option"
-                  @click="setBest(c._id)"
-                  v-for="(c, key) in opts.bestPractice"
-                  v-bind:key="'i' + key"
-                >
-                  {{ c.name }}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!--     Роль     -->
-          <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              {{ lang === "en" ? "Role" : "Роль" }}:
-            </div>
-            <div class="spbcig-select">
-              {{
-                getName(user.partnership.role, "role") ||
-                  (lang === "en" ? "Select role" : "Выберите роль")
-              }}
-              <i class="fa fa-angle-down" aria-hidden="true"></i>
-              <div class="spbcigs-click" @click="toggleRole2()"></div>
-              <div class="spbcigs-dropdown" v-if="role2_opt">
-                <div
-                  class="spbcigsd-option"
-                  @click="setRole2(c._id)"
-                  v-for="(c, key) in opts.role"
-                  v-bind:key="'r2' + key"
-                >
-                  {{ c.name }}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <button
         class="btn btn-block btn-outline btn-rounded btn-success"
         @click="save()"
       >
-        {{ lang === "en" ? "save" : "сохранить" }}
+        Cохранить
       </button>
     </div>
   </div>
@@ -497,7 +399,8 @@ export default {
   props: ["data"],
   data() {
     return {
-      lang: "en",
+      permission: "user",
+      lang: "ru",
       phonecodes: [""],
       opts: {
         role: []
@@ -514,35 +417,30 @@ export default {
         prefix: null,
         name: "",
         sname: "",
-        prefname: "",
+        birthday: "",
+        university: "",
+        speciality: "",
+        endingYear: "",
         country: "",
+        city: "",
         photo: "",
         email: "",
-        organization: {
-          name: "",
-          position: "",
-          role: "",
-          problems: "",
-          perspectives: "",
-          barriers: ""
-        },
-        permission: "user",
-        wsrProducts: [],
-        partnership: {
-          country: [], // max - 3
-          partnershipMode: [], // max - 3
-          bestPractice: [], // max - 3
-          industry: [], // max - 3
-          role: [] // max - 3
+        hardSkills: [],
+        softSkills: [],
+        questionsForUser: {
+          enoughMoney: "",
+          digital: "",
+          english: "",
+          anotherLanguage: "",
+          courses: "",
+          isWorldSkills: "",
+          isHackaton: "",
+          isWorking: ""
         }
       }
     };
   },
   created() {
-    this.lang = localStorageProxy.getItem("lang");
-    this.$root.$on("selectcomp", obj => {
-      this.toggleWsr(this.opts.wsrProducts[obj.id]._id);
-    });
     // тут
     App.User.getTags().then(data => {
       this.opts = data;
@@ -554,13 +452,11 @@ export default {
     },
     save() {
       Request.post("/api/admin/reg", this.user)
-        .then(() => {})
+        .then(() => {
+          App.Mpage.closeLast();
+        })
         .catch(() => {
-          if (this.lang == "en") {
-            swal("Error", "Fill in the required fields", "error");
-          } else {
             swal("Ошибка", "Заполните обязательные поля", "error");
-          }
         });
     },
     convertImg() {
@@ -822,6 +718,28 @@ export default {
         });
       } else {
         this.user.wsrProducts.push(v);
+      }
+    },
+    toggleHardSkills(v) {
+      if (this.user.hardSkills.includes(v)) {
+        this.user.hardSkills.forEach((item, i) => {
+          if (item === v) {
+            this.user.hardSkills.splice(i, 1);
+          }
+        });
+      } else {
+        this.user.hardSkills.push(v);
+      }
+    },
+    toggleSoftSkills(v) {
+      if (this.user.softSkills.includes(v)) {
+        this.user.softSkills.forEach((item, i) => {
+          if (item === v) {
+            this.user.softSkills.splice(i, 1);
+          }
+        });
+      } else {
+        this.user.softSkills.push(v);
       }
     }
   },

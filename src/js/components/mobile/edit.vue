@@ -160,6 +160,7 @@
         </div>
       </div>
     </div>
+
     <div class="sp-block">
       <!-- title организация -->
       <div class="spb-title">ВУЗ*</div>
@@ -393,8 +394,7 @@ import CompDesc from "./compdesc.vue";
 export default {
   data() {
     return {
-      permission: "user",
-      lang: "ru",
+      lang: "en",
       phonecodes: [""],
       opts: {
         role: []
@@ -408,29 +408,48 @@ export default {
       role2_opt: false,
       best_opt: false,
       user: {
+        _id: "",
         prefix: null,
         name: App.User.getName(),
         sname: App.User.getSname(),
+        country: "",
+        city: "",
+        photo: "",
+        hardSkills: [],
+        softSkills: [],
+        permission: "",
+        email: App.User.getEmail(),
+
+        /* поля юзера */
         birthday: "",
         university: "",
         speciality: "",
         endingYear: "",
-        country: "",
-        city: "",
-        photo: "",
-        email: App.User.getEmail(),
-        hardSkills: [],
-        softSkills: [],
         questionsForUser: {
-          enoughMoney: "",
           digital: "",
           english: "",
           anotherLanguage: "",
-          courses: "",
-          isWorldSkills: "",
           isHackaton: "",
+          isWorldSkills: "",
+          courses: "",
+          enoughMoney: "",
+          achievements: "",
           isWorking: ""
-        }
+        },
+
+        /* поля спикера */
+        companyName: "",
+        companyUrl: "",
+        vacanciesUrl: "",
+        businessSphere: "",
+        questionsForSpeaker: {
+          yourProduct: "",
+          companyTasks: "",
+          positions: "",
+          candidatsTasks: "",
+          intership: ""
+        },
+        recording_status: 1
       }
     };
   },
@@ -444,54 +463,63 @@ export default {
     });
     App.User.getTags().then(data => {
       this.opts = data;
-      if ((this.lang = "en")) {
-        this.opts.wsrProducts[0].name = "Expert society development";
-        this.opts.wsrProducts[1].name = "SkillsCamp";
-        this.opts.wsrProducts[2].name = "WorldSkills Academy";
-        this.opts.wsrProducts[3].name = "SkillsPassport";
-        this.opts.wsrProducts[4].name = "FutureSkills";
-        this.opts.wsrProducts[5].name = "JuniorSkills";
-        this.opts.wsrProducts[6].name = "DigitalSkills";
-        this.opts.wsrProducts[7].name =
-          "WorldSkills Hi-Tech and industry competitions";
-        this.opts.wsrProducts[8].name = "Skills of the Wise";
-        this.opts.wsrProducts[9].name =
-          "Transformation of national/regional skills development system";
-      }
     });
     App.User.getUserInfo().then(data => {
-      this.user.name = data.user.name;
-      this.user.sname = data.user.sname;
+      console.log(data);
+      this.user._id = data.user._id || "";
+      this.user.name = data.user.name || "";
       this.user.birthday = data.user.birthday || "";
-      this.user.email = data.user.email;
+      this.user.sname = data.user.sname || "";
       this.user.prefix = data.user.prefix || "";
       this.user.photo = data.user.photo || "";
       this.user.country = data.user.country || "";
       this.user.city = data.user.city || "";
       this.user.phone = data.user.phone || "";
+      this.user.email = data.user.email || "";
+      this.user.permission = data.user.permission || "";
       this.user.hardSkills = data.user.hardSkills || [];
       this.user.softSkills = data.user.softSkills || [];
-      this.user.university = data.user.university || "";
-      this.user.speciality = data.user.speciality || "";
-      this.user.endingYear = data.user.endingYear || "";
 
-      /* вопросы */
-      this.user.questionsForUser.enoughMoney =
-        data.user.questionsForUser.enoughMoney || "";
-      this.user.questionsForUser.digital =
-        data.user.questionsForUser.digital || "";
-      this.user.questionsForUser.english =
-        data.user.questionsForUser.english || "";
-      this.user.questionsForUser.anotherLanguage =
-        data.user.questionsForUser.anotherLanguage || "";
-      this.user.questionsForUser.isWorldSkills =
-        data.user.questionsForUser.isWorldSkills || "";
-      this.user.questionsForUser.isHackaton =
-        data.user.questionsForUser.isHackaton || "";
-      this.user.questionsForUser.courses =
-        data.user.questionsForUser.courses || "";
-      this.user.questionsForUser.isWorldSkills =
-        data.user.questionsForUser.isWorking || "";
+      if (data.user.permission === "speaker") {
+        this.user.companyName = data.user.companyName || "";
+        this.user.companyUrl = data.user.companyUrl || "";
+        this.user.vacanciesUrl = data.user.vacanciesUrl || "";
+        this.user.businessSphere = data.user.businessSphere || "";
+
+        this.user.questionsForSpeaker.yourProduct =
+                data.user.questionsForSpeaker.yourProduct || "";
+        this.user.questionsForSpeaker.companyTasks =
+                data.user.questionsForSpeaker.companyTasks || "";
+        this.user.questionsForSpeaker.positions =
+                data.user.questionsForSpeaker.positions || "";
+        this.user.questionsForSpeaker.candidatsTasks =
+                data.user.questionsForSpeaker.candidatsTasks || "";
+        this.user.questionsForSpeaker.intership =
+                data.user.questionsForSpeaker.intership || "";
+
+      } else if (data.user.permission === "user") {
+        this.user.birthday = data.user.birthday || "";
+        this.user.university = data.user.university || "";
+        this.user.speciality = data.user.speciality || "";
+        this.user.endingYear = data.user.endingYear || "";
+
+        this.user.questionsForUser.enoughMoney =
+                data.user.questionsForUser.enoughMoney || "";
+        this.user.questionsForUser.digital =
+                data.user.questionsForUser.digital || "";
+        this.user.questionsForUser.english =
+                data.user.questionsForUser.english || "";
+        this.user.questionsForUser.anotherLanguage =
+                data.user.questionsForUser.anotherLanguage || "";
+        this.user.questionsForUser.isWorldSkills =
+                data.user.questionsForUser.isWorldSkills || "";
+        this.user.questionsForUser.isHackaton =
+                data.user.questionsForUser.isHackaton || "";
+        this.user.questionsForUser.courses =
+                data.user.questionsForUser.courses || "";
+        this.user.questionsForUser.isWorldSkills =
+                data.user.questionsForUser.isWorking || "";
+      }
     });
   },
   methods: {
