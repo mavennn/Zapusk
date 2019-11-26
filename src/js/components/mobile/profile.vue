@@ -3,7 +3,7 @@
     <!--   Тут персональная информация   -->
     <div class="sp-block">
       <div class="spb-title">
-        {{ lang == "en" ? "Personal Info" : "Персональная информация" }}
+        Персональная информация
       </div>
       <div class="spb-content">
         <div class="spbc-row">
@@ -47,7 +47,7 @@
             <!--      телефон        -->
             <div class="spbcrd-row">
               <div class="spbcrdr-label">
-                {{ lang == "en" ? "Phone" : "Телефон" }}:
+                Телефон
               </div>
               <div class="spbcrdr-val">{{ user.phone }}</div>
             </div>
@@ -62,13 +62,13 @@
     <!-- Профиль спикера -->
     <div class="sp-block" v-if="user.permission === 'speaker'">
       <div class="spb-title">
-        {{ lang == "en" ? "My organization" : "Моя организация" }}
+        Моя организация
       </div>
       <div class="spb-content">
         <!--     Организация       -->
         <div class="spbc-row">
           <div class="spbcr-label">
-            {{ lang == "en" ? "My organization" : "Моя организация" }}:
+            Моя организация
           </div>
           <div class="spbcr-val">{{ user.companyName }}</div>
         </div>
@@ -76,7 +76,7 @@
         <!--     Сфера бизнеса     -->
         <div class="spbc-row">
           <div class="spbcr-label">
-            {{ lang == "en" ? "Business sphere" : "Сфера бизнеса" }}:
+            Сфера бизнеса
           </div>
           <div class="spbcr-val">
             {{ user.businessSphere }}
@@ -86,7 +86,7 @@
         <!--    Cсылка на сайт компании     -->
         <div class="spbc-wr">
           <div class="spbcw-label">
-            {{ lang == "en" ? "Company URL" : "Ссылка на сайт компании" }}
+            Ссылка на сайт компании
           </div>
           <div class="spbcw-val">{{ user.companyUrl || "-" }}</div>
         </div>
@@ -94,7 +94,7 @@
         <!--     Продукт компании     -->
         <div class="spbc-wr">
           <div class="spbcw-label">
-            {{ lang == "en" ? "Company Product" : "Продукт компании?" }}
+            Продукт компании
           </div>
           <div class="spbcw-val">
             {{ user.questionsForSpeaker.yourProduct || "-" }}
@@ -104,11 +104,7 @@
         <!--    Вопрос про задачи      -->
         <div class="spbc-wr">
           <div class="spbcw-label">
-            {{
-              lang == "en"
-                ? "What tasks does your company solve ?"
-                : "Какие задачи решает ваша компания ?"
-            }}
+            Какие задачи решает ваша компания
           </div>
           <div class="spbcw-val">
             {{ user.questionsForSpeaker.companyTasks || "-" }}
@@ -118,11 +114,7 @@
         <!--    Вопрос про позиции      -->
         <div class="spbc-wr">
           <div class="spbcw-label">
-            {{
-              lang == "en"
-                ? "What positions do you need candidates for ?"
-                : "На какие позиции вам нужны кандидаты ?"
-            }}
+            На какие позиции вам нужны кандидаты
           </div>
           <div class="spbcw-val">
             {{ user.questionsForSpeaker.positions || "-" }}
@@ -132,11 +124,7 @@
         <!--    Вопрос про задачи для кандидатов      -->
         <div class="spbc-wr">
           <div class="spbcw-label">
-            {{
-              lang == "en"
-                ? "What tasks will be entrusted to candidates ?"
-                : "Какие задачи будут поручены кандидатам ?"
-            }}
+            Какие задачи будут поручены кандидатам
           </div>
           <div class="spbcw-val">
             {{ user.questionsForSpeaker.candidatsTasks || "-" }}
@@ -146,11 +134,7 @@
         <!--    Вопрос про стажировку      -->
         <div class="spbc-wr">
           <div class="spbcw-label">
-            {{
-              lang == "en"
-                ? "Are you ready to pay for an internship ?"
-                : "Готовы ли вы оплачивать стажировку ?"
-            }}
+            Готовы ли вы оплачивать стажировку
           </div>
           <div class="spbcw-val">
             {{ user.questionsForSpeaker.intership || "-" }}
@@ -162,13 +146,13 @@
     <!-- Профиль участника -->
     <div class="sp-block" v-if="user.permission === 'user'">
       <div class="spb-title">
-        {{ lang == "en" ? "My University" : "Мой ВУЗ" }}
+        Мой ВУЗ
       </div>
       <div class="spb-content">
         <!--     Название вуза       -->
         <div class="spbc-row">
           <div class="spbcr-label">
-            {{ lang == "en" ? "My university" : "Мой ВУЗ" }}:
+            Мой ВУЗ
           </div>
           <div class="spbcr-val">{{ user.university }}</div>
         </div>
@@ -176,7 +160,7 @@
         <!--     Ваша специальность       -->
         <div class="spbc-row">
           <div class="spbcr-label">
-            {{ lang == "en" ? "My speciality" : "Моя специальность" }}:
+            Моя специальность
           </div>
           <div class="spbcr-val">{{ user.speciality }}</div>
         </div>
@@ -184,7 +168,7 @@
         <!--     Год окончания       -->
         <div class="spbc-row">
           <div class="spbcr-label">
-            {{ lang == "en" ? "Ending Year" : "Год окончания" }}:
+            Год окончания
           </div>
           <div class="spbcr-val">{{ user.endingYear }}</div>
         </div>
@@ -192,11 +176,7 @@
         <!--    Вопрос про английский      -->
         <div class="spbc-wr">
           <div class="spbcw-label">
-            {{
-              lang == "en"
-                ? "What tasks does your company solve ?"
-                : "Каким уровнем английского языка вы владете ?"
-            }}
+            Каким уровнем английского языка вы владете
           </div>
           <div class="spbcw-val">
             {{ user.questionsForUser.english || "-" }}
@@ -206,11 +186,7 @@
         <!--    Вопрос про другие языки      -->
         <div class="spbc-wr">
           <div class="spbcw-label">
-            {{
-              lang == "en"
-                ? "What tasks does your company solve ?"
-                : "Владеете ли вы другими языками?"
-            }}
+            Владеете ли вы другими языками
           </div>
           <div class="spbcw-val">
             {{ user.questionsForUser.anotherLanguage || "-" }}
@@ -221,7 +197,7 @@
         <div class="spbc-wr">
           <div class="spbcw-label">
             Представь, что тебе достаточно денег до конца твоей жизни. Чем ты
-            будешь заниматься?
+            будешь заниматься
           </div>
           <div class="spbcw-val">
             {{ user.questionsForUser.enoughMoney || "-" }}
@@ -231,11 +207,7 @@
         <!--    Вопрос про digital      -->
         <div class="spbc-wr">
           <div class="spbcw-label">
-            {{
-              lang == "en"
-                ? "What tasks does your company solve ?"
-                : "Какими digital компетенциями вы обладаете и на каком уровне ?"
-            }}
+            Какими digital компетенциями вы обладаете и на каком уровне
           </div>
           <div class="spbcw-val">
             {{ user.questionsForUser.digital || "-" }}
@@ -245,11 +217,7 @@
         <!--    Вопрос про worldskills      -->
         <div class="spbc-wr">
           <div class="spbcw-label">
-            {{
-              lang == "en"
-                ? "What tasks does your company solve ?"
-                : "Участвовали ли вы ранее в чемионате WorldSkills ?"
-            }}
+            Участвовали ли вы ранее в чемионате WorldSkills
           </div>
           <div class="spbcw-val">
             {{ user.questionsForUser.isWorldSkills || "-" }}
@@ -259,11 +227,7 @@
         <!--    Вопрос про Hackatons      -->
         <div class="spbc-wr">
           <div class="spbcw-label">
-            {{
-              lang == "en"
-                ? "What tasks does your company solve ?"
-                : "Участвовали ли вы ранее в чемионате хакатонах? Если да, то в каких ?"
-            }}
+            Участвовали ли вы ранее в чемионате хакатонах? Если да, то в каких
           </div>
           <div class="spbcw-val">
             {{ user.questionsForUser.isHackaton || "-" }}
@@ -273,11 +237,7 @@
         <!--    Вопрос про школы программирвоания      -->
         <div class="spbc-wr">
           <div class="spbcw-label">
-            {{
-              lang == "en"
-                ? "What tasks does your company solve ?"
-                : "Проходил ли или проходишь сейчас школу или курс программирования"
-            }}
+            Проходил ли или проходишь сейчас школу или курс программирования
           </div>
           <div class="spbcw-val">
             {{ user.questionsForUser.courses || "-" }}
@@ -297,8 +257,11 @@
 
     <!--    Теги   -->
     <div class="sp-block">
-      <div class="spb-title">
-        {{ lang == "en" ? "My Skills" : "Мои навыки" }}
+      <div class="spb-title" v-if="user.permission === 'speaker'">
+        Необходимые навыки
+      </div>
+      <div class="spb-title" v-if="user.permission === 'user'">
+        Мои навыки
       </div>
       <div class="spb-content">
         <div class="spbc-onetag" v-for="wsr in user.hardSkills" :key="wsr">
