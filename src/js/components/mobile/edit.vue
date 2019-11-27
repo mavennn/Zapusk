@@ -24,39 +24,39 @@
         </div>
 
         <!-- форма обращения -->
-<!--        <div class="spbc-inputgroup">-->
-<!--          <div class="spbcig-label">-->
-<!--            {{ lang == "en" ? "Prefix" : "Форма обращения" }}*:-->
-<!--          </div>-->
-<!--          <div class="spbcig-select">-->
-<!--            {{-->
-<!--              user.prefix ||-->
-<!--                (lang == "en" ? "Select prefix" : "Выберите форму обращения")-->
-<!--            }}-->
-<!--            <i class="fa fa-angle-down" aria-hidden="true"></i>-->
-<!--            <div class="spbcigs-click" @click="togglePrefix()"></div>-->
-<!--            <div class="spbcigs-dropdown" v-if="prefix_opt">-->
-<!--              <div-->
-<!--                class="spbcigsd-option"-->
-<!--                @click="setPrefix(lang == 'en' ? 'Mr.' : 'г-н')"-->
-<!--              >-->
-<!--                {{ lang == "en" ? "Mr." : "г-н" }}-->
-<!--              </div>-->
-<!--              <div-->
-<!--                class="spbcigsd-option"-->
-<!--                @click="setPrefix(lang == 'en' ? 'Mrs.' : 'г-жа')"-->
-<!--              >-->
-<!--                {{ lang == "en" ? "Mrs." : "г-жа" }}-->
-<!--              </div>-->
-<!--              <div-->
-<!--                class="spbcigsd-option"-->
-<!--                @click="setPrefix(lang == 'en' ? 'Dr.' : 'доктор')"-->
-<!--              >-->
-<!--                {{ lang == "en" ? "Mrs." : "доктор" }}-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
+        <!--        <div class="spbc-inputgroup">-->
+        <!--          <div class="spbcig-label">-->
+        <!--            {{ lang == "en" ? "Prefix" : "Форма обращения" }}*:-->
+        <!--          </div>-->
+        <!--          <div class="spbcig-select">-->
+        <!--            {{-->
+        <!--              user.prefix ||-->
+        <!--                (lang == "en" ? "Select prefix" : "Выберите форму обращения")-->
+        <!--            }}-->
+        <!--            <i class="fa fa-angle-down" aria-hidden="true"></i>-->
+        <!--            <div class="spbcigs-click" @click="togglePrefix()"></div>-->
+        <!--            <div class="spbcigs-dropdown" v-if="prefix_opt">-->
+        <!--              <div-->
+        <!--                class="spbcigsd-option"-->
+        <!--                @click="setPrefix(lang == 'en' ? 'Mr.' : 'г-н')"-->
+        <!--              >-->
+        <!--                {{ lang == "en" ? "Mr." : "г-н" }}-->
+        <!--              </div>-->
+        <!--              <div-->
+        <!--                class="spbcigsd-option"-->
+        <!--                @click="setPrefix(lang == 'en' ? 'Mrs.' : 'г-жа')"-->
+        <!--              >-->
+        <!--                {{ lang == "en" ? "Mrs." : "г-жа" }}-->
+        <!--              </div>-->
+        <!--              <div-->
+        <!--                class="spbcigsd-option"-->
+        <!--                @click="setPrefix(lang == 'en' ? 'Dr.' : 'доктор')"-->
+        <!--              >-->
+        <!--                {{ lang == "en" ? "Mrs." : "доктор" }}-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
 
         <!-- Имя -->
         <div class="spbc-inputgroup">
@@ -174,8 +174,7 @@
             v-model="user.university"
             class="spbcig-val"
             type="text"
-            :placeholder="'Введите название ВУЗ\'а'
-            "
+            :placeholder="'Введите название ВУЗ\'а'"
           />
         </div>
 
@@ -208,7 +207,8 @@
         <!-- Вопрос про достаточно денег -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            Представь, что тебе достаточно денег до конца твоей жизни. Чем ты будешь заниматься?
+            Представь, что тебе достаточно денег до конца твоей жизни. Чем ты
+            будешь заниматься?
           </div>
           <input
             v-model="user.questionsForUser.enoughMoney"
@@ -308,17 +308,16 @@
         Компания
       </div>
       <div class="spb-content">
-
         <!--     Организация       -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
             Комания:
           </div>
           <input
-                  v-model="user.companyName"
-                  class="spbcig-val"
-                  type="text"
-                  :placeholder="'Введите название компании'"
+            v-model="user.companyName"
+            class="spbcig-val"
+            type="text"
+            :placeholder="'Введите название компании'"
           />
         </div>
 
@@ -326,30 +325,26 @@
         <div class="spbc-inputgroup">
           <div class="spbcig-label">Сфера бизнеса:</div>
           <input
-                  v-model="user.businessSphere"
-                  class="spbcig-val"
-                  type="text"
-                  :placeholder="'Введите сферу бизнеса'"
+            v-model="user.businessSphere"
+            class="spbcig-val"
+            type="text"
+            :placeholder="'Введите сферу бизнеса'"
           />
         </div>
 
         <!--    Cсылка на сайт компании     -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">Ссылка на сайт компании"</div>
-          <input
-                  v-model="user.companyUrl"
-                  class="spbcig-val"
-                  type="text"
-          />
+          <input v-model="user.companyUrl" class="spbcig-val" type="text" />
         </div>
 
         <!--     Продукт компании     -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">"Продукт компании</div>
           <input
-                  v-model="user.questionsForSpeaker.yourProduct"
-                  class="spbcig-val"
-                  type="text"
+            v-model="user.questionsForSpeaker.yourProduct"
+            class="spbcig-val"
+            type="text"
           />
         </div>
 
@@ -357,9 +352,9 @@
         <div class="spbc-inputgroup">
           <div class="spbcig-label">Какие задачи решает ваша компания?</div>
           <input
-                  v-model="user.questionsForSpeaker.companyTasks"
-                  class="spbcig-val"
-                  type="text"
+            v-model="user.questionsForSpeaker.companyTasks"
+            class="spbcig-val"
+            type="text"
           />
         </div>
 
@@ -367,19 +362,21 @@
         <div class="spbc-inputgroup">
           <div class="spbcig-label">На какие позиции вам нужны кандидаты?</div>
           <input
-                  v-model="user.questionsForSpeaker.positions"
-                  class="spbcig-val"
-                  type="text"
+            v-model="user.questionsForSpeaker.positions"
+            class="spbcig-val"
+            type="text"
           />
         </div>
 
         <!--    Вопрос про задачи для кандидатов      -->
         <div class="spbc-inputgroup">
-          <div class="spbcig-label">Какие задачи будут поручены кандидатам?</div>
+          <div class="spbcig-label">
+            Какие задачи будут поручены кандидатам?
+          </div>
           <input
-                  v-model="user.questionsForSpeaker.candidatsTasks"
-                  class="spbcig-val"
-                  type="text"
+            v-model="user.questionsForSpeaker.candidatsTasks"
+            class="spbcig-val"
+            type="text"
           />
         </div>
 
@@ -387,12 +384,11 @@
         <div class="spbc-inputgroup">
           <div class="spbcig-label">Готовы ли вы оплачивать стажировку?</div>
           <input
-                  v-model="user.questionsForSpeaker.intership"
-                  class="spbcig-val"
-                  type="text"
+            v-model="user.questionsForSpeaker.intership"
+            class="spbcig-val"
+            type="text"
           />
         </div>
-
       </div>
     </div>
 
@@ -436,38 +432,38 @@
         </div>
 
         <!-- title softskills -->
-        <div class="spb-title" v-if="user.permission === 'speaker'">
-          Soft Skills*
-        </div>
-        <div class="spbc-advice">
-          Нажмите на навыки, интересующие Вас
-        </div>
+        <!--        <div class="spb-title" v-if="user.permission === 'speaker'">-->
+        <!--          Soft Skills*-->
+        <!--        </div>-->
+        <!--        <div class="spbc-advice">-->
+        <!--          Нажмите на навыки, интересующие Вас-->
+        <!--        </div>-->
 
-        <div
-          class="spbc-taggroup"
-          v-for="(w, key) in opts.softSkills"
-          v-bind:key="'w' + key"
-        >
-          <div
-            @click="toggleSoftSkill(w._id)"
-            class="spbc-onetag"
-            :class="{
-              'spbct-active': user.softSkills && user.softSkills.includes(w._id)
-            }"
-          >
-            {{ w.name }}
-          </div>
-          <div
-            v-if="![0, 8, 9].includes(key)"
-            class="spbc-taginfo"
-            @click="
-              getTagInfo(
-                key,
-                user.wsrProducts && user.wsrProducts.includes(w._id)
-              )
-            "
-          ></div>
-        </div>
+        <!--        <div-->
+        <!--          class="spbc-taggroup"-->
+        <!--          v-for="(w, key) in opts.softSkills"-->
+        <!--          v-bind:key="'w' + key"-->
+        <!--        >-->
+        <!--          <div-->
+        <!--            @click="toggleSoftSkill(w._id)"-->
+        <!--            class="spbc-onetag"-->
+        <!--            :class="{-->
+        <!--              'spbct-active': user.softSkills && user.softSkills.includes(w._id)-->
+        <!--            }"-->
+        <!--          >-->
+        <!--            {{ w.name }}-->
+        <!--          </div>-->
+        <!--          <div-->
+        <!--            v-if="![0, 8, 9].includes(key)"-->
+        <!--            class="spbc-taginfo"-->
+        <!--            @click="-->
+        <!--              getTagInfo(-->
+        <!--                key,-->
+        <!--                user.wsrProducts && user.wsrProducts.includes(w._id)-->
+        <!--              )-->
+        <!--            "-->
+        <!--          ></div>-->
+        <!--        </div>-->
       </div>
     </div>
 
@@ -577,16 +573,15 @@ export default {
         this.user.businessSphere = data.user.businessSphere || "";
 
         this.user.questionsForSpeaker.yourProduct =
-                data.user.questionsForSpeaker.yourProduct || "";
+          data.user.questionsForSpeaker.yourProduct || "";
         this.user.questionsForSpeaker.companyTasks =
-                data.user.questionsForSpeaker.companyTasks || "";
+          data.user.questionsForSpeaker.companyTasks || "";
         this.user.questionsForSpeaker.positions =
-                data.user.questionsForSpeaker.positions || "";
+          data.user.questionsForSpeaker.positions || "";
         this.user.questionsForSpeaker.candidatsTasks =
-                data.user.questionsForSpeaker.candidatsTasks || "";
+          data.user.questionsForSpeaker.candidatsTasks || "";
         this.user.questionsForSpeaker.intership =
-                data.user.questionsForSpeaker.intership || "";
-
+          data.user.questionsForSpeaker.intership || "";
       } else if (data.user.permission === "user") {
         this.user.birthday = data.user.birthday || "";
         this.user.university = data.user.university || "";
@@ -594,21 +589,21 @@ export default {
         this.user.endingYear = data.user.endingYear || "";
 
         this.user.questionsForUser.enoughMoney =
-                data.user.questionsForUser.enoughMoney || "";
+          data.user.questionsForUser.enoughMoney || "";
         this.user.questionsForUser.digital =
-                data.user.questionsForUser.digital || "";
+          data.user.questionsForUser.digital || "";
         this.user.questionsForUser.english =
-                data.user.questionsForUser.english || "";
+          data.user.questionsForUser.english || "";
         this.user.questionsForUser.anotherLanguage =
-                data.user.questionsForUser.anotherLanguage || "";
+          data.user.questionsForUser.anotherLanguage || "";
         this.user.questionsForUser.isWorldSkills =
-                data.user.questionsForUser.isWorldSkills || "";
+          data.user.questionsForUser.isWorldSkills || "";
         this.user.questionsForUser.isHackaton =
-                data.user.questionsForUser.isHackaton || "";
+          data.user.questionsForUser.isHackaton || "";
         this.user.questionsForUser.courses =
-                data.user.questionsForUser.courses || "";
+          data.user.questionsForUser.courses || "";
         this.user.questionsForUser.isWorking =
-                data.user.questionsForUser.isWorking || "";
+          data.user.questionsForUser.isWorking || "";
       }
     });
   },
@@ -617,15 +612,19 @@ export default {
       this.$root.$emit("compdesc", { id: key, selected: selected });
     },
     save() {
-      App.User.editProfile(this.user)
-        .then(() => {
-          // App.Mpage.closeLast();
-          location.href="/profile";
-          // this.goRoute("/profile");
-        })
-        .catch(() => {
+      if (this.user.hardSkills.length > 5) {
+        swal("Ошибка", "Можно выбрать только 5 тегов", "error");
+      } else {
+        App.User.editProfile(this.user)
+          .then(() => {
+            // App.Mpage.closeLast();
+            location.href = "/profile";
+            // this.goRoute("/profile");
+          })
+          .catch(() => {
             swal("Ошибка", "Заполните обязательные поля", "error");
-        });
+          });
+      }
     },
     convertImg() {
       const file = document.getElementById("img_input").files[0];
