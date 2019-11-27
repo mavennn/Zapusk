@@ -211,15 +211,14 @@ export default {
             if (App.User.isSpeaker()) {
               val.username =
                 this.users[val.user].name + " " + this.users[val.user].sname;
-              val.organization = this.users[val.user].organization.name;
+              val.university = this.users[val.user].university;
               val.country = this.users[val.user].country;
               val.photo = this.users[val.user].photo;
-              console.log(this.users[val.user].photo);
               return val;
             } else {
               val.username =
                 this.users[val.speaker].name + this.users[val.speaker].sname;
-              val.organization = this.users[val.speaker].organization.name;
+              val.companyName = this.users[val.speaker].companyName;
               val.country = this.users[val.speaker].country;
               val.photo = this.users[val.speaker].photo;
               return val;

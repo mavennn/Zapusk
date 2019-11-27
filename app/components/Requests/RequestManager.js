@@ -30,7 +30,7 @@ global.requestManager = new (class {
 
     let rating = 0;
 
-    // if (!empty(speaker.partnership) && speaker.partnership.country.length) {
+    // if (!empty(speaker.hardSkills) && speaker.partnership.country.length) {
     //   if (speaker.partnership.country.indexOf(user.country) >= 0) {
     //     const tag = tagsManager.getTagById(user.country);
     //     rating = rating + tag.weight;
@@ -89,6 +89,12 @@ global.requestManager = new (class {
     //   });
     // }
 
+    let speakerTags = speaker.hardSkills.concat(speaker.softSkills);
+    let userTags = user.hardSkills.concat(user.softSkills);
+
+
+    // это нужная реализация
+
     // if (speaker.wsrProducts.length && user.wsrProducts.length) {
     //   speaker.wsrProducts.map(val => {
     //     if (user.wsrProducts.indexOf(val) >= 0) {
@@ -97,6 +103,18 @@ global.requestManager = new (class {
     //     }
     //   });
     // }
+
+
+    // проставляются рейтинги тегам
+    // если у спикера и юзера есть одинаковые теги, этому тегу + 1 к рейтингу
+    if (speakerTags.length && userTags.length) {
+      speakerTags.map(val => {
+        if (userTags.indexOf(val) >= 0) {
+          const tag = tagsManager.getTagById(val);
+          rating = rating + tag.weight;
+        }
+      });
+    }
 
     // if (speaker.hidden_tags.indexOf(user.country) >= 0) {
     //   rating = rating + 3;
@@ -114,6 +132,8 @@ global.requestManager = new (class {
       params.status = 3;
     }
 
+
+    // создается заявка
     return suJson(await requestModel.create(params));
   }
 })();

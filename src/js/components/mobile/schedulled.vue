@@ -101,7 +101,7 @@ export default {
     return {
       lang: "en",
       days: [1],
-      active_day: 2,
+      active_day: 1,
       users: {},
       blocks: [
         {
@@ -135,20 +135,20 @@ export default {
     getMyMeetings() {
       Request.postJson("/api/user/meetings/forUser", { day: this.active_day })
         .then(data => {
+          console.log(data);
           this.users = data.users;
           this.blocks[0].events = data.meetings.map(val => {
             if (App.User.isSpeaker()) {
               val.username =
                 this.users[val.user].name + " " + this.users[val.user].sname;
-              val.organization = this.users[val.user].organization.name;
+              val.university = this.users[val.user].university;
               val.country = this.users[val.user].country;
               val.photo = this.users[val.user].photo;
-              console.log(this.users[val.user].photo);
               return val;
             } else {
               val.username =
                 this.users[val.speaker].name + this.users[val.speaker].sname;
-              val.organization = this.users[val.speaker].organization.name;
+              val.companyName = this.users[val.speaker].companyName;
               val.country = this.users[val.speaker].country;
               val.photo = this.users[val.speaker].photo;
               return val;
@@ -163,7 +163,6 @@ export default {
     getMyRequests() {
       Request.postJson("/api/user/requests/forUser", { day: this.active_day })
         .then(data => {
-          console.log(data);
           this.users = data.users;
           this.blocks[1].events = data.requests.map(val => {
             val.username =

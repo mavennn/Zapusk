@@ -11,8 +11,6 @@ global.scheduleManager = new (class {
   }
 
   async saveMany(data) {
-    console.log("data", data);
-
     if (!data.length) return erJson("Empty");
 
     for (let val of data) {

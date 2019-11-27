@@ -138,7 +138,6 @@ export default {
     getMeetings() {
       Request.post("/meetings/list")
         .then(data => {
-          console.log(data);
           this.names = data.users;
           data.meetings.forEach(element => {
             if (!this.times.includes(element.time)) {

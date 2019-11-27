@@ -17,8 +17,6 @@ module.exports = class extends AbstractCtrl {
       speaker: this.speakerId,
     });
 
-    console.log("reqs", requests);
-
     if (empty(requests)) return erJson("err");
 
     let users = {};

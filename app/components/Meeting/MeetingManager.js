@@ -59,14 +59,23 @@ global.meetingManager = new (class {
       .sort({ rating: -1 });
     let meetings = await meetingModel.find({ speaker: speakerId, day: day });
     let all_meetings = await meetingModel.find({ day: day });
+
+    // timeChecked = {
+    //  12:07: ["", "", "", "", "",],
+    //  12:17: ["", "", "", "", "",],
+    //  ...
+    //  13:42: ["", "", "", "", "",],
+    // }
     let time_checked = {};
     all_meetings.map(val => {
       if (!time_checked[val.time]) time_checked[val.time] = [];
       time_checked[val.time].push(val.user || "");
     });
+
+    // times_today = ["12:07", "12:17", ... , "13:42"]
     let times_today = []; // заполнение временного массива
     for (let tt in time_checked) {
-      if (tt != "byKey" && tt != "byKeyArr" && tt != "unique") {
+      if (tt != "byKey" && tt != "byKeyArr" && tt != "unique") { // true
         times_today.push(tt);
       }
     }
@@ -82,8 +91,10 @@ global.meetingManager = new (class {
     if (!requests.length) {
       status = 1;
     }
+
+    //пробегаем по массиву заявок к этому спикеру
     for (let key in requests) {
-      if (key != "byKey" && key != "byKeyArr" && key != "unique") {
+      if (key != "byKey" && key != "byKeyArr" && key != "unique") { // true
         let needKey;
         let valid = true;
         for (let kek = 0; kek < 10; kek++) {

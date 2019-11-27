@@ -24,7 +24,8 @@ app.post("/meetings/list", async (req, res) => {
   users = await userModel.find({ _id: users });
   users = users.map(val => val.forClient());
   users = users.byKey("_id");
-  res.send({ meetings, users }); //res.send({})
+
+  res.send({ meetings, users }); // res.send({})
 });
 
 app.get("/meetings", (req, res) => {

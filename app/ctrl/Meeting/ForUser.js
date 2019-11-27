@@ -29,8 +29,14 @@ module.exports = class extends AbstractCtrl {
       };
     }
 
+    console.log("params", params);
+
     let meetings = await meetingModel.find(params);
     let users = {};
+
+    // console.log("meetings", meetings);
+    // console.log("users", users);
+
     for (let meet of meetings) {
       if (this.user.permission == "speaker") {
         let sp = await userModel.findOne({ _id: meet.user });
@@ -44,6 +50,9 @@ module.exports = class extends AbstractCtrl {
         }
       }
     }
+
+
+
     return suJson({ meetings, users });
   }
 };

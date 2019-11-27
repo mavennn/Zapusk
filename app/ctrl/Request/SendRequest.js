@@ -105,6 +105,9 @@ module.exports = class extends AbstractCtrl {
         day: this.day,
         status: 2 // 1 - подана, 2 - принята, 3 - отклонена
       };
+
+
+
       let request = await requestModel.create(params);
       let meetings = await meetingModel.find({
         speaker: this.speakerId,
@@ -173,6 +176,7 @@ module.exports = class extends AbstractCtrl {
         meetings[needKey].rating = req.rating;
         meetings[needKey].user = req.user;
         request.status = 1;
+
         await req.save();
         await meetings[needKey].save();
         return suJson("su");
