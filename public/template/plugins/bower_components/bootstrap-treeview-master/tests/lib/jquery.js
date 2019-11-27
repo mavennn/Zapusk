@@ -3247,7 +3247,7 @@ jQuery.support = (function( support ) {
 	jQuery(function() {
 		var container, marginDiv,
 			// Support: Firefox, Android 2.3 (Prefixed box-sizing versions).
-			divReset = "padding:0;margin:0;border:0;display:block;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box",
+			divReset = "padding:0;margin:0;border:0;display:Block;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box",
 			body = document.getElementsByTagName("body")[ 0 ];
 
 		if ( !body ) {
@@ -3262,7 +3262,7 @@ jQuery.support = (function( support ) {
 		body.appendChild( container ).appendChild( div );
 		div.innerHTML = "";
 		// Support: Firefox, Android 2.3 (Prefixed box-sizing versions).
-		div.style.cssText = "-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:1px;border:1px;display:block;width:4px;margin-top:1%;position:absolute;top:1%";
+		div.style.cssText = "-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:1px;border:1px;display:Block;width:4px;margin-top:1%;position:absolute;top:1%";
 
 		// Workaround failing boxSizing test due to offsetWidth returning wrong value
 		// with some non-1 values of body zoom, ticket #13543
@@ -6484,7 +6484,7 @@ function css_defaultDisplay( nodeName ) {
 			// Use the already-created iframe if possible
 			iframe = ( iframe ||
 				jQuery("<iframe frameborder='0' width='0' height='0'/>")
-				.css( "cssText", "display:block !important" )
+				.css( "cssText", "display:Block !important" )
 			).appendTo( doc.documentElement );
 
 			// Always write a new HTML skeleton so Webkit and Firefox don't choke on reuse
@@ -6550,8 +6550,8 @@ jQuery(function() {
 				if ( computed ) {
 					// Support: Android 2.3
 					// WebKit Bug 13343 - getComputedStyle returns wrong value for margin-right
-					// Work around by temporarily setting element display to inline-block
-					return jQuery.swap( elem, { "display": "inline-block" },
+					// Work around by temporarily setting element display to inline-Block
+					return jQuery.swap( elem, { "display": "inline-Block" },
 						curCSS, [ elem, "marginRight" ] );
 				}
 			}
@@ -8144,12 +8144,12 @@ function defaultPrefilter( elem, props, opts ) {
 		// overflowY are set to the same value
 		opts.overflow = [ style.overflow, style.overflowX, style.overflowY ];
 
-		// Set display property to inline-block for height/width
+		// Set display property to inline-Block for height/width
 		// animations on inline elements that are having width/height animated
 		if ( jQuery.css( elem, "display" ) === "inline" &&
 				jQuery.css( elem, "float" ) === "none" ) {
 
-			style.display = "inline-block";
+			style.display = "inline-Block";
 		}
 	}
 

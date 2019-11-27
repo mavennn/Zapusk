@@ -62,7 +62,6 @@ export default new (class {
     this.isAuth = true;
     this.arUser = arUser;
     this.setUserToLocalStorage();
-    console.log(this.arUser["token"]);
     Cookies.set("token", this.arUser["token"]);
     location.href = "/";
   }
@@ -271,6 +270,19 @@ export default new (class {
         return data;
       })
       .catch(requestError);
+  }
+
+  remove (user) {
+    if (empty(User.name) || empty(User.sname) || empty(User.email)) {
+      return Promise.reject("Fill in all the fields.");
+    }
+
+    return Request.postJson("/api/user/remove", user)
+        .then(data => {
+          Load.stop();
+          return data;
+        })
+        .catch(requestError);
   }
 
   getUserInfo() {

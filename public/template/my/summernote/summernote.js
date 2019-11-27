@@ -1279,7 +1279,7 @@
     var splitPoint = function (point, isInline) {
       // find splitRoot, container
       //  - inline: splitRoot is a child of paragraph
-      //  - block: splitRoot is a child of bodyContainer
+      //  - Block: splitRoot is a child of bodyContainer
       var pred = isInline ? isPara : isBodyContainer;
       var ancestors = listAncestor(point.node, pred);
       var topAncestor = list.last(ancestors) || point.node;
@@ -2184,13 +2184,13 @@
         'insertOrderedList': 'Toggle ordered list',
         'outdent': 'Outdent on current paragraph',
         'indent': 'Indent on current paragraph',
-        'formatPara': 'Change current block\'s format as a paragraph(P tag)',
-        'formatH1': 'Change current block\'s format as H1',
-        'formatH2': 'Change current block\'s format as H2',
-        'formatH3': 'Change current block\'s format as H3',
-        'formatH4': 'Change current block\'s format as H4',
-        'formatH5': 'Change current block\'s format as H5',
-        'formatH6': 'Change current block\'s format as H6',
+        'formatPara': 'Change current Block\'s format as a paragraph(P tag)',
+        'formatH1': 'Change current Block\'s format as H1',
+        'formatH2': 'Change current Block\'s format as H2',
+        'formatH3': 'Change current Block\'s format as H3',
+        'formatH4': 'Change current Block\'s format as H4',
+        'formatH5': 'Change current Block\'s format as H5',
+        'formatH6': 'Change current Block\'s format as H6',
         'insertHorizontalRule': 'Insert horizontal rule',
         'linkDialog.show': 'Show Link Dialog'
       },
@@ -2510,7 +2510,7 @@
             return point;
           }
 
-          // point on block's edge
+          // point on Block's edge
           var block = dom.ancestor(point.node, dom.isBlock);
           if (((dom.isLeftEdgePointOf(point, block) || dom.isVoid(dom.prevPoint(point).node)) && !isLeftToRight) ||
               ((dom.isRightEdgePointOf(point, block) || dom.isVoid(dom.nextPoint(point).node)) && isLeftToRight)) {

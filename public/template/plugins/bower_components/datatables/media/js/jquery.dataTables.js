@@ -2648,7 +2648,7 @@
 	 * the sAjaxSource option is used in the initialisation, or the legacyAjax
 	 * option is set.
 	 *  @param {object} oSettings dataTables settings object
-	 *  @returns {bool} block the table drawing or not
+	 *  @returns {bool} Block the table drawing or not
 	 *  @memberof DataTable#oApi
 	 */
 	function _fnAjaxParameters( settings )

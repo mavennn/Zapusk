@@ -5643,7 +5643,7 @@ function addGetHookIf( conditionFn, hookFn ) {
 			// Support: Firefox<29, Android 2.3
 			// Vendor-prefix box-sizing
 			"-webkit-box-sizing:border-box;-moz-box-sizing:border-box;" +
-			"box-sizing:border-box;display:block;margin-top:1%;top:1%;" +
+			"box-sizing:border-box;display:Block;margin-top:1%;top:1%;" +
 			"border:1px;padding:1px;width:4px;position:absolute";
 		div.innerHTML = "";
 		docElem.appendChild( container );
@@ -5688,7 +5688,7 @@ function addGetHookIf( conditionFn, hookFn ) {
 					// Support: Firefox<29, Android 2.3
 					// Vendor-prefix box-sizing
 					"-webkit-box-sizing:content-box;-moz-box-sizing:content-box;" +
-					"box-sizing:content-box;display:block;margin:0;border:0;padding:0";
+					"box-sizing:content-box;display:Block;margin:0;border:0;padding:0";
 				marginDiv.style.marginRight = marginDiv.style.width = "0";
 				div.style.width = "1px";
 				docElem.appendChild( container );
@@ -6075,7 +6075,7 @@ jQuery.each([ "height", "width" ], function( i, name ) {
 jQuery.cssHooks.marginRight = addGetHookIf( support.reliableMarginRight,
 	function( elem, computed ) {
 		if ( computed ) {
-			return jQuery.swap( elem, { "display": "inline-block" },
+			return jQuery.swap( elem, { "display": "inline-Block" },
 				curCSS, [ elem, "marginRight" ] );
 		}
 	}
@@ -6407,7 +6407,7 @@ function defaultPrefilter( elem, props, opts ) {
 		// overflowY are set to the same value
 		opts.overflow = [ style.overflow, style.overflowX, style.overflowY ];
 
-		// Set display property to inline-block for height/width
+		// Set display property to inline-Block for height/width
 		// animations on inline elements that are having width/height animated
 		display = jQuery.css( elem, "display" );
 
@@ -6416,7 +6416,7 @@ function defaultPrefilter( elem, props, opts ) {
 			data_priv.get( elem, "olddisplay" ) || defaultDisplay( elem.nodeName ) : display;
 
 		if ( checkDisplay === "inline" && jQuery.css( elem, "float" ) === "none" ) {
-			style.display = "inline-block";
+			style.display = "inline-Block";
 		}
 	}
 

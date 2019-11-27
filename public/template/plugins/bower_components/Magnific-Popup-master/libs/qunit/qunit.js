@@ -689,7 +689,7 @@ config = {
 	// The queue of tests to run
 	queue: [],
 
-	// block until document ready
+	// Block until document ready
 	blocking: true,
 
 	// when enabled, show only failing tests
@@ -717,7 +717,7 @@ config = {
 		{
 			id: "notrycatch",
 			label: "No try-catch",
-			tooltip: "Enabling this will run tests outside of a try-catch block. Makes debugging exceptions in IE reasonable. Stored as query-strings."
+			tooltip: "Enabling this will run tests outside of a try-catch Block. Makes debugging exceptions in IE reasonable. Stored as query-strings."
 		}
 	],
 

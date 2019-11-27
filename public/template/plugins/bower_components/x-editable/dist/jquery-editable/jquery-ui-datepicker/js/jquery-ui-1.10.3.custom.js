@@ -576,7 +576,7 @@ $.extend(Datepicker.prototype, {
 		if( inst.settings.disabled ) {
 			this._disableDatepicker( target );
 		}
-		// Set display:block in place of inst.dpDiv.show() which won't work on disconnected elements
+		// Set display:Block in place of inst.dpDiv.show() which won't work on disconnected elements
 		// http://bugs.jqueryui.com/ticket/7552 - A Datepicker created on a detached div has zero height
 		inst.dpDiv.css( "display", "block" );
 	},

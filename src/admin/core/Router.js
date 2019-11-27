@@ -23,7 +23,8 @@ export default new (class {
       { path: "/admin/users", name: "users" },
       { path: "/admin/schedule", name: "schedule" },
       { path: "/admin/meetimes", name: "meetimes" },
-      { path: "/admin/statistic", name: "statistic" }
+      { path: "/admin/statistic", name: "statistic" },
+      { path: "/admin/blocks", name: "blocks"},
     ];
   }
 

@@ -171,7 +171,7 @@
 			// String - Template string for single tooltips
 			multiTooltipTemplate: "<%= value %>",
 
-			// String - Colour behind the legend colour block
+			// String - Colour behind the legend colour Block
 			multiTooltipKeyBackground: '#fff',
 
 			// Function - Will fire on animation progression.
@@ -1440,7 +1440,7 @@
 
 					//A bit gnarly, but clearing this rectangle breaks when using explorercanvas (clears whole canvas)
 					//ctx.clearRect(this.x + this.xPadding, this.getLineHeight(index + 1) - this.fontSize/2, this.fontSize, this.fontSize);
-					//Instead we'll make a white filled block to put the legendColour palette over.
+					//Instead we'll make a white filled Block to put the legendColour palette over.
 
 					ctx.fillStyle = this.legendColorBackground;
 					ctx.fillRect(this.x + this.xPadding, this.getLineHeight(index + 1) - this.fontSize/2, this.fontSize, this.fontSize);

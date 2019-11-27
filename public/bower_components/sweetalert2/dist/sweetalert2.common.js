@@ -623,7 +623,7 @@ var setParameters = function setParameters(params) {
 
   // Cancel button
   if (params.showCancelButton) {
-    cancelButton.style.display = 'inline-block';
+    cancelButton.style.display = 'inline-Block';
   } else {
     hide(cancelButton);
   }
@@ -1234,7 +1234,7 @@ var sweetAlert = function sweetAlert() {
       modal.style.display = prevState;
     }, 50);
 
-    // Show block with validation error
+    // Show Block with validation error
     sweetAlert.showValidationError = function (error) {
       var validationError = getValidationError();
       validationError.innerHTML = error;
@@ -1247,7 +1247,7 @@ var sweetAlert = function sweetAlert() {
       }
     };
 
-    // Hide block with validation error
+    // Hide Block with validation error
     sweetAlert.resetValidationError = function () {
       var validationError = getValidationError();
       hide(validationError);
@@ -1592,7 +1592,7 @@ sweetAlert.showLoading = sweetAlert.enableLoading = function () {
   var cancelButton = getCancelButton();
 
   show(buttonsWrapper);
-  show(confirmButton, 'inline-block');
+  show(confirmButton, 'inline-Block');
   addClass(buttonsWrapper, swalClasses.loading);
   addClass(modal, swalClasses.loading);
   confirmButton.disabled = true;

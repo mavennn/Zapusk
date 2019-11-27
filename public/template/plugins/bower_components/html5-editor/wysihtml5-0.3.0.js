@@ -3557,7 +3557,7 @@ wysihtml5.browser = (function() {
         "formatBlock":          isIE,
          // When inserting unordered or ordered lists in Firefox, Chrome or Safari, the current selection or line gets
          // converted into a list (<ul><li>...</li></ul>, <ol><li>...</li></ol>)
-         // IE and Opera act a bit different here as they convert the entire content of the current block element into a list
+         // IE and Opera act a bit different here as they convert the entire content of the current Block element into a list
         "insertUnorderedList":  isIE || isOpera || isWebKit,
         "insertOrderedList":    isIE || isOpera || isWebKit
       };
@@ -4480,7 +4480,7 @@ wysihtml5.dom.getParentElement = (function() {
  *
  * @example
  *    wysihtml5.dom.getStyle("display").from(document.body);
- *    // => "block"
+ *    // => "Block"
  */
 wysihtml5.dom.getStyle = (function() {
   var stylePropertyMapping = {
@@ -7081,7 +7081,7 @@ wysihtml5.Commands = Base.extend(
 
   /**
    * Adds line breaks before and after the given node if the previous and next siblings
-   * aren't already causing a visual line break (block element or <br>)
+   * aren't already causing a visual line break (Block element or <br>)
    */
   function _addLineBreakBeforeAndAfter(node) {
     var doc             = node.ownerDocument,
@@ -7125,7 +7125,7 @@ wysihtml5.Commands = Base.extend(
 
   /**
    * Checks whether the elment causes a visual line break
-   * (<br> or block elements)
+   * (<br> or Block elements)
    */
   function _isLineBreakOrBlockElement(element) {
     if (_isLineBreak(element)) {
@@ -7153,7 +7153,7 @@ wysihtml5.Commands = Base.extend(
         }
         displayStyle = dom.getStyle("display").from(target);
         if (displayStyle.substr(0, 6) !== "inline") {
-          // Make sure that only block elements receive the given class
+          // Make sure that only Block elements receive the given class
           target.className += " " + className;
         }
       });
@@ -7192,7 +7192,7 @@ wysihtml5.Commands = Base.extend(
           var hasClasses = _hasClasses(blockElement);
           if (!hasClasses && blockElement.nodeName === (nodeName || DEFAULT_NODE_NAME)) {
             // Insert a line break afterwards and beforewards when there are siblings
-            // that are not of type line break or block element
+            // that are not of type line break or Block element
             _addLineBreakBeforeAndAfter(blockElement);
             dom.replaceWithChildNodes(blockElement);
           } else if (hasClasses) {
@@ -7203,7 +7203,7 @@ wysihtml5.Commands = Base.extend(
         return;
       }
 
-      // Find similiar block element and rename it (<h2 class="foo"></h2>  =>  <h1 class="foo"></h1>)
+      // Find similiar Block element and rename it (<h2 class="foo"></h2>  =>  <h1 class="foo"></h1>)
       if (nodeName === null || wysihtml5.lang.array(BLOCK_ELEMENTS_GROUP).contains(nodeName)) {
         selectedNode = composer.selection.getSelectedNode();
         blockElement = dom.getParentElement(selectedNode, {
@@ -7212,7 +7212,7 @@ wysihtml5.Commands = Base.extend(
 
         if (blockElement) {
           composer.selection.executeAndRestoreSimple(function() {
-            // Rename current block element to new block element and add class
+            // Rename current Block element to new Block element and add class
             if (nodeName) {
               blockElement = dom.renameElement(blockElement, nodeName);
             }

@@ -187,8 +187,8 @@ iCheck supports any selectors, but handles only checkboxes and radio buttons:
 // customize all inputs (will search for checkboxes and radio buttons)
 $('input').iCheck();
 
-// handle inputs only inside $('.block')
-$('.block input').iCheck();
+Block
+$(Block).iCheck();
 
 // handle only checkboxes inside $('.test')
 $('.test input').iCheck({

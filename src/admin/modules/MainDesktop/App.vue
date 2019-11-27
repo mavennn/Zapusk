@@ -12,6 +12,7 @@
           <schedule v-if="page === 'schedule'"></schedule>
           <meetimes v-if="page === 'meetimes'"></meetimes>
           <statistic v-if="page === 'statistic'"></statistic>
+          <blocks v-if="page === 'blocks'"></blocks>
           <modal ref="modal"></modal>
           <mpage ref="mpage"></mpage>
         </div>
@@ -67,6 +68,7 @@ export default {
     schedule: () => App.Load.ComponentLoading("desktop/schedule"),
     meetimes: () => App.Load.ComponentLoading("desktop/meetimes"),
     statistic: () => App.Load.ComponentLoading("desktop/statistic"),
+    blocks: () => App.Load.ComponentLoading("descktop/blocks"),
     Mpage,
     Modal,
     Mfull
@@ -89,6 +91,10 @@ export default {
     });
     App.Router.Emitter.on("meetimes", data => {
       this.page = "meetimes";
+      data.next();
+    });
+    App.Router.Emitter.on("blocks", data => {
+      this.page = "blocks";
       data.next();
     });
     App.Router.Emitter.on("statistic", data => {

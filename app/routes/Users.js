@@ -5,6 +5,7 @@ app.post("/api/user/getbyid", ctrl.Users.GetById.run());
 app.post("/api/user/getSpeakerList", ctrl.Users.GetSpeakers.run());
 app.post("/api/user/getSpeakerListShort", ctrl.Users.GetSpeakersShort.run());
 app.post("/api/user/edit", ctrl.Users.Edit.run());
+app.post("/api/user/remove", ctrl.Users.Remove.run());
 app.post("/api/user/tags/get", ctrl.Users.GetTags.run());
 
 app.post("/api/user/schedule/list", ctrl.Schedule.List.run());

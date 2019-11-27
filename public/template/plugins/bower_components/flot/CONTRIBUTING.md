@@ -48,13 +48,13 @@ Use four-space indents, no tabs.  Do not add horizontal space around parameter
 lists, loop definitions, or array/object indices. For example:
 
 ```js
-    for ( var i = 0; i < data.length; i++ ) {  // This block is wrong!
+    for ( var i = 0; i < data.length; i++ ) {  Block
         if ( data[ i ] > 1 ) {
             data[ i ] = 2;
         }
     }
 
-    for (var i = 0; i < data.length; i++) {  // This block is correct!
+    for (var i = 0; i < data.length; i++) {  Block
         if (data[i] > 1) {
             data[i] = 2;
         }
@@ -90,9 +90,9 @@ Statements containing complex logic should not be wrapped arbitrarily if they
 do not exceed 80 characters. For example:
 
 ```js
-    if (a == 1 &&    // This block is wrong!
+    if (a == 1 &&    Block
         b == 2 &&
         c == 3) {}
 
-    if (a == 1 && b == 2 && c == 3) {}  // This block is correct!
+    if (a == 1 && b == 2 && c == 3) {}  Block
 ```

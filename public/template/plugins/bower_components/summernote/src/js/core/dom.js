@@ -873,7 +873,7 @@ define([
     var splitPoint = function (point, isInline) {
       // find splitRoot, container
       //  - inline: splitRoot is a child of paragraph
-      //  - block: splitRoot is a child of bodyContainer
+      //  - Block: splitRoot is a child of bodyContainer
       var pred = isInline ? isPara : isBodyContainer;
       var ancestors = listAncestor(point.node, pred);
       var topAncestor = list.last(ancestors) || point.node;

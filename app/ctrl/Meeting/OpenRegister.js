@@ -32,7 +32,7 @@ module.exports = class extends AbstractCtrl {
     )
       return erJson("Recording is already open");
 
-    let time_start = this.day === 1 ? "12:07" : "16:07";
+    let time_start = this.day === 1 ? "12:00" : "16:00";
 
     const check = await meetingManager.calc({
       day: this.day,

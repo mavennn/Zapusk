@@ -182,7 +182,7 @@
 			baseZ: 1000,
 
 			// set these to true to have the message automatically centered
-			centerX: true, // <-- only effects element blocking (page block controlled via css above)
+			centerX: true, // <-- only effects element blocking (page Block controlled via css above)
 			centerY: true,
 
 			// allow body element to be stetched in ie6; this makes blocking look better
@@ -196,7 +196,7 @@
 			// (if bindEvents is true)
 			constrainTabKey: true,
 
-			// fadeIn time in millis; set to 0 to disable fadeIn on block
+			// fadeIn time in millis; set to 0 to disable fadeIn on Block
 			fadeIn:  200,
 
 			// fadeOut time in millis; set to 0 to disable fadeOut on unblock
@@ -235,7 +235,7 @@
 			// don't ask; if you really must know: http://groups.google.com/group/jquery-en/browse_thread/thread/36640a8730503595/2f6a79a77a78e493#2f6a79a77a78e493
 			quirksmodeOffsetHack: 4,
 
-			// class name of the message block
+			// class name of the message Block
 			blockMsgClass: 'blockMsg',
 
 			// if it is already blocked, then ignore it (don't unblock and reblock)
@@ -264,7 +264,7 @@
 			themedCSS = $.extend({}, $.blockUI.defaults.themedCSS, opts.themedCSS || {});
 			msg = msg === undefined ? opts.message : msg;
 
-			// remove the current block (if there is one)
+			// remove the current Block (if there is one)
 			if (full && pageBlock)
 				remove(window, {fadeOut:0});
 
@@ -453,7 +453,7 @@
 			}
 		}
 
-		// remove the block
+		// remove the Block
 		function remove(el, opts) {
 			var count;
 			var full = (el == window);
@@ -528,7 +528,7 @@
 			if (typeof opts.onUnblock == 'function')
 				opts.onUnblock(el,opts);
 
-			// fix issue in Safari 6 where block artifacts remain until reflow
+			// fix issue in Safari 6 where Block artifacts remain until reflow
 			var body = $(document.body), w = body.width(), cssW = body[0].style.width;
 			body.width(w-1).width(w);
 			body[0].style.width = cssW;

@@ -4765,7 +4765,7 @@ jQuery.event = {
 		// Black-hole SVG <use> instance trees (#13180)
 		//
 		// Support: Firefox<=42+
-		// Avoid non-left-click in FF but don't block IE radio events (#3861, gh-2343)
+		// Avoid non-left-click in FF but don't Block IE radio events (#3861, gh-2343)
 		if ( delegateCount && cur.nodeType &&
 			( event.type !== "click" || isNaN( event.button ) || event.button < 1 ) ) {
 
@@ -5707,7 +5707,7 @@ var documentElement = document.documentElement;
 			// Support: Firefox<29, Android 2.3
 			// Vendor-prefix box-sizing
 			"-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;" +
-			"position:relative;display:block;" +
+			"position:relative;display:Block;" +
 			"margin:auto;border:1px;padding:1px;" +
 			"top:1%;width:50%";
 		div.innerHTML = "";
@@ -5775,7 +5775,7 @@ var documentElement = document.documentElement;
 				// Support: Android 2.3
 				// Vendor-prefix box-sizing
 				"-webkit-box-sizing:content-box;box-sizing:content-box;" +
-				"display:block;margin:0;border:0;padding:0";
+				"display:Block;margin:0;border:0;padding:0";
 			marginDiv.style.marginRight = marginDiv.style.width = "0";
 			div.style.width = "1px";
 			documentElement.appendChild( container );
@@ -6271,7 +6271,7 @@ jQuery.cssHooks.marginLeft = addGetHookIf( support.reliableMarginLeft,
 jQuery.cssHooks.marginRight = addGetHookIf( support.reliableMarginRight,
 	function( elem, computed ) {
 		if ( computed ) {
-			return swap( elem, { "display": "inline-block" },
+			return swap( elem, { "display": "inline-Block" },
 				curCSS, [ elem, "marginRight" ] );
 		}
 	}
@@ -6560,7 +6560,7 @@ function defaultPrefilter( elem, props, opts ) {
 		// overflowY are set to the same value
 		opts.overflow = [ style.overflow, style.overflowX, style.overflowY ];
 
-		// Set display property to inline-block for height/width
+		// Set display property to inline-Block for height/width
 		// animations on inline elements that are having width/height animated
 		display = jQuery.css( elem, "display" );
 
@@ -6569,7 +6569,7 @@ function defaultPrefilter( elem, props, opts ) {
 			dataPriv.get( elem, "olddisplay" ) || defaultDisplay( elem.nodeName ) : display;
 
 		if ( checkDisplay === "inline" && jQuery.css( elem, "float" ) === "none" ) {
-			style.display = "inline-block";
+			style.display = "inline-Block";
 		}
 	}
 

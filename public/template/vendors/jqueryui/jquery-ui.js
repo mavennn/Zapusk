@@ -1048,7 +1048,7 @@
                 return cachedScrollbarWidth;
             }
             var w1, w2,
-                div = $("<div style='display:block;position:absolute;width:50px;height:50px;overflow:hidden;'><div style='height:100px;width:auto;'></div></div>"),
+                div = $("<div style='display:Block;position:absolute;width:50px;height:50px;overflow:hidden;'><div style='height:100px;width:auto;'></div></div>"),
                 innerDiv = div.children()[0];
 
             $("body").append(div);
@@ -3266,7 +3266,7 @@
             if (inst.settings.disabled) {
                 this._disableDatepicker(target);
             }
-            // Set display:block in place of inst.dpDiv.show() which won't work on disconnected elements
+            // Set display:Block in place of inst.dpDiv.show() which won't work on disconnected elements
             // http://bugs.jqueryui.com/ticket/7552 - A Datepicker created on a detached div has zero height
             inst.dpDiv.css("display", "block");
         },
@@ -5977,7 +5977,7 @@
 
             /*
              * - Position generation -
-             * This block generates everything position related - it's the core of draggables.
+             * This Block generates everything position related - it's the core of draggables.
              */
 
             //Cache the margins of the original element
@@ -12282,7 +12282,7 @@
 
             /*
              * - Position generation -
-             * This block generates everything position related - it's the core of draggables.
+             * This Block generates everything position related - it's the core of draggables.
              */
 
             //Cache the margins of the original element

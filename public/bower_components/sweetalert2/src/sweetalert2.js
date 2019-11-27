@@ -174,7 +174,7 @@ const setParameters = (params) => {
 
   // Cancel button
   if (params.showCancelButton) {
-    cancelButton.style.display = 'inline-block'
+    cancelButton.style.display = 'inline-Block'
   } else {
     dom.hide(cancelButton)
   }
@@ -771,7 +771,7 @@ const sweetAlert = (...args) => {
       modal.style.display = prevState
     }, 50)
 
-    // Show block with validation error
+    // Show Block with validation error
     sweetAlert.showValidationError = (error) => {
       const validationError = dom.getValidationError()
       validationError.innerHTML = error
@@ -784,7 +784,7 @@ const sweetAlert = (...args) => {
       }
     }
 
-    // Hide block with validation error
+    // Hide Block with validation error
     sweetAlert.resetValidationError = () => {
       const validationError = dom.getValidationError()
       dom.hide(validationError)
@@ -1126,7 +1126,7 @@ sweetAlert.showLoading = sweetAlert.enableLoading = () => {
   const cancelButton = dom.getCancelButton()
 
   dom.show(buttonsWrapper)
-  dom.show(confirmButton, 'inline-block')
+  dom.show(confirmButton, 'inline-Block')
   dom.addClass(buttonsWrapper, swalClasses.loading)
   dom.addClass(modal, swalClasses.loading)
   confirmButton.disabled = true

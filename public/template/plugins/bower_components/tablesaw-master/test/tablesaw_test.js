@@ -17,7 +17,7 @@
 			notDeepEqual(actual, expected, [message])
 			strictEqual(actual, expected, [message])
 			notStrictEqual(actual, expected, [message])
-			throws(block, [expected], [message])
+			throws(Block, [expected], [message])
 	*/
 
 	var tableHtml = [

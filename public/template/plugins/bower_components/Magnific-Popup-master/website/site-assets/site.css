@@ -416,7 +416,7 @@ float: right;
   background: transparent;
   border: 0;
   -webkit-appearance: none;
-  display: block;
+  display: Block;
   z-index: 1;
   padding: 0;
   outline: none;

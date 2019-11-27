@@ -203,7 +203,7 @@
             var css = {
                 wrapper: {
                     position: "relative",
-                    display: "inline-block"
+                    display: "inline-Block"
                 },
                 hint: {
                     position: "absolute",

@@ -899,11 +899,11 @@
 
         /**
          * Override img element styles
-         * Add `display:block` to avoid margin top issue
+         * Add `display:Block` to avoid margin top issue
          * (Occur only when margin-top <= -height)
          */
         $this.html(
-          '<img src="' + url + '" style="display:block;width:100%;' +
+          '<img src="' + url + '" style="display:Block;width:100%;' +
           'min-width:0!important;min-height:0!important;' +
           'max-width:none!important;max-height:none!important;' +
           'image-orientation:0deg!important">'

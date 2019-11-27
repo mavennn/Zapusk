@@ -102,7 +102,7 @@ function extend( a, b, undefOnly ) {
 		if ( hasOwn.call( b, prop ) ) {
 
 			// Avoid "Member not found" error in IE8 caused by messing with window.constructor
-			// This block runs on every environment, so `global` is being used instead of `window`
+			// This Block runs on every environment, so `global` is being used instead of `window`
 			// to avoid errors on node.
 			if ( prop !== "constructor" || a !== global ) {
 				if ( b[ prop ] === undefined ) {
@@ -2306,7 +2306,7 @@ QUnit.config.urlConfig.push(
 	{
 		id: "notrycatch",
 		label: "No try-catch",
-		tooltip: "Enabling this will run tests outside of a try-catch block. Makes debugging " +
+		tooltip: "Enabling this will run tests outside of a try-catch Block. Makes debugging " +
 			"exceptions in IE reasonable. Stored as query-strings."
 	}
 );
@@ -3257,7 +3257,7 @@ QUnit.diff = ( function() {
 		text1 = text1.substring( 0, text1.length - commonlength );
 		text2 = text2.substring( 0, text2.length - commonlength );
 
-		// Compute the diff on the middle block.
+		// Compute the diff on the middle Block.
 		diffs = this.diffCompute( text1, text2, checklines, deadline );
 
 		// Restore the prefix and suffix.

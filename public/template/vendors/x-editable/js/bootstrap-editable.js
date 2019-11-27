@@ -176,7 +176,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
 
         error: function(msg) {
             var $group = this.$form.find('.control-group'),
-                $block = this.$form.find('.editable-error-block'),
+                $block = this.$form.find('.editable-error-Block'),
                 lines;
 
             if(msg === false) {
@@ -547,7 +547,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         /**
         Error callback. Called when request failed (response status != 200).  
         Usefull when you want to parse error response and display a custom message.
-        Must return **string** - the message to be displayed in the error block.
+        Must return **string** - the message to be displayed in the error Block.
                 
         @property error 
         @type function
@@ -612,12 +612,12 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
 
     /*
     Note: following params could redefined in engine: bootstrap or jqueryui:
-    Classes 'control-group' and 'editable-error-block' must always present!
+    Classes 'control-group' and 'editable-error-Block' must always present!
     */      
     $.fn.editableform.template = '<form class="form-inline editableform">'+
     '<div class="control-group">' + 
     '<div><div class="editable-input"></div><div class="editable-buttons"></div></div>'+
-    '<div class="editable-error-block"></div>' + 
+    '<div class="editable-error-Block"></div>' + 
     '</div>' + 
     '</form>';
 
@@ -631,7 +631,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
     //error class attached to control-group
     $.fn.editableform.errorGroupClass = null;  
 
-    //error class attached to editable-error-block
+    //error class attached to editable-error-Block
     $.fn.editableform.errorBlockClass = 'editable-error';
     
     //engine
@@ -3567,7 +3567,7 @@ Range (inherit from number)
         }         
     });
     Range.defaults = $.extend({}, $.fn.editabletypes.number.defaults, {
-        tpl: '<input type="range"><output style="width: 30px; display: inline-block"></output>',
+        tpl: '<input type="range"><output style="width: 30px; display: inline-Block"></output>',
         inputclass: 'input-medium'
     });
     $.fn.editabletypes.range = Range;
@@ -4658,7 +4658,7 @@ Editableform based on Twitter Bootstrap 3
         initTemplate: function() {
             this.$form = $($.fn.editableform.template); 
             this.$form.find('.control-group').addClass('form-group');
-            this.$form.find('.editable-error-block').addClass('help-block');
+            this.$form.find('.editable-error-Block').addClass('help-Block');
         },
         initInput: function() {  
             pInitInput.apply(this);
@@ -4796,7 +4796,7 @@ Editableform based on Twitter Bootstrap 3
               //  .detach()
               //vitalets: remove any placement class because otherwise they dont influence on re-positioning of visible popover
                 .removeClass('top right bottom left')
-                .css({ top: 0, left: 0, display: 'block' });
+                .css({ top: 0, left: 0, display: 'Block' });
               //  .insertAfter(this.$element);
                
                 pos = this.getPosition(inside);
@@ -5800,7 +5800,7 @@ Editableform based on Twitter Bootstrap 3
 				vitalets: fixing bug of very special conditions:
 				jquery 1.7.1 + webkit + show inline datepicker in bootstrap popover.
 				Method show() does not set display css correctly and datepicker is not shown.
-				Changed to .css('display', 'block') solve the problem.
+				Changed to .css('display', 'Block') solve the problem.
 				See https://github.com/vitalets/x-editable/issues/37
 
 				In jquery 1.7.2+ everything works fine.

@@ -29,8 +29,6 @@ module.exports = class extends AbstractCtrl {
       };
     }
 
-    console.log("params", params);
-
     let meetings = await meetingModel.find(params);
     let users = {};
 
@@ -50,8 +48,6 @@ module.exports = class extends AbstractCtrl {
         }
       }
     }
-
-
 
     return suJson({ meetings, users });
   }

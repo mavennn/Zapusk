@@ -80,7 +80,7 @@
 					'<div class="clockpicker-dial clockpicker-hours"></div>',
 					'<div class="clockpicker-dial clockpicker-minutes clockpicker-dial-out"></div>',
 				'</div>',
-				'<span class="clockpicker-am-pm-block">',
+				'<span class="clockpicker-am-pm-Block">',
 				'</span>',
 			'</div>',
 		'</div>'
@@ -92,7 +92,7 @@
 			plate = popover.find('.clockpicker-plate'),
 			hoursView = popover.find('.clockpicker-hours'),
 			minutesView = popover.find('.clockpicker-minutes'),
-			amPmBlock = popover.find('.clockpicker-am-pm-block'),
+			amPmBlock = popover.find('.clockpicker-am-pm-Block'),
 			isInput = element.prop('tagName') === 'INPUT',
 			input = isInput ? element : element.find('input'),
 			addon = element.find('.input-group-addon'),
@@ -121,7 +121,7 @@
 		// Setup for for 12 hour clock if option is selected
 		if (options.twelvehour) {
 			
-			var  amPmButtonsTemplate = ['<div class="clockpicker-am-pm-block">',
+			var  amPmButtonsTemplate = ['<div class="clockpicker-am-pm-Block">',
 				'<button type="button" class="btn btn-sm btn-default clockpicker-button clockpicker-am-button">',
 				'AM</button>',
 				'<button type="button" class="btn btn-sm btn-default clockpicker-button clockpicker-pm-button">',
@@ -161,7 +161,7 @@
 		
 		if (! options.autoclose) {
 			// If autoclose is not setted, append a button
-			$('<button type="button" class="btn btn-sm btn-default btn-block clockpicker-button">' + options.donetext + '</button>')
+			$('<button type="button" class="btn btn-sm btn-default btn-Block clockpicker-button">' + options.donetext + '</button>')
 				.click($.proxy(this.done, this))
 				.appendTo(popover);
 		}

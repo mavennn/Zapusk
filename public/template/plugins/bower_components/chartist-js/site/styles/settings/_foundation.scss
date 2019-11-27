@@ -373,16 +373,16 @@ $xxlarge-only: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (m
 // 03. Block Grid
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-block-grid-classes: $include-html-classes;
-// $include-xl-html-block-grid-classes: false;
+// $include-html-Block-grid-classes: $include-html-classes;
+// $include-xl-html-Block-grid-classes: false;
 
-// We use this to control the maximum number of block grid elements per row
-// $block-grid-elements: 12;
-// $block-grid-default-spacing: rem-calc(20);
-// $align-block-grid-to-grid: false;
+// We use this to control the maximum number of Block grid elements per row
+// $Block-grid-elements: 12;
+// $Block-grid-default-spacing: rem-calc(20);
+// $align-Block-grid-to-grid: false;
 
-// Enables media queries for block-grid classes. Set to false if writing semantic HTML.
-// $block-grid-media-queries: true;
+// Enables media queries for Block-grid classes. Set to false if writing semantic HTML.
+// $Block-grid-media-queries: true;
 
 // 04. Breadcrumbs
 // - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -427,7 +427,7 @@ $include-html-button-classes: true;
 // $button-lrg: rem-calc(18);
 
 // We use this to control the display property.
-// $button-display: inline-block;
+// $button-display: inline-Block;
 // $button-margin-bottom: rem-calc(20);
 
 // We use these to control button text styles.
@@ -712,10 +712,10 @@ $button-font-color: $color-black;
 // $inline-list-overflow: hidden;
 
 // We use this to control the list items
-// $inline-list-display: block;
+// $inline-list-display: Block;
 
 // We use this to control any elements within list items
-// $inline-list-children-display: block;
+// $inline-list-children-display: Block;
 
 // 14. Joyride
 // - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -56,6 +56,11 @@ global.scheduleManager = new (class {
 
     if (empty(sch)) return erJson("Shedule not found");
     if (!sch) return erJson("Not found");
+
+    // удаление всех записей спикера
+    let speakerMeetings = await meetingModel.find({ speaker: sch.speaker._id });
+    speakerMeetings.map((meet) => meet.remove());
+
     await sch.remove();
     return suJson("su");
   }

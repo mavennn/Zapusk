@@ -1116,7 +1116,7 @@ var setParameters = function setParameters(params) {
    */
   modal.setAttribute('data-has-cancel-button', params.showCancelButton);
   if (params.showCancelButton) {
-    $cancelBtn.style.display = 'inline-block';
+    $cancelBtn.style.display = 'inline-Block';
   } else {
     _hasClass$addClass$removeClass$escapeHtml$_show$show$_hide$hide.hide($cancelBtn);
   }
@@ -1126,7 +1126,7 @@ var setParameters = function setParameters(params) {
    */
   modal.setAttribute('data-has-confirm-button', params.showConfirmButton);
   if (params.showConfirmButton) {
-    $confirmBtn.style.display = 'inline-block';
+    $confirmBtn.style.display = 'inline-Block';
   } else {
     _hasClass$addClass$removeClass$escapeHtml$_show$show$_hide$hide.hide($confirmBtn);
   }

@@ -88,6 +88,8 @@ export default {
     getMeetings() {
       Request.post("/meetings/list")
         .then(data => {
+          console.log(data);
+
           this.times = [];
           this.speakers = [];
           this.names = data.users;

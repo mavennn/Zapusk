@@ -88,7 +88,7 @@ describe('DefaultMenu', function() {
       spyOn(this.view, '_allDatasetsEmpty').andReturn(true);
       this.view.open();
 
-      expect(this.$node).not.toHaveAttr('style', 'display: block;');
+      expect(this.$node).not.toHaveAttr('style', 'display: Block;');
     });
   });
 

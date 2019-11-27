@@ -97,14 +97,14 @@ export default new (class {
   regInApp(arUser) {
     this.isAuth = true;
     this.arUser = arUser;
-    this.setUserToLocalStorage();
+    this.setAdminToLocalStorage();
     Cookies.set("token", this.arUser["token"]);
     location.href = "/admin/";
   }
 
-  setUserToLocalStorage() {
-    localStorageProxy.removeItem("user");
-    localStorageProxy.setItem("user", JSON.stringify(this.arUser));
+  setAdminToLocalStorage() {
+    localStorageProxy.removeItem("admin");
+    localStorageProxy.setItem("admin", JSON.stringify(this.arUser));
   }
 
   getUserById(id) {
@@ -134,6 +134,16 @@ export default new (class {
       .catch(requestError);
   }
 
+  remove (User) {
+    return Request.postJson("/api/user/remove", User, false, true)
+        .then(data => {
+          Load.stop();
+          return data;
+        })
+        .catch(requestError);
+  }
+
+
   login(email, password) {
     if (empty(email) || empty(password)) return;
     Load.start();
@@ -153,7 +163,7 @@ export default new (class {
   logout() {
     this.isAuth = false;
     this.arUser = Array();
-    localStorageProxy.removeItem("user");
+    localStorageProxy.removeItem("admin");
     Cookies.set("token", "");
     location.reload();
   }

@@ -37,6 +37,17 @@
       </li>
 
       <li>
+        <a
+          @click="goRoute('/admin/blocks/')"
+          class="waves-effect"
+          style="border-left: 0"
+        >
+          <i class="fa fa-book menu_icon" style="margin-left: 2px"></i>
+          <span class="amsl-name">Blocks</span></a
+        >
+      </li>
+
+      <li>
         <a @click="logout" class="waves-effect" style="border-left: 0">
           <i class="fa fa-power-off menu_icon" style="margin-left: 2px"></i>
           <span class="amsl-name">Log out</span></a

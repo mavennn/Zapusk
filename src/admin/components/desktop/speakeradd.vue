@@ -459,6 +459,7 @@ export default {
             swal("Ошибка", "Заполните обязательные поля", "error");
         });
     },
+    remove() {},
     convertImg() {
       const file = document.getElementById("img_input").files[0];
       toBase64(file).then(data => {

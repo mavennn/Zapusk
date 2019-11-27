@@ -40,39 +40,6 @@ global.UserManager = new (class {
     for (let item of file) {
       if (item[1]) {
         let password = genPass("number", 4);
-        // let user = {
-        //   ids: await userModel.genToken(),
-        //   email: item[8],
-        //   name: item[1],
-        //   sname: item[2],
-        //   prefname: item[2],
-        //   country: (tagsManager.country.filter(v => v.name === item[3])[0] || {})
-        //     ._id,
-        //   city: item[4],
-        //   phone: item[9],
-        //   prefix: item[0],
-        //   photo: item[12]
-        //     ? "https://getfile.dokpub.com/yandex/get/" + item[12]
-        //     : "",
-        //   presentation: {
-        //     subject: item[10],
-        //     link: item[11]
-        //   },
-        //   organization: {
-        //     name: item[5],
-        //     position: item[6],
-        //     role: item[7]
-        //   },
-        //   password,
-        //   pin: password,
-        //   token: genToken(),
-        //   permission: "speaker",
-        //   active: true,
-        //   recording_status: {
-        //     day1: 1,
-        //     day2: 1
-        //   }
-        // };
 
         let user = {
           ids: await userModel.genToken(),
@@ -347,55 +314,56 @@ global.UserManager = new (class {
     return suJson("su");
   }
 
+  async remove(arUser) {
+    if (empty(arUser._id)) return erJson("Auth not found");
+
+    let user = await userModel.findOne({ _id: arUser._id });
+
+    await user.remove();
+    this.addToCache(user);
+    return suJson("su");
+}
+
   async add(arUser) {
     //5d5c2a0a4832b09f306441b4
 
-    let user = {};
+    let user = {
+      ids: await userModel.genToken(),
+      name: arUser.name || "",
+      sname: arUser.sname || "",
+      email: arUser.email || "",
+      phone: arUser.phone || "",
+      photo: arUser.photo || "",
+      hardSkills: arUser.hardSkills || [],
+      softSkills: arUser.softSkills || [],
+      token: genToken(),
+      pin: genPass("number", 4),
+      hidden_tags: [],
+      permission: "user", // admin, user, speaker
+      active: true,
+      prefname: "",
+      country: arUser.country || "",
+      city: arUser.city || "",
+      prefix: arUser.prefix || "",
 
-    let password = genPass("number", 4);
-    user.ids = await userModel.genToken();
-    user.password = password;
-    user.pin = password;
-    user.token = genToken();
-    user.permission = arUser.permission;
-    user.active = true;
-    user.name = arUser.name || "";
-    user.phone = arUser.phone || "";
-    user.email = arUser.email || "";
-    user.sname = arUser.sname || "";
-    user.prefname = arUser.prefname || "";
-    user.country = arUser.country || "";
-    user.city = arUser.city || "";
-    user.prefix = arUser.prefix || "";
-    user.photo = arUser.photo || "";
 
-    if (!empty(arUser.wsrProducts)) user.wsrProducts = arUser.wsrProducts;
-
-    if (!empty(arUser.presentation)) {
-      user.presentation = {
-        subject: arUser.presentation.subject,
-        link: arUser.presentation.link
-      };
-    }
-    if (!empty(arUser.organization)) {
-      user.organization = {
-        name: arUser.organization.name,
-        position: arUser.organization.position,
-        role: arUser.organization.role,
-        problems: arUser.organization.problems,
-        perspectives: arUser.organization.perspectives,
-        barriers: arUser.organization.barriers
-      };
-    }
-    if (!empty(arUser.partnership)) {
-      user.partnership = {
-        country: arUser.partnership.country,
-        partnershipMode: arUser.partnership.partnershipMode,
-        bestPractice: arUser.partnership.bestPractice,
-        industry: arUser.partnership.industry,
-        role: arUser.partnership.role
-      };
-    }
+      /* поля юзера */
+      birthday: arUser.birthday || "",
+      university: arUser.university || "",
+      speciality: arUser.speciality || "",
+      endingYear: arUser.endingYear || "",
+      questionsForUser: {
+        digital: arUser.questionsForUser.digital || "",
+        english: arUser.questionsForUser.english || "",
+        anotherLanguage: arUser.questionsForUser.anotherLanguage || "",
+        isHackaton: arUser.questionsForUser.isHackaton || "",
+        isWorldSkills: arUser.questionsForUser.isWorldSkills || "",
+        courses: arUser.questionsForUser.courses || "",
+        enoughMoney: arUser.questionsForUser.enoughMoney || "",
+        achievements: arUser.questionsForUser.achievements || "",
+        isWorking: arUser.questionsForUser.isWorking || "",
+      },
+    };
 
     await userModel.create(user);
     this.addToCache(user);

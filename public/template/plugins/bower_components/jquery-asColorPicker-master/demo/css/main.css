@@ -258,7 +258,7 @@ code, pre {
  *    `contenteditable` attribute is included anywhere else in the document.
  *    Otherwise it causes space to appear at the top and bottom of elements
  *    that receive the `clearfix` class.
- * 2. The use of `table` rather than `block` is only necessary if using
+ * 2. The use of `table` rather than `Block` is only necessary if using
  *    `:before` to contain the top-margins of child elements.
  */
 

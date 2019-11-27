@@ -478,7 +478,7 @@
           : '';
       var actionsbox = this.multiple && this.options.actionsBox ?
       '<div class="bs-actionsbox">' +
-      '<div class="btn-group btn-group-sm btn-block">' +
+      '<div class="btn-group btn-group-sm btn-Block">' +
       '<button type="button" class="actions-btn bs-select-all btn btn-default">' +
       this.options.selectAllText +
       '</button>' +
@@ -490,7 +490,7 @@
           : '';
       var donebutton = this.multiple && this.options.doneButton ?
       '<div class="bs-donebutton">' +
-      '<div class="btn-group btn-block">' +
+      '<div class="btn-group btn-Block">' +
       '<button type="button" class="btn btn-sm btn-default">' +
       this.options.doneButtonText +
       '</button>' +

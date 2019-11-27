@@ -176,7 +176,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
 
         error: function(msg) {
             var $group = this.$form.find('.control-group'),
-                $block = this.$form.find('.editable-error-block'),
+                $block = this.$form.find('.editable-error-Block'),
                 lines;
 
             if(msg === false) {
@@ -547,7 +547,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         /**
         Error callback. Called when request failed (response status != 200).  
         Usefull when you want to parse error response and display a custom message.
-        Must return **string** - the message to be displayed in the error block.
+        Must return **string** - the message to be displayed in the error Block.
                 
         @property error 
         @type function
@@ -612,12 +612,12 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
 
     /*
     Note: following params could redefined in engine: bootstrap or jqueryui:
-    Classes 'control-group' and 'editable-error-block' must always present!
+    Classes 'control-group' and 'editable-error-Block' must always present!
     */      
     $.fn.editableform.template = '<form class="form-inline editableform">'+
     '<div class="control-group">' + 
     '<div><div class="editable-input"></div><div class="editable-buttons"></div></div>'+
-    '<div class="editable-error-block"></div>' + 
+    '<div class="editable-error-Block"></div>' + 
     '</div>' + 
     '</form>';
 
@@ -631,7 +631,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
     //error class attached to control-group
     $.fn.editableform.errorGroupClass = null;  
 
-    //error class attached to editable-error-block
+    //error class attached to editable-error-Block
     $.fn.editableform.errorBlockClass = 'editable-error';
     
     //engine
@@ -3566,7 +3566,7 @@ Range (inherit from number)
         }         
     });
     Range.defaults = $.extend({}, $.fn.editabletypes.number.defaults, {
-        tpl: '<input type="range"><output style="width: 30px; display: inline-block"></output>',
+        tpl: '<input type="range"><output style="width: 30px; display: inline-Block"></output>',
         inputclass: 'input-medium'
     });
     $.fn.editabletypes.range = Range;

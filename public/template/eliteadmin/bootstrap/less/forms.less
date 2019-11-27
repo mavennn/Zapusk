@@ -12,7 +12,7 @@ fieldset {
   margin: 0;
   border: 0;
   // Chrome and Firefox set a `min-width: min-content;` on fieldsets,
-  // so we reset that to ensure it behaves more like a standard block element.
+  // so we reset that to ensure it behaves more like a standard Block element.
   // See https://github.com/twbs/bootstrap/issues/12359.
   min-width: 0;
 }
@@ -176,7 +176,7 @@ input[type="search"] {
 
 // Special styles for iOS temporal inputs
 //
-// In Mobile Safari, setting `display: block` on temporal inputs causes the
+// In Mobile Safari, setting `display: Block` on temporal inputs causes the
 // text within the input to become vertically misaligned. As a workaround, we
 // set a pixel line-height that matches the given height of the input, but only
 // for Safari. See https://bugs.webkit.org/show_bug.cgi?id=139848
@@ -453,7 +453,7 @@ input[type="checkbox"] {
 // below a form control. Use for general help, formatting, or instructional text.
 
 .help-block {
-  display: block; // account for any element using help-block
+  display: block; // account for any element using help-Block
   margin-top: 5px;
   margin-bottom: 10px;
   color: lighten(@text-color, 25%); // lighten the text some for contrast
@@ -462,7 +462,7 @@ input[type="checkbox"] {
 
 // Inline forms
 //
-// Make forms appear inline(-block) by adding the `.form-inline` class. Inline
+// Make forms appear inline(-Block) by adding the `.form-inline` class. Inline
 // forms begin stacked on extra small (mobile) devices and then go inline when
 // viewports reach <768px.
 //
@@ -475,7 +475,7 @@ input[type="checkbox"] {
 
   // Kick in the inline
   @media (min-width: @screen-sm-min) {
-    // Inline-block all the things for "inline"
+    // Inline-Block all the things for "inline"
     .form-group {
       display: inline-block;
       margin-bottom: 0;

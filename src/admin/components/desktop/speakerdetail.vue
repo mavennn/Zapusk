@@ -55,12 +55,12 @@
         </div>
       </div>
     </div>
-<!--    <div class="sp-block" v-if="user.permission == 'speaker'">-->
+<!--    <div class="sp-Block" v-if="user.permission == 'speaker'">-->
 <!--      <div class="spb-title">-->
 <!--        {{ lang == "en" ? "My Presentation" : "Моя презентация" }}-->
 <!--      </div>-->
 <!--      <div class="spb-content">-->
-<!--        <div class="spbc-block">-->
+<!--        <div class="spbc-Block">-->
 <!--          <div class="spbc-event">-->
 <!--            <div class="spbce-title">{{ user.presentation.subject }}</div>-->
 <!--            <div class="spbce-divider">-->

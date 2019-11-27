@@ -205,7 +205,7 @@ define([
             return point;
           }
 
-          // point on block's edge
+          // point on Block's edge
           var block = dom.ancestor(point.node, dom.isBlock);
           if (((dom.isLeftEdgePointOf(point, block) || dom.isVoid(dom.prevPoint(point).node)) && !isLeftToRight) ||
               ((dom.isRightEdgePointOf(point, block) || dom.isVoid(dom.nextPoint(point).node)) && isLeftToRight)) {

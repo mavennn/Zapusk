@@ -358,7 +358,7 @@ table.tablesaw {
 /* Mobile first styles: Begin with the stacked presentation at narrow widths */
 
 @media only all {
-  /* Show the table cells as a block level element */
+  /* Show the table cells as a Block level element */
 
   .tablesaw-stack td,
   .tablesaw-stack th {

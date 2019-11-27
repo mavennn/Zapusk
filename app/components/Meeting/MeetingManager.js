@@ -19,13 +19,13 @@ global.meetingManager = new (class {
       if (i % 4 || i == 8 || i == 0)
         time_man.push(
           moment(time_man[i], "HH:mm")
-            .add(10, "m")
+            .add(5, "m")
             .format("HH:mm")
         );
       else
         time_man.push(
           moment(time_man[i], "HH:mm")
-            .add(15, "m")
+            .add(10, "m")
             .format("HH:mm")
         );
     }
@@ -152,7 +152,6 @@ global.meetingManager = new (class {
 
     speaker.recording_status = 1;
     let resp = await speaker.save();
-    console.log("status", resp);
     return suJson("su");
   }
 })();
