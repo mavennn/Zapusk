@@ -69,15 +69,14 @@ global.UserManager = new (class {
             candidatsTasks: this.getItem(item[11]),
             intership: this.getItem(item[12])
           },
+          block: this.getItem(item[13]),
           recording_status: 1
         };
 
-        console.log("user", user);
         let ch = await this.checkUsers(user.email);
         if (!ch) {
           let us = await userModel.create(user);
           this.addToCache(us);
-          console.log(us);
         } else {
           console.log("Уже создан");
           // ch.country = tagsManager.country.filter(
@@ -143,7 +142,6 @@ global.UserManager = new (class {
         if (!ch) {
           let us = await userModel.create(user);
           this.addToCache(us);
-          console.log(us);
         } else {
           console.log("Уже создан");
           await ch.save();
@@ -324,9 +322,58 @@ global.UserManager = new (class {
     return suJson("su");
 }
 
-  async add(arUser) {
-    //5d5c2a0a4832b09f306441b4
+  async remove(asSpeaker) {
+    if (empty(asSpeaker._id)) return erJson("Auth not found");
 
+    let speaker = await userModel.findOne({ _id: asSpeaker._id });
+
+    await speaker.remove();
+    this.addToCache(speaker);
+    return suJson("su");
+  }
+
+  async addSpeaker (arSpeaker) {
+    let speaker = {
+      ids: await userModel.genToken(),
+      name: arSpeaker.name || "",
+      sname: arSpeaker.sname || "",
+      email: arSpeaker.email || "",
+      phone: arSpeaker.phone || "",
+      photo: arSpeaker.photo || "",
+      hardSkills: arSpeaker.hardSkills || [],
+      softSkills: arSpeaker.softSkills || [],
+      token: genToken(),
+      pin: genPass("number", 4),
+      hidden_tags: [],
+      permission: "speaker", // admin, user, speaker
+      active: true,
+      prefname: "",
+      country: arSpeaker.country || "",
+      city: arSpeaker.city || "",
+      prefix: arSpeaker.prefix || "",
+
+      companyName: arSpeaker.companyName || "",
+      companyUrl: arSpeaker.companyUrl || "",
+      vacanciesUrl: arSpeaker.vacanciesUrl || "",
+      businessSphere: arSpeaker.businessSphere || "",
+      questionsForSpeaker: {
+        yourProduct: arSpeaker.questionsForSpeaker.yourProduct || "",
+        companyTasks: arSpeaker.questionsForSpeaker.companyTasks || "",
+        positions: arSpeaker.questionsForSpeaker.positions || "",
+        candidatsTasks: arSpeaker.questionsForSpeaker.candidatsTasks || "",
+        intership: arSpeaker.questionsForSpeaker.intership || ""
+      },
+      recording_status: 1
+    };
+
+    await userModel.create(speaker);
+    this.addToCache(speaker);
+    // await this.sendLoginData(user);
+    console.log(speaker);
+    return suJson("su");
+  }
+
+  async add(arUser) {
     let user = {
       ids: await userModel.genToken(),
       name: arUser.name || "",
@@ -367,9 +414,7 @@ global.UserManager = new (class {
 
     await userModel.create(user);
     this.addToCache(user);
-
-    await this.sendLoginData(user);
-
+    // await this.sendLoginData(user);
     return suJson("su");
   }
 

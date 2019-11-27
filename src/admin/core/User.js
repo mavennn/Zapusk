@@ -143,6 +143,14 @@ export default new (class {
         .catch(requestError);
   }
 
+  removeSpeaker (Speaker) {
+    return Request.postJson("/api/user/removeSpeaker", Speaker, false, true)
+        .then(data => {
+          Load.stop();
+          return data;
+        })
+        .catch(requestError);
+  }
 
   login(email, password) {
     if (empty(email) || empty(password)) return;

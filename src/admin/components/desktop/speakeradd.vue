@@ -87,31 +87,31 @@
           </div>
 
           <!-- Страна -->
-<!--          <div class="spbc-inputgroup">-->
-<!--            <div class="spbcig-label">-->
-<!--              Страна:-->
-<!--            </div>-->
-<!--            <div class="spbcig-select">-->
-<!--              {{ user.country || "Выберите страну" }}-->
-<!--              <i class="fa fa-angle-down" aria-hidden="true"></i>-->
-<!--              <div class="spbcigs-click" @click="toggleCountry1()"></div>-->
-<!--              <div class="spbcigs-dropdown" v-if="country1_opt">-->
-<!--                <div-->
-<!--                  class="spbcigsd-option"-->
-<!--                  @click="setCountry1(c.name)"-->
-<!--                  v-for="(c, key) in opts.country"-->
-<!--                  v-bind:key="'c' + key"-->
-<!--                >-->
-<!--                  {{ c.name }}-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
+          <!--          <div class="spbc-inputgroup">-->
+          <!--            <div class="spbcig-label">-->
+          <!--              Страна:-->
+          <!--            </div>-->
+          <!--            <div class="spbcig-select">-->
+          <!--              {{ user.country || "Выберите страну" }}-->
+          <!--              <i class="fa fa-angle-down" aria-hidden="true"></i>-->
+          <!--              <div class="spbcigs-click" @click="toggleCountry1()"></div>-->
+          <!--              <div class="spbcigs-dropdown" v-if="country1_opt">-->
+          <!--                <div-->
+          <!--                  class="spbcigsd-option"-->
+          <!--                  @click="setCountry1(c.name)"-->
+          <!--                  v-for="(c, key) in opts.country"-->
+          <!--                  v-bind:key="'c' + key"-->
+          <!--                >-->
+          <!--                  {{ c.name }}-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
 
           <!-- Город -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              Город:
+              Город*:
             </div>
             <input
               v-model="user.city"
@@ -138,7 +138,7 @@
           <!-- Телефон -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              Телефон:
+              Телефон*:
             </div>
             <!-- <div class="spbcig-comb">
                           <div class="spbcig-select">
@@ -164,140 +164,89 @@
       </div>
 
       <div class="sp-block">
-        <!-- title организация -->
-        <div class="spb-title">ВУЗ*</div>
+        <div class="spb-title">
+          Компания
+        </div>
         <div class="spb-content">
-          <!-- Название организации -->
+          <!--     Организация       -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              Название ВУЗ'а *:
+              Комания*:
             </div>
             <input
-              v-model="user.university"
+              v-model="user.companyName"
               class="spbcig-val"
               type="text"
-              :placeholder="'Введите название ВУЗ\'а'"
+              :placeholder="'Введите название компании'"
             />
           </div>
 
-          <!-- Специальность -->
+          <!--     Сфера бизнеса     -->
           <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              Специальность*:
-            </div>
+            <div class="spbcig-label">Сфера бизнеса:</div>
             <input
-              v-model="user.speciality"
+              v-model="user.businessSphere"
               class="spbcig-val"
               type="text"
-              :placeholder="'Введите специальность'"
+              :placeholder="'Введите сферу бизнеса'"
             />
           </div>
 
-          <!-- Год окончания -->
+          <!--    Cсылка на сайт компании     -->
           <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              Год окончания*:
-            </div>
-            <input
-              v-model="user.endingYear"
-              class="spbcig-val"
-              type="text"
-              :placeholder="'Введите год окончания'"
-            />
+            <div class="spbcig-label">Ссылка на сайт компании"</div>
+            <input v-model="user.companyUrl" class="spbcig-val" type="text" />
           </div>
 
-          <!-- Вопрос про достаточно денег -->
+          <!--     Продукт компании     -->
           <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              Представь, что тебе достаточно денег до конца твоей жизни. Чем ты
-              будешь заниматься?
-            </div>
+            <div class="spbcig-label">"Продукт компании</div>
             <input
-              v-model="user.questionsForUser.enoughMoney"
+              v-model="user.questionsForSpeaker.yourProduct"
               class="spbcig-val"
               type="text"
             />
           </div>
 
-          <!-- Вопрос про английский -->
+          <!--    Вопрос про задачи      -->
           <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              Твой уровень владения английским языком:
-            </div>
+            <div class="spbcig-label">Какие задачи решает ваша компания?</div>
             <input
-              v-model="user.questionsForUser.english"
+              v-model="user.questionsForSpeaker.companyTasks"
               class="spbcig-val"
               type="text"
             />
           </div>
 
-          <!-- Вопрос про другой язык -->
+          <!--    Вопрос про позиции      -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              Владеешь ли ты другим языком ?
+              На какие позиции вам нужны кандидаты?
             </div>
             <input
-              v-model="user.questionsForUser.anotherLanguage"
+              v-model="user.questionsForSpeaker.positions"
               class="spbcig-val"
               type="text"
             />
           </div>
 
-          <!-- Вопрос про Worldskills -->
+          <!--    Вопрос про задачи для кандидатов      -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              Участвовал ли ты когда-нибудь в чемпионате Worldskills ?
+              Какие задачи будут поручены кандидатам?
             </div>
             <input
-              v-model="user.questionsForUser.isWorldSkills"
+              v-model="user.questionsForSpeaker.candidatsTasks"
               class="spbcig-val"
               type="text"
             />
           </div>
 
-          <!-- Вопрос про Hackatons -->
+          <!--    Вопрос про стажировку      -->
           <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              Участвовал ли ты когда-нибудь в хакатонах? Если да, то в каких ?
-            </div>
+            <div class="spbcig-label">Готовы ли вы оплачивать стажировку?</div>
             <input
-              v-model="user.questionsForUser.isHackaton"
-              class="spbcig-val"
-              type="text"
-            />
-          </div>
-
-          <!-- Вопрос про школу программирования -->
-          <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              Проходил ли или проходишь сейчас школу или курс программирования ?
-            </div>
-            <input
-              v-model="user.questionsForUser.courses"
-              class="spbcig-val"
-              type="text"
-            />
-          </div>
-
-          <!-- Вопрос про digital -->
-          <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              Какими digital компетенциями ты обладаешь и на каком уровне ?
-            </div>
-            <input
-              v-model="user.questionsForUser.digital"
-              class="spbcig-val"
-              type="text"
-            />
-          </div>
-
-          <!-- Вопрос про работу -->
-          <div class="spbc-inputgroup">
-            <div class="spbcig-label">
-              Работаешь ли ты сейчас в любом режиме ?
-            </div>
-            <input
-              v-model="user.questionsForUser.isWorking"
+              v-model="user.questionsForSpeaker.intership"
               class="spbcig-val"
               type="text"
             />
@@ -390,6 +339,12 @@
       >
         Cохранить
       </button>
+      <button
+              class="btn btn-block btn-outline btn-rounded btn-danger"
+              @click="remove()"
+      >
+        Удалить
+      </button>
     </div>
   </div>
 </template>
@@ -414,29 +369,31 @@ export default {
       role2_opt: false,
       best_opt: false,
       user: {
+        _id: "",
         prefix: null,
         name: "",
         sname: "",
-        birthday: "",
-        university: "",
-        speciality: "",
-        endingYear: "",
         country: "",
         city: "",
         photo: "",
-        email: "",
         hardSkills: [],
         softSkills: [],
-        questionsForUser: {
-          enoughMoney: "",
-          digital: "",
-          english: "",
-          anotherLanguage: "",
-          courses: "",
-          isWorldSkills: "",
-          isHackaton: "",
-          isWorking: ""
-        }
+        permission: "",
+        email: "",
+
+        /* поля спикера */
+        companyName: "",
+        companyUrl: "",
+        vacanciesUrl: "",
+        businessSphere: "",
+        questionsForSpeaker: {
+          yourProduct: "",
+          companyTasks: "",
+          positions: "",
+          candidatsTasks: "",
+          intership: ""
+        },
+        recording_status: 1
       }
     };
   },
@@ -451,15 +408,22 @@ export default {
       this.$root.$emit("compdesc", { id: key, selected: selected });
     },
     save() {
-      Request.post("/api/admin/reg", this.user)
+      Request.post("/api/user/addSpeaker", this.user, false, true)
         .then(() => {
+          swal("Ошибка", "Добавлено", "success");
           App.Mpage.closeLast();
         })
         .catch(() => {
-            swal("Ошибка", "Заполните обязательные поля", "error");
+          swal("Ошибка", "Заполните обязательные поля", "error");
         });
     },
-    remove() {},
+    remove() {
+      App.User.removeSpeaker(this.user).
+      then(() => {
+        App.Mpage.closeLast();
+        swal("Ошибка", "Удалено", "success");
+      });
+    },
     convertImg() {
       const file = document.getElementById("img_input").files[0];
       toBase64(file).then(data => {

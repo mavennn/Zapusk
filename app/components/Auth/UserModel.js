@@ -70,7 +70,6 @@ var User = new Schema({
   city: String,
   prefix: String,
 
-
   /* поля юзера */
   birthday: String,
   university: String,
@@ -100,6 +99,7 @@ var User = new Schema({
     candidatsTasks: String,
     intership: String,
   },
+  block: Number,
   recording_status: Number,
 });
 

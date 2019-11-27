@@ -303,7 +303,7 @@
       </div>
     </div>
 
-    <div class="sp-block" v-if="user.permission === 'speaker'">
+    <div class="sp-block">
       <div class="spb-title">
         Компания
       </div>
