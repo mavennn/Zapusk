@@ -30,25 +30,27 @@
     </div>
     <div class="sp-block">
       <div class="spb-title">
-        {{ lang == "en" ? "My Organization" : "Моя организация" }}
+        Компания
       </div>
       <div class="spb-content">
         <div class="spbc-row">
           <div class="spbcr-label">
-            {{ lang == "en" ? "Organization" : "Организация" }}:
+            Компания:
           </div>
           <div class="spbcr-val">{{ user.companyName }}</div>
         </div>
         <div class="spbc-row">
           <div class="spbcr-label">
-            {{ lang == "en" ? "Business Sphere" : "Cфера деятельности" }}:
+            Cфера деятельности:
           </div>
           <div class="spbcr-val">{{ user.businessSphere }}</div>
         </div>
         <div class="spbc-row">
-          <div class="spbcr-label">{{ lang == "en" ? "Company URL" : "Ссылка на сайт" }}:</div>
-          <div class="spbcr-val">
-            {{ user.companyUrl || ""}}
+          <div class="spbcr-label">Ссылка на сайт:</div>
+          <div class="spbcw-val">
+            <a :href="user.companyUrl"  v-if="user.companyUrl !== undefined">
+              {{ user.companyUrl }}
+            </a>
           </div>
         </div>
       </div>

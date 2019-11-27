@@ -88,7 +88,11 @@
           <div class="spbcw-label">
             Ссылка на сайт компании
           </div>
-          <div class="spbcw-val">{{ user.companyUrl || "-" }}</div>
+          <div class="spbcw-val">
+            <a :href="user.companyUrl" v-if="user.companyUrl !== undefined">
+              {{ user.companyUrl }}
+            </a>
+          </div>
         </div>
 
         <!--     Продукт компании     -->
