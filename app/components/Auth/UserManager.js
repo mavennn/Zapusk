@@ -369,7 +369,6 @@ global.UserManager = new (class {
     await userModel.create(speaker);
     this.addToCache(speaker);
     // await this.sendLoginData(user);
-    console.log(speaker);
     return suJson("su");
   }
 

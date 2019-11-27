@@ -22,7 +22,6 @@ module.exports = class extends AbstractCtrl {
       return erJson("Error");
 
     let speakers = await userModel.find({ permission: this.req.body.type });
-    console.log(speakers.length);
     speakers = speakers.map(val => {
       const cntr = tagsManager.country.filter(v => v._id == val.country);
       const countryName = cntr.length > 0 ? cntr[0].name : "";

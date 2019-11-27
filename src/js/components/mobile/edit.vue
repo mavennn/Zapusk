@@ -311,7 +311,7 @@
         <!--     Организация       -->
         <div class="spbc-inputgroup">
           <div class="spbcig-label">
-            Комания:
+            Компания:
           </div>
           <input
             v-model="user.companyName"

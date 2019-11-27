@@ -111,7 +111,7 @@ export default {
       App.Mpage.open({ component: "speaker-detail-info", data: id });
     },
     addNewSpeaker() {
-      App.Mpage.open({ component: "user-add" });
+      App.Mpage.open({ component: "speaker-add" });
     }
   },
   created() {

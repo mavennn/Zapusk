@@ -31,7 +31,8 @@ let arComp = [
   ["some2", "desktop/someModal1"],
   ["speaker-detail", "desktop/speakeredit"],
   ["speaker-detail-info", "desktop/speakerdetail"],
-  ["user-add", "desktop/speakeradd"]
+  ["user-add", "desktop/useradd"],
+  ["speaker-add", "desktop/speakeradd" ]
 ];
 
 export default {

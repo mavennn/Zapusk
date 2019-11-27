@@ -340,8 +340,8 @@
         Cохранить
       </button>
       <button
-              class="btn btn-block btn-outline btn-rounded btn-danger"
-              @click="remove()"
+        class="btn btn-block btn-outline btn-rounded btn-danger"
+        @click="remove()"
       >
         Удалить
       </button>
@@ -408,18 +408,25 @@ export default {
       this.$root.$emit("compdesc", { id: key, selected: selected });
     },
     save() {
-      Request.post("/api/user/addSpeaker", this.user, false, true)
-        .then(() => {
-          swal("Ошибка", "Добавлено", "success");
-          App.Mpage.closeLast();
-        })
-        .catch(() => {
-          swal("Ошибка", "Заполните обязательные поля", "error");
-        });
+      if (this.user.hardSkills.length > 10 || this.user.softSkills.length > 5) {
+        swal(
+          "Ошибка",
+          "Можно выбрать только 10 hardskills и 5 softskills",
+          "error"
+        );
+      } else {
+        Request.post("/api/user/addSpeaker", this.user, false, true)
+          .then(() => {
+            swal("Ура", "Добавлено", "success");
+            App.Mpage.closeLast();
+          })
+          .catch(() => {
+            swal("Ошибка", "Заполните обязательные поля", "error");
+          });
+      }
     },
     remove() {
-      App.User.removeSpeaker(this.user).
-      then(() => {
+      App.User.removeSpeaker(this.user).then(() => {
         App.Mpage.closeLast();
         swal("Ошибка", "Удалено", "success");
       });

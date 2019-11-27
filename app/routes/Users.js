@@ -7,7 +7,7 @@ app.post("/api/user/getSpeakerListShort", ctrl.Users.GetSpeakersShort.run());
 app.post("/api/user/edit", ctrl.Users.Edit.run());
 app.post("/api/user/remove", ctrl.Users.Remove.run());
 app.post("/api/user/removeSpeaker", ctrl.Users.RemoveSpeaker.run());
-
+app.post("/api/user/addUser", ctrl.Users.AddUser.run());
 app.post("/api/user/addSpeaker", ctrl.Users.AddSpeaker.run());
 
 app.post("/api/user/tags/get", ctrl.Users.GetTags.run());
