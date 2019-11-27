@@ -166,14 +166,14 @@
 
       <div class="sp-block" v-if="user.permission === 'speaker'">
         <div class="spb-title">
-          Моя организация
+          Компания
         </div>
         <div class="spb-content">
 
           <!--     Организация       -->
           <div class="spbc-inputgroup">
             <div class="spbcig-label">
-              Моя организация:
+              Компания:
             </div>
             <input
                     v-model="user.companyName"

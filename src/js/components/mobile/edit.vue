@@ -161,7 +161,7 @@
       </div>
     </div>
 
-    <div class="sp-block">
+    <div class="sp-block" v-if="user.permission === 'user'">
       <!-- title организация -->
       <div class="spb-title">ВУЗ*</div>
       <div class="spb-content">
@@ -303,6 +303,99 @@
       </div>
     </div>
 
+    <div class="sp-block" v-if="user.permission === 'speaker'">
+      <div class="spb-title">
+        Компания
+      </div>
+      <div class="spb-content">
+
+        <!--     Организация       -->
+        <div class="spbc-inputgroup">
+          <div class="spbcig-label">
+            Комания:
+          </div>
+          <input
+                  v-model="user.companyName"
+                  class="spbcig-val"
+                  type="text"
+                  :placeholder="'Введите название компании'"
+          />
+        </div>
+
+        <!--     Сфера бизнеса     -->
+        <div class="spbc-inputgroup">
+          <div class="spbcig-label">Сфера бизнеса:</div>
+          <input
+                  v-model="user.businessSphere"
+                  class="spbcig-val"
+                  type="text"
+                  :placeholder="'Введите сферу бизнеса'"
+          />
+        </div>
+
+        <!--    Cсылка на сайт компании     -->
+        <div class="spbc-inputgroup">
+          <div class="spbcig-label">Ссылка на сайт компании"</div>
+          <input
+                  v-model="user.companyUrl"
+                  class="spbcig-val"
+                  type="text"
+          />
+        </div>
+
+        <!--     Продукт компании     -->
+        <div class="spbc-inputgroup">
+          <div class="spbcig-label">"Продукт компании</div>
+          <input
+                  v-model="user.questionsForSpeaker.yourProduct"
+                  class="spbcig-val"
+                  type="text"
+          />
+        </div>
+
+        <!--    Вопрос про задачи      -->
+        <div class="spbc-inputgroup">
+          <div class="spbcig-label">Какие задачи решает ваша компания?</div>
+          <input
+                  v-model="user.questionsForSpeaker.companyTasks"
+                  class="spbcig-val"
+                  type="text"
+          />
+        </div>
+
+        <!--    Вопрос про позиции      -->
+        <div class="spbc-inputgroup">
+          <div class="spbcig-label">На какие позиции вам нужны кандидаты?</div>
+          <input
+                  v-model="user.questionsForSpeaker.positions"
+                  class="spbcig-val"
+                  type="text"
+          />
+        </div>
+
+        <!--    Вопрос про задачи для кандидатов      -->
+        <div class="spbc-inputgroup">
+          <div class="spbcig-label">Какие задачи будут поручены кандидатам?</div>
+          <input
+                  v-model="user.questionsForSpeaker.candidatsTasks"
+                  class="spbcig-val"
+                  type="text"
+          />
+        </div>
+
+        <!--    Вопрос про стажировку      -->
+        <div class="spbc-inputgroup">
+          <div class="spbcig-label">Готовы ли вы оплачивать стажировку?</div>
+          <input
+                  v-model="user.questionsForSpeaker.intership"
+                  class="spbcig-val"
+                  type="text"
+          />
+        </div>
+
+      </div>
+    </div>
+
     <!-- Блоr c тегами -->
     <div class="sp-block">
       <!-- Hard Skills -->
@@ -343,41 +436,38 @@
         </div>
 
         <!-- title softskills -->
-<!--        <div class="spb-title">-->
-<!--          Soft Skills*-->
-<!--        </div>-->
+        <div class="spb-title" v-if="user.permission === 'speaker'">
+          Soft Skills*
+        </div>
+        <div class="spbc-advice">
+          Нажмите на навыки, интересующие Вас
+        </div>
 
-        <!-- подсказка для softskills -->
-<!--        <div class="spbc-advice">-->
-<!--          Нажмите на навыки, интересующие Вас-->
-<!--        </div>-->
-
-        <!-- тут сами теги -->
-<!--        <div-->
-<!--          class="spbc-taggroup"-->
-<!--          v-for="(w, key) in opts.softSkills"-->
-<!--          v-bind:key="'w' + key"-->
-<!--        >-->
-<!--          <div-->
-<!--            @click="toggleSoftSkill(w._id)"-->
-<!--            class="spbc-onetag"-->
-<!--            :class="{-->
-<!--              'spbct-active': user.softSkills && user.softSkills.includes(w._id)-->
-<!--            }"-->
-<!--          >-->
-<!--            {{ w.name }}-->
-<!--          </div>-->
-<!--          <div-->
-<!--            v-if="![0, 8, 9].includes(key)"-->
-<!--            class="spbc-taginfo"-->
-<!--            @click="-->
-<!--              getTagInfo(-->
-<!--                key,-->
-<!--                user.wsrProducts && user.wsrProducts.includes(w._id)-->
-<!--              )-->
-<!--            "-->
-<!--          ></div>-->
-<!--        </div>-->
+        <div
+          class="spbc-taggroup"
+          v-for="(w, key) in opts.softSkills"
+          v-bind:key="'w' + key"
+        >
+          <div
+            @click="toggleSoftSkill(w._id)"
+            class="spbc-onetag"
+            :class="{
+              'spbct-active': user.softSkills && user.softSkills.includes(w._id)
+            }"
+          >
+            {{ w.name }}
+          </div>
+          <div
+            v-if="![0, 8, 9].includes(key)"
+            class="spbc-taginfo"
+            @click="
+              getTagInfo(
+                key,
+                user.wsrProducts && user.wsrProducts.includes(w._id)
+              )
+            "
+          ></div>
+        </div>
       </div>
     </div>
 

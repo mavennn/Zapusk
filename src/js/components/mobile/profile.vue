@@ -62,13 +62,13 @@
     <!-- Профиль спикера -->
     <div class="sp-block" v-if="user.permission === 'speaker'">
       <div class="spb-title">
-        Моя организация
+        Компания
       </div>
       <div class="spb-content">
         <!--     Организация       -->
         <div class="spbc-row">
           <div class="spbcr-label">
-            Моя организация
+            Компания:
           </div>
           <div class="spbcr-val">{{ user.companyName }}</div>
         </div>

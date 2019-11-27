@@ -1,4 +1,4 @@
-<template>
+<template xmlns="http://www.w3.org/1999/html">
   <div class="skittles-profile" v-if="load">
     <!--   Тут персональная информация   -->
     <div class="sp-block">
@@ -70,13 +70,13 @@
     <!-- Профиль спикера -->
     <div class="sp-block" v-if="user.permission === 'speaker'">
       <div class="spb-title">
-        Моя организация
+        Компания
       </div>
       <div class="spb-content">
         <!--     Организация       -->
         <div class="spbc-row">
           <div class="spbcr-label">
-            Моя организация
+            Компания:
           </div>
           <div class="spbcr-val">{{ user.companyName }}</div>
         </div>
@@ -96,7 +96,13 @@
           <div class="spbcw-label">
             Ссылка на сайт компании
           </div>
-          <div class="spbcw-val">{{ user.companyUrl || "-" }}</div>
+          <div class="spbcw-val">
+            <a :href="user.companyUrl"  v-if="user.companyUrl !== undefined">
+              {{ user.companyUrl }}
+            </a>
+          </div>
+
+<!--          <div class="spbcw-val" v-if="user.companyUrl === undefined">-</div>-->
         </div>
 
         <!--     Продукт компании     -->

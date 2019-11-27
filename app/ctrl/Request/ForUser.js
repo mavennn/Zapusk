@@ -24,9 +24,6 @@ module.exports = class extends AbstractCtrl {
       }
     }
 
-    console.log("requests", requests);
-    console.log("users", users);
-
     return suJson({ requests, users });
   }
 };

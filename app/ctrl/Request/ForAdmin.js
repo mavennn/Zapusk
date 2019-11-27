@@ -13,8 +13,6 @@ module.exports = class extends AbstractCtrl {
   async exect() {
     if (this.user.permission != "admin") return erJson("Not auth");
 
-    console.log("body", this.req.body);
-
     let requests = await requestModel.find({
       speaker: this.speakerId,
     });
@@ -33,9 +31,6 @@ module.exports = class extends AbstractCtrl {
         }
       }
     }
-
-    console.log("requests", requests);
-    console.log("users", users);
 
     return suJson({ requests, users });
   }
