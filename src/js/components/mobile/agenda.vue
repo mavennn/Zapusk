@@ -84,27 +84,26 @@
                   {{ event.time }}
                 </div>
                 <div v-else class="sbbidr-time">
+<!--                  {{-->
+<!--                    event.status == 1-->
+<!--                      ? lang == "en"-->
+<!--                        ? "Submitted"-->
+<!--                        : "Подана"-->
+<!--                      : ""-->
+<!--                  }}-->
                   {{
                     event.status == 1
-                      ? lang == "en"
-                        ? "Submitted"
-                        : "Подана"
+                      ? "Принята"
                       : ""
-                  }}
-                  {{
-                    event.status == 2
-                      ? lang == "en"
-                        ? "Accepted"
-                        : "Принята"
-                      : ""
-                  }}
-                  {{
-                    event.status == 3
-                      ? lang == "en"
-                        ? "Rejected."
-                        : "Отклонена"
-                      : ""
-                  }}
+                  }}<br>
+                  {{event.time}}
+<!--                  {{-->
+<!--                    event.status == 3-->
+<!--                      ? lang == "en"-->
+<!--                        ? "Rejected."-->
+<!--                        : "Отклонена"-->
+<!--                      : ""-->
+<!--                  }}-->
                 </div>
               </div>
               <div class="sbbid-company">{{ event.companyName }}</div>
