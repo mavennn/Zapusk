@@ -96,7 +96,7 @@
                       ? "Принята"
                       : ""
                   }}<br>
-                  {{event.time}}
+                  {{// event.time}}
 <!--                  {{-->
 <!--                    event.status == 3-->
 <!--                      ? lang == "en"-->
@@ -191,6 +191,9 @@ export default {
         }
       });
     });
+  },
+  prettyTime() {
+
   },
   methods: {
     openSpeakers(title, event) {
