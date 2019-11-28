@@ -95,8 +95,7 @@
                     event.status == 1
                       ? "Принята"
                       : ""
-                  }}<br>
-                  {{// event.time}}
+                  }}
 <!--                  {{-->
 <!--                    event.status == 3-->
 <!--                      ? lang == "en"-->
