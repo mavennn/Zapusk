@@ -149,6 +149,7 @@ export default {
       Request.post("/meetings/getSpeakers")
         .then(async data => {
           this.speakers = data;
+          console.log(data);
           this.speakers.map(s => {
             let requests = this.requests.filter(x => x.speaker === s._id);
             let sortedRequest = _.orderBy(requests, ["rating"], ["desc"]);
