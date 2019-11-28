@@ -333,16 +333,6 @@
             >
               {{ w.name }}
             </div>
-            <div
-              v-if="![0, 8, 9].includes(key)"
-              class="spbc-taginfo"
-              @click="
-                getTagInfo(
-                  key,
-                  user.wsrProducts && user.wsrProducts.includes(w._id)
-                )
-              "
-            ></div>
           </div>
 
           <!-- title softskills -->
@@ -371,16 +361,6 @@
             >
               {{ w.name }}
             </div>
-            <div
-              v-if="![0, 8, 9].includes(key)"
-              class="spbc-taginfo"
-              @click="
-                getTagInfo(
-                  key,
-                  user.wsrProducts && user.wsrProducts.includes(w._id)
-                )
-              "
-            ></div>
           </div>
         </div>
       </div>

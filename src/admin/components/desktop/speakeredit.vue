@@ -428,16 +428,6 @@
             >
               {{ w.name }}
             </div>
-            <div
-              v-if="![0, 8, 9].includes(key)"
-              class="spbc-taginfo"
-              @click="
-                getTagInfo(
-                  key,
-                  user.wsrProducts && user.wsrProducts.includes(w._id)
-                )
-              "
-            ></div>
           </div>
 
           <!-- title softskills -->
@@ -456,16 +446,6 @@
             v-for="(w, key) in opts.softSkills"
             v-bind:key="'w' + key"
           >
-            <div
-              @click="toggleSoftSkills(w._id)"
-              class="spbc-onetag"
-              :class="{
-                'spbct-active':
-                  user.softSkills && user.softSkills.includes(w._id)
-              }"
-            >
-              {{ w.name }}
-            </div>
             <div
               v-if="![0, 8, 9].includes(key)"
               class="spbc-taginfo"
