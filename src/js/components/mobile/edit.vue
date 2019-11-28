@@ -419,16 +419,16 @@
           >
             {{ w.name }}
           </div>
-          <div
-            v-if="![0, 8, 9].includes(key)"
-            class="spbc-taginfo"
-            @click="
-              getTagInfo(
-                key,
-                user.wsrProducts && user.wsrProducts.includes(w._id)
-              )
-            "
-          ></div>
+<!--          <div-->
+<!--            v-if="![0, 8, 9].includes(key)"-->
+<!--            class="spbc-taginfo"-->
+<!--            @click="-->
+<!--              getTagInfo(-->
+<!--                key,-->
+<!--                user.wsrProducts && user.wsrProducts.includes(w._id)-->
+<!--              )-->
+<!--            "-->
+<!--          ></div>-->
         </div>
 
         <!-- title softskills -->
@@ -454,16 +454,16 @@
                   >
                     {{ w.name }}
                   </div>
-                  <div
-                    v-if="![0, 8, 9].includes(key)"
-                    class="spbc-taginfo"
-                    @click="
-                      getTagInfo(
-                        key,
-                        user.wsrProducts && user.wsrProducts.includes(w._id)
-                      )
-                    "
-                  ></div>
+<!--                  <div-->
+<!--                    v-if="![0, 8, 9].includes(key)"-->
+<!--                    class="spbc-taginfo"-->
+<!--                    @click="-->
+<!--                      getTagInfo(-->
+<!--                        key,-->
+<!--                        user.wsrProducts && user.wsrProducts.includes(w._id)-->
+<!--                      )-->
+<!--                    "-->
+<!--                  ></div>-->
                 </div>
       </div>
     </div>
@@ -613,22 +613,28 @@ export default {
       this.$root.$emit("compdesc", { id: key, selected: selected });
     },
     save() {
-      if (this.user.hardSkills.length > 10 || this.user.softSkills.length > 5) {
+      if ( (this.user.hardSkills.length > 10 || this.user.softSkills.length > 5) && this.user.permission === 'speaker') {
         swal(
                 "Ошибка",
                 "Можно выбрать только 10 hardskills и 5 softskills",
                 "error"
         );
+      } else if (this.user.hardSkills.length > 5 && this.user.permission === 'user') {
+        swal(
+                "Ошибка",
+                "Можно выбрать не более 5 hardskills",
+                "error"
+        );
       } else {
         App.User.editProfile(this.user)
-          .then(() => {
-            // App.Mpage.closeLast();
-            location.href = "/profile";
-            // this.goRoute("/profile");
-          })
-          .catch(() => {
-            swal("Ошибка", "Заполните обязательные поля", "error");
-          });
+                .then(() => {
+                  // App.Mpage.closeLast();
+                  location.href = "/profile";
+                  // this.goRoute("/profile");
+                })
+                .catch(() => {
+                  swal("Ошибка", "Заполните обязательные поля", "error");
+                });
       }
     },
     convertImg() {
