@@ -100,7 +100,7 @@ export default {
     this.getBlocks();
     this.getRequests();
     this.getSpeakers();
-    setTimeout(() => window.location.reload(), 10000);
+    setTimeout(() => window.location.reload(), 30000);
     // this.getSpeakersName({ _id: "5ddebee5ea54b81f3aa392b3"})
     // this.getMeetings();
     // setInterval(() => {
@@ -202,19 +202,31 @@ export default {
               let hour = Number(mas[0]);
               let min = Number(mas[1]);
 
-              if (min === 55) {
+              // if (min === 55) {
+              //   hour = hour + 1;
+              // }
+
+
+              if (min == 55) {
                 hour = hour + 1;
               }
 
-              min = min + 5;
+              min = min + 10;
+
+              if (min > 60 ) {
+                min = min - 60
+              }
 
               if (min === 60) {
+                hour = hour + 1;
                 min = 0;
               }
+
 
               if (min - 10 < 0) {
                 min = "0" + min.toString();
               }
+
 
               let result = hour.toString() + ":" + min.toString();
               //
