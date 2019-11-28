@@ -54,7 +54,7 @@ global.Request = new (class {
           res(data);
         })
         .catch(status => {
-          console.log("status", status);
+          // console.log("status", status);
           if (status == 404 || status == 502) {
             swal(
               "Ошибка",

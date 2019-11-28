@@ -28,6 +28,38 @@ app.post("/meetings/list", async (req, res) => {
   res.send({ meetings, users }); // res.send({})
 });
 
+app.post("/meetings/getBlocks", async (req, res) => {
+
+  let blocks = await blockModel.find({});
+  if(empty(blocks)) return erJson("No blocks");
+  res.send({ blocks })
+
+});
+
+app.post("/meetings/getSpeakers", async (req, res) => {
+  let speakers = await userModel.find({ permission: "speaker"});
+  if(empty(speakers)) return erJson("No speakers");
+
+  speakers = speakers.map(sp => {
+    return {_id: sp._id, name: sp.name, sname: sp.sname, block: sp.block, sortedRequest: []}
+  });
+
+  res.send(speakers)
+});
+
+app.post("/meetings/getRequests", async  (req, res) => {
+  let requests = await requestModel.find({});
+  if (empty(requests)) return erJson("Записей нет");
+
+  let n = requests.map(async r => {
+    let user_id = r._id;
+    let user = await userModel.find({ _id: user_id });
+    return user;
+  });
+
+  res.send(requests);
+});
+
 app.get("/meetings", (req, res) => {
   res.template().render("index");
 });

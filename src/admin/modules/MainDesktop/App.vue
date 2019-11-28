@@ -68,7 +68,7 @@ export default {
     schedule: () => App.Load.ComponentLoading("desktop/schedule"),
     meetimes: () => App.Load.ComponentLoading("desktop/meetimes"),
     statistic: () => App.Load.ComponentLoading("desktop/statistic"),
-    blocks: () => App.Load.ComponentLoading("descktop/blocks"),
+    blocks: () => App.Load.ComponentLoading("desktop/blocks"),
     Mpage,
     Modal,
     Mfull

@@ -446,16 +446,6 @@
             v-for="(w, key) in opts.softSkills"
             v-bind:key="'w' + key"
           >
-            <div
-              v-if="![0, 8, 9].includes(key)"
-              class="spbc-taginfo"
-              @click="
-                getTagInfo(
-                  key,
-                  user.wsrProducts && user.wsrProducts.includes(w._id)
-                )
-              "
-            ></div>
           </div>
         </div>
       </div>

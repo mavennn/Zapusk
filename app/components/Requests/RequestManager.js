@@ -1,7 +1,7 @@
 global.requestManager = new (class {
   constructor() {}
 
-  async create({ userId, speakerId, day }) {
+  async create({ userId, speakerId, day, name, sname }) {
 
     if (empty(userId)) return erJson("Auth?");
 
@@ -123,6 +123,8 @@ global.requestManager = new (class {
     let params = {
       speaker: speakerId,
       user: userId,
+      name,
+      sname,
       day,
       rating,
       status: 1

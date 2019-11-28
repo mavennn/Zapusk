@@ -1,5 +1,6 @@
 <template>
   <div class="skittles-meetings">
+    <!-- Header -->
     <div class="sm-header">
       <div class="smh-name">
         <div class="smhn-title">ONE-TO-ONE MEETINGS AGENDA</div>
@@ -7,67 +8,220 @@
       </div>
       <div class="smh-date">NOVEMBER 28</div>
     </div>
+
+    <!-- Таблица -->
     <div class="sm-body">
-      <table class="smb-table">
-        <thead>
-          <tr>
-            <th>SPEAKERS</th>
-            <th
-              :class="{
-                'smbt-current': currentTime(
-                  t,
-                  times[key + 1] ? times[key + 1] : t
-                )
-              }"
-              v-for="(t, key) in times"
-              v-bind:key="'t' + key"
-            >
-              {{ t }}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(speaker, key) in speakers" v-bind:key="'sp' + key">
-            <td>{{ getName(speaker.id) }}</td>
-            <td
-              :class="{
-                'smbt-current': currentTime(
-                  user.time,
-                  speaker.users[key + 1]
-                    ? speaker.users[key + 1].time
-                    : user.time
-                )
-              }"
-              v-for="(user, key) in speaker.users"
-              v-bind:key="'sp' + key"
-            >
-              {{ user.id ? getName(user.id) : "-" }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <ul>
+        <li v-for="block in blocks" class="li-class">
+          <!-- над таблицей написать номер блока -->
+          <!-- в каждом li хранится объект block с имененм, times, и спикерами -->
+          <!-- для каждого такого блока надо сделать таблица -->
+          <!-- в шапке таблицы будут:  "Спикеры", проитерировать времена-->
+          <table class="smb-table">
+            <thead>
+              <tr>
+                <td>Блок {{ block.name }}</td>
+                <td v-for="time in block.times">{{ time }}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="speaker in speakers">
+                <td v-if="speaker.block === block.name">
+                  {{speaker.name}}
+                  {{speaker.sname}}
+                </td>
+                <td v-for="s in speaker.sortRequest" v-if="speaker.block === block.name">
+                  {{ s.name }} {{ s.sname }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+      </ul>
+      <!--      <table class="smb-table">-->
+      <!--        <thead>-->
+      <!--          <tr>-->
+      <!--            <th>SPEAKERS</th>-->
+      <!--            <th-->
+      <!--              :class="{-->
+      <!--                'smbt-current': currentTime(-->
+      <!--                  t,-->
+      <!--                  times[key + 1] ? times[key + 1] : t-->
+      <!--                )-->
+      <!--              }"-->
+      <!--              v-for="(t, key) in times"-->
+      <!--              v-bind:key="'t' + key"-->
+      <!--            >-->
+      <!--              {{ t }}-->
+      <!--            </th>-->
+      <!--          </tr>-->
+      <!--        </thead>-->
+      <!--        <tbody>-->
+
+      <!--          <tr v-for="(speaker, key) in speakers" v-bind:key="'sp' + key">-->
+      <!--            <td>{{ getName(speaker.id) }}</td>-->
+      <!--            <td-->
+      <!--              :class="{-->
+      <!--                'smbt-current': currentTime(-->
+      <!--                  user.time,-->
+      <!--                  speaker.users[key + 1]-->
+      <!--                    ? speaker.users[key + 1].time-->
+      <!--                    : user.time-->
+      <!--                )-->
+      <!--              }"-->
+      <!--              v-for="(user, key) in speaker.users"-->
+      <!--              v-bind:key="'sp' + key"-->
+      <!--            >-->
+      <!--              {{ user.id ? getName(user.id) : "-" }}-->
+      <!--            </td>-->
+      <!--          </tr>-->
+      <!--        </tbody>-->
+      <!--      </table>-->
     </div>
   </div>
 </template>
 
 <script>
+import _ from "lodash";
+
 export default {
   data() {
     return {
+      blocks: [],
       times: [],
       speakers: [],
+      requests: [],
       names: []
     };
   },
   props: {},
   computed: {},
   created() {
-    this.getMeetings();
-    setInterval(() => {
-      this.getMeetings();
-    }, 10000);
+    this.getBlocks();
+    this.getRequests();
+    this.getSpeakers();
+    // this.getSpeakersName({ _id: "5ddebee5ea54b81f3aa392b3"})
+    // this.getMeetings();
+    // setInterval(() => {
+    //   this.getMeetings();
+    // }, 10000);
   },
   methods: {
+    sortRequests(block) {
+      for (let i = 0; i <= 19; i++) {
+        for (let j = 1; j <= block.speakers.length; j++) {
+          console.log(this.speakers[j].sortedRequest[i]);
+          let c = this.speakers[j].sortedRequest[i];
+          let prev = this.speakers[j - 1].sortedRequest[i];
+          let nextInList = this.speakers[j].sortedRequest[i + 1];
+          if (c === prev) {
+            let temp = c;
+            this.speakers[j].sortedRequest[i] = nextInList;
+            nextInList = c;
+          }
+        }
+      }
+    },
+    getRequestsForSpeaker(speakerId) {
+      let requests = this.requests.filter(x => x.speaker === speakerId);
+      let sortedRequest = _.orderBy(requests, ["rating"], ["desc"]);
+      this.speakers[this.speakers.findIndex(x => x._id === speakerId)].sortRequests = sortedRequest;
+      // let speaker = this.speakers[
+      //   this.speakers.findIndex(x => x._id === speakerId)
+      // ];
+      // this.speakers[this.speakers.findIndex(x => x._id === speakerId)] = {
+      //   ...speaker,
+      //   sortedRequest
+      // };
+
+      // return sortedRequest;
+    },
+    getSpeakerName(speakerId) {
+      let speaker = this.speakers.find(x => x._id === speakerId);
+      if(speaker.name === undefined || speaker === undefined) speaker.name = "Александр";
+      return speaker.name;
+    },
+    getSpeakerSname(speakerId) {
+      let speaker = this.speakers.find(x => x._id === speakerId);
+      return speaker.sname;
+    },
+    getSpeakers() {
+      Request.post("/meetings/getSpeakers")
+        .then(async data => {
+          this.speakers = data;
+          this.speakers.map(s => {
+            let requests = this.requests.filter(x => x.speaker === s._id);
+            let sortedRequest = _.orderBy(requests, ["rating"], ["desc"]);
+            s.sortRequest = sortedRequest;
+          });
+        })
+        .catch(err => console.log("err", err));
+    },
+    getRequests() {
+      Request.post("/meetings/getRequests")
+        .then(data => {
+          this.requests = data;
+        })
+        .catch(err => console.log("err", err));
+    },
+    // getSpeakersName(_id) {
+    //   Request.post("/meetings/getSpeaker", _id, false, true)
+    //     .then(data => {
+    //       let { _id, name, sname } = data;
+    //
+    //       this.blocks.map(block => {
+    //         block.speakers = block.speakers.map(speaker => {
+    //           if (speaker === _id) {
+    //             return { _id, name, sname }
+    //           }
+    //           return speaker
+    //         })
+    //       });
+    //     })
+    //     .catch(error => {
+    //       swal("Ошибка", error, "error");
+    //     });
+    // },
+    getBlocks() {
+      Request.post("/meetings/getBlocks")
+        .then(data => {
+          this.blocks = data.blocks;
+          const TOTAL_MEETINGS = 20;
+
+          // для каждого блока итерируем время
+          this.blocks.map(block => {
+            block.times = [];
+            block.times[0] = block.timeStart;
+
+            // тут получаем время для каждого блока
+            for (let i = 1; i <= TOTAL_MEETINGS - 1; i++) {
+              let currentTime = block.times[i - 1];
+              let mas = currentTime.split(":");
+              let hour = Number(mas[0]);
+              let min = Number(mas[1]);
+
+              if (min === 55) {
+                hour = hour + 1;
+              }
+
+              min = min + 5;
+
+              if (min === 60) {
+                min = 0;
+              }
+
+              if (min - 10 < 0) {
+                min = "0" + min.toString();
+              }
+
+              let result = hour.toString() + ":" + min.toString();
+              //
+              block.times.push(result);
+            }
+          });
+        })
+        .catch(err => swal("УПс", "Пока нет встреч", "error"));
+    },
     currentTime(curr, nex) {
       let date = new Date();
       let hour = date.getHours();
@@ -78,22 +232,19 @@ export default {
         numval < Number(nex.replace(":", ""))
       );
     },
-    getName(id) {
-      if (this.names[id]) {
-        return `${this.names[id].name} ${this.names[id].sname}`;
-      } else {
-        return "-";
-      }
-    },
+    // getName(id) {
+    //   if (this.names[id]) {
+    //     return `${this.names[id].name} ${this.names[id].sname}`;
+    //   } else {
+    //     return "-";
+    //   }
+    // },
     getMeetings() {
       Request.post("/meetings/list")
         .then(data => {
-          console.log(data);
-
           this.times = [];
           this.speakers = [];
           this.names = data.users;
-
 
           // тут заполняется this.times и this.speakers
           data.meetings.forEach(element => {
@@ -126,8 +277,6 @@ export default {
               });
             });
           });
-
-          console.log(this.speakers);
         })
         .catch(err => {
           console.log(err);
@@ -171,6 +320,9 @@ export default {
     }
   }
   .sm-body {
+    .li-class{
+      list-style: none;
+    }
     .smb-table {
       border-collapse: collapse;
       color: #ffffff;

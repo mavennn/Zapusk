@@ -35,7 +35,6 @@
           <span class="amsl-name">Schedule</span></a
         >
       </li>
-
       <li>
         <a
           @click="goRoute('/admin/blocks/')"

@@ -69,7 +69,7 @@ global.UserManager = new (class {
             candidatsTasks: this.getItem(item[11]),
             intership: this.getItem(item[12])
           },
-          block: this.getItem(item[13]),
+          block: this.getItem(item[14]),
           recording_status: 1
         };
 
@@ -123,18 +123,15 @@ global.UserManager = new (class {
           speciality: this.getItem(item[6]),
           endingYear: this.getItem(item[7]),
           questionsForUser: {
-            digital: this.getItem(item[12]),
+            digital: this.getItem(item[11]),
             english: this.getItem(item[9]),
             anotherLanguage: this.getItem(item[10]),
-            isHackaton:
-              this.getItem(item[13]) === "" ? this.getItem(item[15]) : "",
-            isWorldSkills:
-              this.getItem(item[11]) === "" ? this.getItem(item[16]) : "",
-            courses:
-              this.getItem(item[14]) === "" ? this.getItem(item[17]) : "",
+            isHackaton: this.getItem(item[12]),
+            isWorldSkills: this.getItem(item[13]),
+            courses: this.getItem(item[14]),
             enoughMoney: this.getItem(item[8]),
             achievements: "",
-            isWorking: this.getItem(item[18])
+            isWorking: this.getItem(item[15])
           }
         };
 
@@ -175,6 +172,8 @@ global.UserManager = new (class {
         return suJson(this.Users[token]);
 
     let User = await userModel.findOne({ token: token });
+
+    console.log(User);
 
     if (User.permission !== "admin") return erJson("invalid_token");
     return suJson(this.addToCache(User));
@@ -248,7 +247,6 @@ global.UserManager = new (class {
   }
 
   async edit(id, arUser) {
-
     if (empty(id)) return erJson("Auth not found");
 
     let user = await userModel.findOne({ _id: arUser._id });
@@ -272,39 +270,33 @@ global.UserManager = new (class {
       user.businessSphere = arUser.businessSphere || "";
 
       user.questionsForSpeaker.yourProduct =
-          arUser.questionsForSpeaker.yourProduct || "";
+        arUser.questionsForSpeaker.yourProduct || "";
       user.questionsForSpeaker.companyTasks =
-          arUser.questionsForSpeaker.companyTasks || "";
+        arUser.questionsForSpeaker.companyTasks || "";
       user.questionsForSpeaker.positions =
-          arUser.questionsForSpeaker.positions || "";
+        arUser.questionsForSpeaker.positions || "";
       user.questionsForSpeaker.candidatsTasks =
-          arUser.questionsForSpeaker.candidatsTasks || "";
+        arUser.questionsForSpeaker.candidatsTasks || "";
       user.questionsForSpeaker.intership =
-          arUser.questionsForSpeaker.intership || "";
-
+        arUser.questionsForSpeaker.intership || "";
     } else if (user.permission === "user") {
-
       user.birthday = arUser.birthday || "";
       user.university = arUser.university || "";
       user.speciality = arUser.speciality || "";
       user.endingYear = arUser.endingYear || "";
 
       user.questionsForUser.enoughMoney =
-          arUser.questionsForUser.enoughMoney || "";
-      user.questionsForUser.digital =
-          arUser.questionsForUser.digital || "";
-      user.questionsForUser.english =
-          arUser.questionsForUser.english || "";
+        arUser.questionsForUser.enoughMoney || "";
+      user.questionsForUser.digital = arUser.questionsForUser.digital || "";
+      user.questionsForUser.english = arUser.questionsForUser.english || "";
       user.questionsForUser.anotherLanguage =
-          arUser.questionsForUser.anotherLanguage || "";
+        arUser.questionsForUser.anotherLanguage || "";
       user.questionsForUser.isWorldSkills =
-          arUser.questionsForUser.isWorldSkills || "";
+        arUser.questionsForUser.isWorldSkills || "";
       user.questionsForUser.isHackaton =
-          arUser.questionsForUser.isHackaton || "";
-      user.questionsForUser.courses =
-          arUser.questionsForUser.courses || "";
-      user.questionsForUser.isWorking =
-          arUser.questionsForUser.isWorking || "";
+        arUser.questionsForUser.isHackaton || "";
+      user.questionsForUser.courses = arUser.questionsForUser.courses || "";
+      user.questionsForUser.isWorking = arUser.questionsForUser.isWorking || "";
     }
 
     await user.save();
@@ -320,7 +312,7 @@ global.UserManager = new (class {
     await user.remove();
     this.addToCache(user);
     return suJson("su");
-}
+  }
 
   async remove(asSpeaker) {
     if (empty(asSpeaker._id)) return erJson("Auth not found");
@@ -332,7 +324,7 @@ global.UserManager = new (class {
     return suJson("su");
   }
 
-  async addSpeaker (arSpeaker) {
+  async addSpeaker(arSpeaker) {
     let speaker = {
       ids: await userModel.genToken(),
       name: arSpeaker.name || "",
@@ -392,7 +384,6 @@ global.UserManager = new (class {
       city: arUser.city || "",
       prefix: arUser.prefix || "",
 
-
       /* поля юзера */
       birthday: arUser.birthday || "",
       university: arUser.university || "",
@@ -407,8 +398,8 @@ global.UserManager = new (class {
         courses: arUser.questionsForUser.courses || "",
         enoughMoney: arUser.questionsForUser.enoughMoney || "",
         achievements: arUser.questionsForUser.achievements || "",
-        isWorking: arUser.questionsForUser.isWorking || "",
-      },
+        isWorking: arUser.questionsForUser.isWorking || ""
+      }
     };
 
     await userModel.create(user);

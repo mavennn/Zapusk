@@ -3,6 +3,8 @@ require('../../../app');
 var Request = new Schema({
   speaker: String,
   user: String,
+  name: String,
+  sname: String,
   day: Number,
   rating: Number,
   status: Number, // 1 - подана, 2 - принята, 3 - отклонена

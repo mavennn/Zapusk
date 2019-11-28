@@ -70,6 +70,8 @@ module.exports = class extends AbstractCtrl {
     if (speaker.recording_status == 2) {
       return await requestManager.create({
         userId: this.user._id,
+        name: this.user.name,
+        sname: this.user.sname,
         speakerId: this.speakerId,
         day: this.day
       });

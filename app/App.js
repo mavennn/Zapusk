@@ -26,6 +26,7 @@ Load.Component("Tags");
 Load.Component("Schedule");
 Load.Component("Meeting");
 Load.Component("Requests");
+Load.Component("Block");
 
 Load.Controllers();
 Load.Templates();
