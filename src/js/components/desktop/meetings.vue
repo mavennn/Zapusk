@@ -100,7 +100,7 @@ export default {
     this.getBlocks();
     this.getRequests();
     this.getSpeakers();
-    setTimeout(() => window.location.reload(), 10000);
+    setTimeout(() => window.location.reload(), 300000);
     // this.getSpeakersName({ _id: "5ddebee5ea54b81f3aa392b3"})
     // this.getMeetings();
     // setInterval(() => {
